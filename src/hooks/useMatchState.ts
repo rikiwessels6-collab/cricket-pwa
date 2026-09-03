@@ -80,7 +80,7 @@ export function useMatchState() {
   const selectCompetition = useCallback((competitionId: string) => {
     setState((prev) => {
       if (competitionId === CUSTOM_PRESET_ID) {
-        return { ...prev, competitionId };
+        return { ...prev, competitionId, extraTimeUsedMinutes: 0 };
       }
       const preset = findPreset(competitionId);
       if (!preset) return prev;
@@ -89,6 +89,7 @@ export function useMatchState() {
         competitionId,
         isFinal: false,
         settings: settingsForPreset(preset, false),
+        extraTimeUsedMinutes: 0,
       };
     });
   }, []);
@@ -98,6 +99,15 @@ export function useMatchState() {
       const preset = findPreset(prev.competitionId);
       if (!preset) return { ...prev, isFinal };
       return { ...prev, isFinal, settings: settingsForPreset(preset, isFinal) };
+    });
+  }, []);
+
+  const updateExtraTimeUsed = useCallback((minutes: number) => {
+    setState((prev) => {
+      const preset = findPreset(prev.competitionId);
+      const allowance = preset?.extraTimeAllowanceMinutes ?? 0;
+      const clamped = Math.min(Math.max(0, minutes), allowance);
+      return { ...prev, extraTimeUsedMinutes: clamped };
     });
   }, []);
 
@@ -113,5 +123,6 @@ export function useMatchState() {
     resetMatch,
     selectCompetition,
     setIsFinal,
+    updateExtraTimeUsed,
   };
 }

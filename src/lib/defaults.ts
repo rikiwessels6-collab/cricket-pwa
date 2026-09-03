@@ -23,4 +23,5 @@ export const DEFAULT_MATCH_STATE: MatchState = {
   },
   competitionId: CUSTOM_PRESET_ID,
   isFinal: false,
+  extraTimeUsedMinutes: 0,
 };

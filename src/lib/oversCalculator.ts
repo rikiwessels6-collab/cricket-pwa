@@ -46,19 +46,25 @@ export interface RevisedOvers {
   belowMinimum: boolean;
   /** True if the innings has been washed out entirely (0 overs possible). */
   washedOut: boolean;
+  /** Minutes actually counted as lost, after any "extra time" allowance has offset them. */
+  netMinutesLost: number;
 }
 
 /**
  * Revised overs available to an innings after deducting overs lost to interruptions,
  * floored at 0 and flagged against the league's minimum-overs-for-a-result rule.
+ * `extraTimeUsedMinutes` offsets time lost before it is converted to overs lost, for
+ * competitions with an "extra time" allowance that is exhausted first (e.g. WNCL cl. 12.7.1).
  */
 export function revisedOversForInnings(
   interruptions: Interruption[],
   innings: 1 | 2,
   settings: MatchSettings,
+  extraTimeUsedMinutes = 0,
   now: Date = new Date(),
 ): RevisedOvers {
-  const minutesLost = totalMinutesLost(interruptions, innings, now);
+  const rawMinutesLost = totalMinutesLost(interruptions, innings, now);
+  const minutesLost = Math.max(0, rawMinutesLost - extraTimeUsedMinutes);
   const oversLost = oversLostFromMinutes(minutesLost, settings);
   const oversAvailable = Math.max(0, settings.totalOvers - oversLost);
   return {
@@ -66,6 +72,7 @@ export function revisedOversForInnings(
     oversAvailable,
     belowMinimum: oversAvailable < settings.minimumOvers,
     washedOut: oversAvailable <= 0,
+    netMinutesLost: minutesLost,
   };
 }
 

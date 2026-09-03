@@ -58,4 +58,6 @@ export interface MatchState {
   competitionId: string;
   /** Whether this match is a Final, for competitions with a different minimum-overs rule in Finals */
   isFinal: boolean;
+  /** Minutes of a competition's "extra time" allowance used to offset time lost in the 1st innings */
+  extraTimeUsedMinutes: number;
 }

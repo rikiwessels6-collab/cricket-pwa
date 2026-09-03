@@ -52,10 +52,14 @@ export function MatchSetup({
           )}
           <p className="hint">
             Loaded from <strong>{preset.sourceLabel}</strong> ({preset.citation}).{" "}
-            <a href={preset.sourceUrl} target="_blank" rel="noopener noreferrer">
-              View official playing conditions (PDF)
-            </a>
-            . Fields below are pre-filled but still editable if conditions change.
+            {preset.sourceUrl ? (
+              <a href={preset.sourceUrl} target="_blank" rel="noopener noreferrer">
+                View official playing conditions (PDF)
+              </a>
+            ) : (
+              "No linked source document for this preset yet."
+            )}{" "}
+            Fields below are pre-filled but still editable if conditions change.
           </p>
         </div>
       )}

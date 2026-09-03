@@ -18,6 +18,7 @@ function App() {
     resetMatch,
     selectCompetition,
     setIsFinal,
+    updateExtraTimeUsed,
   } = useMatchState();
 
   return (
@@ -63,6 +64,8 @@ function App() {
           interruptions={state.interruptions}
           teamNames={state.teamNames}
           competitionId={state.competitionId}
+          extraTimeUsedMinutes={state.extraTimeUsedMinutes}
+          onUpdateExtraTimeUsed={updateExtraTimeUsed}
         />
 
         <ParScorePanel
