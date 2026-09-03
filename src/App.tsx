@@ -16,6 +16,8 @@ function App() {
     updateInterruption,
     removeInterruption,
     resetMatch,
+    selectCompetition,
+    setIsFinal,
   } = useMatchState();
 
   return (
@@ -40,8 +42,12 @@ function App() {
         <MatchSetup
           settings={state.settings}
           teamNames={state.teamNames}
+          competitionId={state.competitionId}
+          isFinal={state.isFinal}
           onUpdateSettings={updateSettings}
           onUpdateTeamNames={updateTeamNames}
+          onSelectCompetition={selectCompetition}
+          onSetIsFinal={setIsFinal}
         />
 
         <InterruptionLog
@@ -52,7 +58,12 @@ function App() {
           onRemove={removeInterruption}
         />
 
-        <OversSummary settings={state.settings} interruptions={state.interruptions} teamNames={state.teamNames} />
+        <OversSummary
+          settings={state.settings}
+          interruptions={state.interruptions}
+          teamNames={state.teamNames}
+          competitionId={state.competitionId}
+        />
 
         <ParScorePanel
           settings={state.settings}

@@ -1,3 +1,4 @@
+import { CUSTOM_PRESET_ID } from "./competitionPresets";
 import type { MatchState } from "./types";
 
 export const DEFAULT_MATCH_STATE: MatchState = {
@@ -20,4 +21,6 @@ export const DEFAULT_MATCH_STATE: MatchState = {
   team2: {
     wicketsLost: 0,
   },
+  competitionId: CUSTOM_PRESET_ID,
+  isFinal: false,
 };

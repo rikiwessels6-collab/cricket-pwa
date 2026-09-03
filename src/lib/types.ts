@@ -54,4 +54,8 @@ export interface MatchState {
   interruptions: Interruption[];
   team1: Team1Figures;
   team2: Team2Figures;
+  /** Id of the loaded playing-conditions preset ("custom" if hand-configured) */
+  competitionId: string;
+  /** Whether this match is a Final, for competitions with a different minimum-overs rule in Finals */
+  isFinal: boolean;
 }

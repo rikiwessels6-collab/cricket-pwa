@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { CUSTOM_PRESET_ID, findPreset, settingsForPreset } from "../lib/competitionPresets";
 import { DEFAULT_MATCH_STATE } from "../lib/defaults";
 import { generateId } from "../lib/id";
 import type { Interruption, MatchSettings, MatchState, Team1Figures, Team2Figures, TeamNames } from "../lib/types";
@@ -76,6 +77,30 @@ export function useMatchState() {
     setState(DEFAULT_MATCH_STATE);
   }, []);
 
+  const selectCompetition = useCallback((competitionId: string) => {
+    setState((prev) => {
+      if (competitionId === CUSTOM_PRESET_ID) {
+        return { ...prev, competitionId };
+      }
+      const preset = findPreset(competitionId);
+      if (!preset) return prev;
+      return {
+        ...prev,
+        competitionId,
+        isFinal: false,
+        settings: settingsForPreset(preset, false),
+      };
+    });
+  }, []);
+
+  const setIsFinal = useCallback((isFinal: boolean) => {
+    setState((prev) => {
+      const preset = findPreset(prev.competitionId);
+      if (!preset) return { ...prev, isFinal };
+      return { ...prev, isFinal, settings: settingsForPreset(preset, isFinal) };
+    });
+  }, []);
+
   return {
     state,
     updateSettings,
@@ -86,5 +111,7 @@ export function useMatchState() {
     updateInterruption,
     removeInterruption,
     resetMatch,
+    selectCompetition,
+    setIsFinal,
   };
 }
