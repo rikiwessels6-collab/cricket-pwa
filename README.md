@@ -10,7 +10,7 @@ signal.
 - **Match setup** — overs per innings, overs-per-hour rate, minimum overs
   for a result, and a rounding rule, all configurable to match your
   league's own playing conditions.
-- **Competition presets** — pick a competition (e.g. Marsh One Day Cup
+- **Competition presets** — pick a competition (Marsh One Day Cup or WNCL,
   2026-27) to auto-fill its official numbers, with a link to the source
   playing conditions PDF and a citation of the exact clauses. A Final
   toggle switches the minimum-overs threshold where the competition's

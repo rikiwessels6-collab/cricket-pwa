@@ -35,6 +35,22 @@ export const COMPETITION_PRESETS: CompetitionPreset[] = [
     sourceLabel: "2026-27 One Day Cup Playing Conditions (1 September 2026)",
     sourceUrl: "https://drive.google.com/file/d/1PQiZB-rof6ceKTxC7FiBbI06oHlECsS9/view",
   },
+  {
+    id: "wncl-2026-27",
+    label: "WNCL",
+    season: "2026-27",
+    settings: {
+      totalOvers: 50,
+      oversPerHour: 15.79,
+      minimumOvers: 15,
+      roundingRule: "down",
+    },
+    minimumOversFinal: 20,
+    bowlerOversLimitDivisor: 5,
+    citation: "cl. 13.7.2, 13.8.2, 16.1.2 & 16.4 — WNCL Playing Conditions",
+    sourceLabel: "2026-27 WNCL Playing Conditions (1 September 2026)",
+    sourceUrl: "https://drive.google.com/file/d/1JBXThE77gVjPJ0cv5A4i0eNyJA6g5ZSe/view",
+  },
 ];
 
 export function findPreset(id: string): CompetitionPreset | undefined {
