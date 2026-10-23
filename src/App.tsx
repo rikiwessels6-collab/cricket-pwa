@@ -3,6 +3,7 @@ import { InterruptionLog } from "./components/InterruptionLog";
 import { MatchSetup } from "./components/MatchSetup";
 import { OversSummary } from "./components/OversSummary";
 import { ParScorePanel } from "./components/ParScorePanel";
+import { StickyOversBar } from "./components/StickyOversBar";
 import { useMatchState } from "./hooks/useMatchState";
 
 function App() {
@@ -38,6 +39,13 @@ function App() {
           New match
         </button>
       </header>
+
+      <StickyOversBar
+        settings={state.settings}
+        interruptions={state.interruptions}
+        teamNames={state.teamNames}
+        extraTimeUsedMinutes={state.extraTimeUsedMinutes}
+      />
 
       <main className="app-main">
         <MatchSetup

@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { findPreset, intervalMinutesForTimeLost, overRateCutoffMinutes } from "../lib/competitionPresets";
 import type { OverRateCutoff } from "../lib/competitionPresets";
-import { formatOvers, revisedOversForInnings } from "../lib/oversCalculator";
+import { formatOvers, revisedOversForInnings, statusClassFor } from "../lib/oversCalculator";
 import type { Interruption, MatchSettings, TeamNames } from "../lib/types";
 
 interface OversSummaryProps {
@@ -30,7 +31,7 @@ function InningsCard({
   overRateCutoff?: OverRateCutoff;
 }) {
   const revised = revisedOversForInnings(interruptions, innings, settings, extraTimeUsedMinutes);
-  const statusClass = revised.washedOut ? "status-danger" : revised.belowMinimum ? "status-warning" : "status-ok";
+  const statusClass = statusClassFor(revised);
   const maxOversPerBowler =
     bowlerOversLimitDivisor && revised.oversLost > 0
       ? Math.ceil(revised.oversAvailable / bowlerOversLimitDivisor)
@@ -75,21 +76,64 @@ export function OversSummary({
   const revised1 = revisedOversForInnings(interruptions, 1, settings, extraTimeUsedMinutes);
   const interval = preset ? intervalMinutesForTimeLost(preset, revised1.netMinutesLost) : null;
 
+  const allowanceCap = preset?.extraTimeAllowanceMinutes ?? 0;
+  const [allowanceStartedAt, setAllowanceStartedAt] = useState<Date | null>(null);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    if (!allowanceStartedAt) return;
+    const id = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(id);
+  }, [allowanceStartedAt]);
+
+  const liveAllowanceMinutes = allowanceStartedAt
+    ? Math.floor((now.getTime() - allowanceStartedAt.getTime()) / 60000)
+    : 0;
+
+  function handleStartAllowance() {
+    setAllowanceStartedAt(new Date());
+  }
+
+  function handleStopAllowance() {
+    if (!allowanceStartedAt) return;
+    const elapsedMinutes = Math.round((Date.now() - allowanceStartedAt.getTime()) / 60000);
+    onUpdateExtraTimeUsed(Math.min(allowanceCap, extraTimeUsedMinutes + elapsedMinutes));
+    setAllowanceStartedAt(null);
+  }
+
   return (
     <section className="card" aria-labelledby="overs-heading">
       <h2 id="overs-heading">Overs remaining</h2>
 
       {preset?.extraTimeAllowanceMinutes !== undefined && preset.extraTimeAllowanceMinutes > 0 && (
-        <label className="field">
+        <div className="field">
           <span>Extra time used (of {preset.extraTimeAllowanceMinutes} min allowance, offsets 1st innings delay)</span>
-          <input
-            type="number"
-            min={0}
-            max={preset.extraTimeAllowanceMinutes}
-            value={extraTimeUsedMinutes}
-            onChange={(e) => onUpdateExtraTimeUsed(Number(e.target.value))}
-          />
-        </label>
+          <div className="button-row">
+            {!allowanceStartedAt ? (
+              <button type="button" className="btn btn-danger" onClick={handleStartAllowance}>
+                Start allowance
+              </button>
+            ) : (
+              <button type="button" className="btn btn-primary" onClick={handleStopAllowance}>
+                Stop allowance (+{liveAllowanceMinutes} min)
+              </button>
+            )}
+            <input
+              type="number"
+              min={0}
+              max={preset.extraTimeAllowanceMinutes}
+              value={extraTimeUsedMinutes}
+              onChange={(e) => onUpdateExtraTimeUsed(Number(e.target.value))}
+              disabled={!!allowanceStartedAt}
+              aria-label="Extra time used, in minutes"
+            />
+          </div>
+          {allowanceStartedAt && (
+            <p className="live-banner" role="status">
+              Allowance clock running — {liveAllowanceMinutes} min and counting
+            </p>
+          )}
+        </div>
       )}
 
       <div className="innings-grid">

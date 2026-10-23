@@ -76,6 +76,12 @@ export function revisedOversForInnings(
   };
 }
 
+export type OversStatus = "status-ok" | "status-warning" | "status-danger";
+
+export function statusClassFor(revised: RevisedOvers): OversStatus {
+  return revised.washedOut ? "status-danger" : revised.belowMinimum ? "status-warning" : "status-ok";
+}
+
 export function formatOvers(overs: number): string {
   const wholeOvers = Math.floor(overs);
   const balls = Math.round((overs - wholeOvers) * 6);

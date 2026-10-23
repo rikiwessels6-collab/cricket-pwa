@@ -29,6 +29,55 @@
   right: 16px;
 }
 
+.sticky-overs-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  gap: 1px;
+  max-width: 640px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.sticky-overs-chip {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  padding-top: calc(8px + env(safe-area-inset-top, 0px));
+}
+
+.sticky-overs-chip.status-ok {
+  background: var(--ok-bg);
+}
+
+.sticky-overs-chip.status-warning {
+  background: var(--warning-bg);
+}
+
+.sticky-overs-chip.status-danger {
+  background: var(--danger-bg);
+}
+
+.sticky-overs-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-overs-value {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .app-main {
   flex: 1;
   padding: 0 16px;
