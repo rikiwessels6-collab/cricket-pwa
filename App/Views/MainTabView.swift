@@ -41,6 +41,11 @@ struct TodayView: View {
     @Query private var plans: [TrainingPlan]
     @Query private var food: [NutritionPlan]
     @Query private var checkIns: [CheckInSettings]
+    @Query(filter: #Predicate<WorkoutLog> { $0.finishedAt == nil }, sort: \WorkoutLog.startedAt, order: .reverse)
+    private var unfinished: [WorkoutLog]
+    @Environment(\.modelContext) private var context
+    @State private var startSheet = false
+    @State private var activeLog: WorkoutLog?
 
     var body: some View {
         NavigationStack {
@@ -59,6 +64,13 @@ struct TodayView: View {
                                 }
                             }
                             .accessibilityIdentifier("nextSession")
+                            if let open = unfinished.first {
+                                Button("Resume \(open.workoutName)") { activeLog = open }
+                                    .accessibilityIdentifier("resumeWorkout")
+                            } else {
+                                Button("Start workout") { startSheet = true }
+                                    .accessibilityIdentifier("startWorkoutButton")
+                            }
                         } else {
                             Text("Program complete. Choose your next one in Settings.")
                         }
@@ -83,7 +95,33 @@ struct TodayView: View {
                 }
             }
             .navigationTitle(greeting)
+            .sheet(isPresented: $startSheet) {
+                if let plan = plans.first, let program = store.content?.program(plan.programId),
+                   let next = program.session(at: plan.nextSessionIndex) {
+                    StartWorkoutSheet(program: program, week: next.week, workout: next.workout) { version in
+                        start(plan: plan, program: program, week: next.week, workout: next.workout, version: version)
+                    }
+                }
+            }
+            .navigationDestination(item: $activeLog) { log in
+                if let program = store.content?.program(log.programId),
+                   let week = program.weeks.first(where: { $0.number == log.weekNumber }),
+                   let workout = week.workouts.first(where: { $0.position == log.workoutPosition }) {
+                    ActiveWorkoutView(log: log, program: program, workout: workout)
+                }
+            }
         }
+    }
+
+    private func start(plan: TrainingPlan, program: Program, week: ProgramWeek, workout: ProgramWorkout, version: SessionVersion) {
+        guard let content = store.content else { return }
+        let built = WorkoutPlanner.plan(program: program, workout: workout, version: version, content: content,
+                                        equipment: Set(plan.equipment), chosenSwaps: [:])
+        let log = WorkoutLog(programId: program.id, weekNumber: week.number, workoutPosition: workout.position,
+                             workoutName: workout.name, version: version, swaps: built.swaps)
+        context.insert(log)
+        try? context.save()
+        activeLog = log
     }
 
     private var greeting: String {

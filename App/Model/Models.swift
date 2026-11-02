@@ -182,3 +182,65 @@ enum DataType: String, CaseIterable, Identifiable {
     /// The app can't work without these two.
     var required: Bool { self == .profile || self == .training }
 }
+
+// MARK: - Workout logs
+
+@Model
+final class WorkoutLog {
+    var programId: String
+    var weekNumber: Int
+    var workoutPosition: Int
+    var workoutName: String
+    var versionRaw: String
+    /// Exercises swapped for this session: slot order -> exercise id.
+    var swaps: [Int: String]
+    var startedAt: Date
+    var finishedAt: Date?
+    var notes: String
+    @Relationship(deleteRule: .cascade, inverse: \SetLog.workout) var sets: [SetLog] = []
+
+    init(programId: String, weekNumber: Int, workoutPosition: Int, workoutName: String, version: SessionVersion, swaps: [Int: String]) {
+        self.programId = programId
+        self.weekNumber = weekNumber
+        self.workoutPosition = workoutPosition
+        self.workoutName = workoutName
+        self.versionRaw = version.rawValue
+        self.swaps = swaps
+        self.startedAt = .now
+        self.notes = ""
+    }
+
+    var version: SessionVersion { SessionVersion(rawValue: versionRaw) ?? .standard }
+}
+
+@Model
+final class SetLog {
+    var exerciseId: String
+    var slotOrder: Int
+    var setIndex: Int
+    var weight: Double
+    var reps: Int
+    var rpe: Double?
+    var completedAt: Date
+    // What was asked for, so progression can judge this set later.
+    var targetSets: Int
+    var targetReps: Int?
+    var minReps: Int?
+    var maxRPE: Double?
+    var workout: WorkoutLog?
+
+    init(exerciseId: String, slotOrder: Int, setIndex: Int, weight: Double, reps: Int, rpe: Double?,
+         targetSets: Int, targetReps: Int?, minReps: Int?, maxRPE: Double?) {
+        self.exerciseId = exerciseId
+        self.slotOrder = slotOrder
+        self.setIndex = setIndex
+        self.weight = weight
+        self.reps = reps
+        self.rpe = rpe
+        self.completedAt = .now
+        self.targetSets = targetSets
+        self.targetReps = targetReps
+        self.minReps = minReps
+        self.maxRPE = maxRPE
+    }
+}
