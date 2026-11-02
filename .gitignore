@@ -3,3 +3,8 @@ __pycache__/
 .DS_Store
 xcuserdata/
 DerivedData/
+*.xcodeproj/
+Config/Local.xcconfig
+.build/
+.swiftpm/
+Config/Info.plist
