@@ -166,7 +166,7 @@ struct ActiveWorkoutView: View {
                 .padding(.bottom, 24)
             }
             .scrollDismissesKeyboard(.interactively)
-            .background(Color(.systemGroupedBackground))
+            .background(Color.night.ignoresSafeArea())
             .safeAreaInset(edge: .bottom) {
                 if let end = restEndsAt {
                     RestTimerBar(endsAt: end, total: restTotal,
@@ -241,7 +241,7 @@ struct WorkoutHeader: View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("WEEK \(week)\(version == .standard ? "" : " · \(version.label.uppercased())")")
-                        .font(.caption.weight(.semibold)).tracking(1.2).foregroundStyle(.secondary)
+                        .font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
                     Text(name).font(.largeTitle.weight(.bold))
                 }
                 Spacer()
@@ -253,8 +253,7 @@ struct WorkoutHeader: View {
                 }
             }
             HStack(spacing: 12) {
-                ProgressView(value: Double(done), total: Double(max(total, 1)))
-                    .tint(Color.accentColor)
+                BrandProgress(value: Double(done) / Double(max(total, 1)))
                 Text("\(done)/\(total) sets").font(.footnote.monospacedDigit()).foregroundStyle(.secondary)
             }
         }
@@ -308,7 +307,7 @@ struct ExerciseCard: View {
                     Image(systemName: "arrow.triangle.swap")
                         .font(.body.weight(.semibold))
                         .frame(width: 40, height: 40)
-                        .background(Color(.tertiarySystemFill), in: Circle())
+                        .background(Color.surfaceRaised, in: Circle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Swap \(item.name)")
@@ -319,7 +318,7 @@ struct ExerciseCard: View {
                     .foregroundStyle(.secondary)
                     .padding(10)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.accentColor.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+                    .background(Color.gold.opacity(0.08), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
             }
             VStack(spacing: 8) {
                 HStack {
@@ -328,7 +327,7 @@ struct ExerciseCard: View {
                     Text("REPS").frame(maxWidth: .infinity)
                     Color.clear.frame(width: 44)
                 }
-                .font(.caption2.weight(.semibold)).tracking(1).foregroundStyle(.tertiary)
+                .font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Color.inkMuted.opacity(0.7))
                 ForEach(0..<item.sets, id: \.self) { i in
                     SetRow(index: i, item: item, logged: done.first { $0.setIndex == i },
                            startWeight: startWeight, loadable: loadable, focused: focused) { weight, reps in
@@ -347,8 +346,7 @@ struct ExerciseCard: View {
                 }
             }
         }
-        .padding(16)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .card()
     }
 
     private var prescription: String {
@@ -388,8 +386,8 @@ struct Chip: View {
         Text(text)
             .font(.caption2.weight(.bold)).tracking(0.8)
             .padding(.horizontal, 7).padding(.vertical, 3)
-            .foregroundStyle(prominent ? Color.white : Color.accentColor)
-            .background(prominent ? Color.accentColor : Color.accentColor.opacity(0.12), in: Capsule())
+            .foregroundStyle(prominent ? Color.night : Color.gold)
+            .background(prominent ? Color.gold : Color.gold.opacity(0.14), in: Capsule())
     }
 }
 
@@ -410,16 +408,16 @@ struct SetRow: View {
         HStack(spacing: 10) {
             Text("\(index + 1)")
                 .font(.subheadline.weight(.semibold).monospacedDigit())
-                .foregroundStyle(logged == nil ? Color.secondary : Color.accentColor)
+                .foregroundStyle(logged == nil ? Color.inkMuted : Color.gold)
                 .frame(width: 34, alignment: .leading)
             if let logged {
                 ValuePill(text: loadable ? NumberText.format(logged.weight) : "BW", done: true)
                 ValuePill(text: "\(logged.reps)", done: true)
                 Button { onUndo(logged) } label: {
                     Image(systemName: "checkmark")
-                        .font(.body.weight(.bold)).foregroundStyle(.white)
+                        .font(.body.weight(.bold)).foregroundStyle(Color.night)
                         .frame(width: 44, height: 44)
-                        .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .background(LinearGradient.brand, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
                 .accessibilityLabel("Set \(index + 1) done, \(NumberText.format(logged.weight)) kilograms, \(logged.reps) reps. Tap to undo")
             } else {
@@ -441,7 +439,7 @@ struct SetRow: View {
                     Image(systemName: "checkmark")
                         .font(.body.weight(.bold)).foregroundStyle(.tertiary)
                         .frame(width: 44, height: 44)
-                        .background(Color(.tertiarySystemFill), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .background(Color.surfaceRaised, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
                 .accessibilityLabel("Mark set \(index + 1) done")
                 .accessibilityIdentifier("setDone-\(item.id)-\(index)")
@@ -462,7 +460,8 @@ struct PillField: ViewModifier {
             .font(.title3.weight(.semibold).monospacedDigit())
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, minHeight: 44)
-            .background(Color(.tertiarySystemFill), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            .foregroundStyle(Color.ink)
+            .background(Color.surfaceRaised, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
 
@@ -473,8 +472,8 @@ struct ValuePill: View {
         Text(text)
             .font(.title3.weight(.semibold).monospacedDigit())
             .frame(maxWidth: .infinity, minHeight: 44)
-            .foregroundStyle(done ? Color.accentColor : Color.secondary)
-            .background(done ? Color.accentColor.opacity(0.12) : Color(.tertiarySystemFill),
+            .foregroundStyle(done ? Color.gold : Color.inkMuted)
+            .background(done ? Color.gold.opacity(0.12) : Color.surfaceRaised,
                         in: RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
@@ -489,9 +488,9 @@ struct RestTimerBar: View {
             let left = max(0, Int(endsAt.timeIntervalSince(ctx.date).rounded(.up)))
             HStack(spacing: 14) {
                 ZStack {
-                    Circle().stroke(Color.white.opacity(0.2), lineWidth: 4)
+                    Circle().stroke(Color.white.opacity(0.12), lineWidth: 4)
                     Circle().trim(from: 0, to: total > 0 ? CGFloat(left) / CGFloat(total) : 0)
-                        .stroke(Color.white, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                        .stroke(LinearGradient.brand, style: StrokeStyle(lineWidth: 4, lineCap: .round))
                         .rotationEffect(.degrees(-90))
                 }
                 .frame(width: 34, height: 34)
@@ -504,15 +503,16 @@ struct RestTimerBar: View {
                 if left > 0 {
                     Button("+30s", action: onAdd).font(.subheadline.weight(.semibold))
                         .padding(.horizontal, 12).padding(.vertical, 8)
-                        .background(Color.white.opacity(0.18), in: Capsule())
+                        .background(Color.white.opacity(0.10), in: Capsule())
                 }
                 Button(left > 0 ? "Skip" : "OK", action: onDone).font(.subheadline.weight(.semibold))
                     .padding(.horizontal, 12).padding(.vertical, 8)
-                    .background(Color.white.opacity(0.18), in: Capsule())
+                    .background(Color.white.opacity(0.10), in: Capsule())
             }
             .foregroundStyle(.white)
             .padding(.horizontal, 18).padding(.vertical, 14)
-            .background(Color("Plum"), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+            .background(Color.surfaceRaised, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).stroke(Color.gold.opacity(0.35), lineWidth: 1))
             .shadow(color: .black.opacity(0.25), radius: 16, y: 6)
             .padding(.horizontal)
             .padding(.bottom, 6)

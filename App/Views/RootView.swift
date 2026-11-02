@@ -35,6 +35,8 @@ struct RootView: View {
         }
         .environment(lock)
         .environment(content)
+        .preferredColorScheme(.dark)
+        .tint(Color.gold)
         .task {
             await content.load()
             if current == nil {
@@ -78,7 +80,7 @@ struct LockScreen: View {
                 Spacer()
                 Image(systemName: "lock.fill")
                     .font(.system(size: 44))
-                    .foregroundStyle(.white.opacity(0.9))
+                    .foregroundStyle(LinearGradient.brand)
                     .accessibilityHidden(true)
                 Text("Steady Strength is locked")
                     .font(.title2.bold())
@@ -99,8 +101,8 @@ struct LockScreen: View {
                         .frame(maxWidth: .infinity, minHeight: 50)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.white)
-                .foregroundStyle(Color("Plum"))
+                .tint(Color.gold)
+                .foregroundStyle(Color.night)
                 .padding(.horizontal, 24)
                 .accessibilityIdentifier("unlockButton")
                 Spacer().frame(height: 40)

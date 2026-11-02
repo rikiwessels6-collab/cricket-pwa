@@ -94,6 +94,7 @@ struct TodayView: View {
                     }
                 }
             }
+            .themedList()
             .navigationTitle(greeting)
             .sheet(isPresented: $startSheet) {
                 if let plan = plans.first, let program = store.content?.program(plan.programId),
@@ -175,6 +176,7 @@ struct TrainView: View {
                         }
                     }
                 }
+                .themedList()
                 .navigationTitle("Train")
             } else {
                 ContentUnavailableView("No program yet", systemImage: "dumbbell")
@@ -207,6 +209,7 @@ struct WorkoutPreview: View {
                     .accessibilityHint("Shows form cues and swaps")
             }
         }
+        .themedList()
         .navigationTitle(workout.name)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $selected) { slot in

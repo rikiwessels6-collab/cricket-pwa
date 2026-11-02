@@ -21,6 +21,7 @@ struct OnboardingFlow: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     footer(content)
                 }
+                .themedList()
                 .navigationTitle(draft.step.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .alert("Couldn't save", isPresented: .constant(saveError != nil)) {

@@ -69,6 +69,7 @@ struct SettingsView: View {
                         .font(.footnote).foregroundStyle(.secondary)
                 }
             }
+            .themedList()
             .navigationTitle("Settings")
             .confirmationDialog("Erase everything?", isPresented: $confirmErase, titleVisibility: .visible) {
                 Button("Erase all my data", role: .destructive) {
@@ -102,6 +103,7 @@ struct ConsentList: View {
                 .disabled(type.required || type == .appleHealth)
             }
         }
+        .themedList()
         .navigationTitle("What the app keeps")
     }
 }
@@ -134,6 +136,7 @@ struct PrivacyPolicyView: View {
             }
             .padding()
         }
+        .themedList()
         .navigationTitle("Privacy")
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -72,6 +72,7 @@ struct ExerciseSheet: View {
                         Text("Picking a swap during a workout arrives with workout logging. Each exercise keeps its own weight history.")
                     }
                 }
+                .themedList()
                 .navigationTitle(ex.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
