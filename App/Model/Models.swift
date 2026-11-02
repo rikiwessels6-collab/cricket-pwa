@@ -244,3 +244,72 @@ final class SetLog {
         self.maxRPE = maxRPE
     }
 }
+
+// MARK: - Food
+
+/// One thing eaten. Every entry is time-stamped twice: when it was logged and
+/// when it was eaten (defaults to now, editable), plus how it was entered.
+@Model
+final class FoodEntry {
+    var loggedAt: Date
+    var eatenAt: Date
+    var mealRaw: String
+    var sourceRaw: String
+    var name: String
+    var brand: String?
+    var barcode: String?
+    var foodId: String
+    var grams: Double
+    var kcal: Double
+    var protein: Double
+    var carbs: Double
+    var fat: Double
+    var fibre: Double
+    /// Photo estimates: "high", "medium" or "low". Nil for exact sources.
+    var confidence: String?
+
+    init(item: FoodItem, grams: Double, meal: MealSlot, source: FoodSource, eatenAt: Date) {
+        let m = item.macros(grams: grams)
+        self.loggedAt = .now
+        self.eatenAt = eatenAt
+        self.mealRaw = meal.rawValue
+        self.sourceRaw = source.rawValue
+        self.name = item.name
+        self.brand = item.brand
+        self.barcode = item.barcode
+        self.foodId = item.id
+        self.grams = grams
+        self.kcal = m.kcal
+        self.protein = m.protein
+        self.carbs = m.carbs
+        self.fat = m.fat
+        self.fibre = m.fibre
+    }
+
+    var meal: MealSlot { MealSlot(rawValue: mealRaw) ?? .snacks }
+    var source: FoodSource { FoodSource(rawValue: sourceRaw) ?? .manual }
+    var macros: Macros { Macros(kcal: kcal, protein: protein, carbs: carbs, fat: fat, fibre: fibre) }
+}
+
+/// Foods kept for quick logging: everything scanned or searched is cached here
+/// (so it works offline next time), and custom foods live here too.
+@Model
+final class SavedFood {
+    @Attribute(.unique) var foodId: String
+    var itemData: Data
+    var isFavourite: Bool
+    var isCustom: Bool
+    var lastUsed: Date
+    var useCount: Int
+
+    init(item: FoodItem, isCustom: Bool = false) {
+        self.foodId = item.id
+        self.itemData = (try? JSONEncoder().encode(item)) ?? Data()
+        self.isFavourite = false
+        self.isCustom = isCustom
+        self.lastUsed = .now
+        self.useCount = 0
+    }
+
+    var item: FoodItem? { try? JSONDecoder().decode(FoodItem.self, from: itemData) }
+}

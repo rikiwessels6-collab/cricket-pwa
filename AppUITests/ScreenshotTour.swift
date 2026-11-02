@@ -63,6 +63,12 @@ final class ScreenshotTour: XCTestCase {
         app.tabBars.buttons["Train"].tap(); sleep(1); shot(app, "train")
         app.cells.element(boundBy: 3).tap(); sleep(1); shot(app, "session-preview")
         app.buttons.element(boundBy: 2).tap(); sleep(1); shot(app, "exercise-sheet")
+        app.tabBars.buttons["Food"].firstMatch.tap(); sleep(1); shot(app, "food")
+        let addBreakfast = app.buttons["add-breakfast"]
+        if addBreakfast.waitForExistence(timeout: 5) {
+            addBreakfast.tap(); sleep(1); shot(app, "add-food")
+            app.buttons["Close"].firstMatch.tap(); sleep(1)
+        }
         app.tabBars.buttons["Settings"].firstMatch.tap(); sleep(1); shot(app, "settings")
     }
 }

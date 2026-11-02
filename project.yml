@@ -41,6 +41,7 @@ targets:
           UIImageName: LaunchLogo
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UIApplicationSupportsIndirectInputEvents: true
+        NSCameraUsageDescription: Steady Strength uses the camera to scan food barcodes and, if you choose, photograph your plate.
         NSFaceIDUsageDescription: Steady Strength uses Face ID to keep your health and training data private on this iPhone.
         ITSAppUsesNonExemptEncryption: false
     settings:

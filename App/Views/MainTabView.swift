@@ -9,8 +9,7 @@ struct MainTabView: View {
                 .tabItem { Label("Today", systemImage: "sun.max") }
             TrainView()
                 .tabItem { Label("Train", systemImage: "dumbbell") }
-            ComingSoonView(title: "Food", systemImage: "fork.knife",
-                           detail: "Barcode scanning, your food log and adaptive targets arrive in the nutrition update.")
+            FoodView()
                 .tabItem { Label("Food", systemImage: "fork.knife") }
             ComingSoonView(title: "Progress", systemImage: "chart.xyaxis.line",
                            detail: "Weekly check-ins, measurements, photos and your weight trend arrive in a later update.")
@@ -43,6 +42,7 @@ struct TodayView: View {
     @Query private var food: [NutritionPlan]
     @Query private var checkIns: [CheckInSettings]
     @Query(sort: \WorkoutLog.startedAt, order: .reverse) private var logs: [WorkoutLog]
+    @Query private var foodEntries: [FoodEntry]
     @State private var startSheet = false
     @State private var activeLog: WorkoutLog?
 
@@ -63,7 +63,10 @@ struct TodayView: View {
                         sessionCard(plan: plan, program: program)
                         WeekStrip(logs: logs, plan: plan)
                     }
-                    if let n = food.first { FoodCard(plan: n) }
+                    if let n = food.first {
+                        let range = Calendar.current.dayRange(.now)
+                        FoodCard(plan: n, totals: totals(foodEntries.filter { $0.eatenAt >= range.0 && $0.eatenAt < range.1 }))
+                    }
                     if let c = checkIns.first { CheckInCard(settings: c) }
                 }
                 .padding(.horizontal)
@@ -204,8 +207,8 @@ struct WeekStrip: View {
 
 struct FoodCard: View {
     let plan: NutritionPlan
-    var eaten: Int = 0
-    var protein: Int = 0
+    var totals: Macros = Macros()
+    private var eaten: Int { Int(totals.kcal.rounded()) }
 
     var body: some View {
         HStack(spacing: 18) {
@@ -215,16 +218,16 @@ struct FoodCard: View {
                     .stroke(LinearGradient.brand, style: StrokeStyle(lineWidth: 10, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                 VStack(spacing: 0) {
-                    Text("\(max(plan.calories - eaten, 0))").font(.title3.weight(.bold).monospacedDigit()).foregroundStyle(Color.ink)
-                    Text("kcal left").font(.caption2).foregroundStyle(Color.inkMuted)
+                    Text("\(abs(plan.calories - eaten))").font(.title3.weight(.bold).monospacedDigit()).foregroundStyle(Color.ink)
+                    Text(eaten > plan.calories ? "kcal over" : "kcal left").font(.caption2).foregroundStyle(Color.inkMuted)
                 }
             }
             .frame(width: 104, height: 104)
             VStack(alignment: .leading, spacing: 10) {
                 Text("FOOD TODAY").font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
-                MacroBar(label: "Protein", value: protein, target: plan.protein)
-                MacroBar(label: "Carbs", value: 0, target: plan.carbs)
-                MacroBar(label: "Fat", value: 0, target: plan.fat)
+                MacroBar(label: "Protein", value: Int(totals.protein.rounded()), target: plan.protein)
+                MacroBar(label: "Carbs", value: Int(totals.carbs.rounded()), target: plan.carbs)
+                MacroBar(label: "Fat", value: Int(totals.fat.rounded()), target: plan.fat)
                 if plan.startAtMaintenance {
                     Text("Maintenance for your first two weeks").font(.caption2).foregroundStyle(Color.inkMuted)
                 }
