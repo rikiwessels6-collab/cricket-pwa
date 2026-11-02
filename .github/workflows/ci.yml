@@ -56,8 +56,15 @@ jobs:
           set -o pipefail
           xcodebuild test -project SteadyStrength.xcodeproj -scheme SteadyStrength \
             -destination "id=${{ steps.sim.outputs.udid }}" \
-            CODE_SIGNING_ALLOWED=NO | tee xcodebuild.log | grep -E "error:|warning: .*SteadyStrength|Test Case .* (passed|failed)|\*\* (TEST|BUILD)" || true
+            CODE_SIGNING_ALLOWED=NO TEST_RUNNER_SCREENSHOT_DIR="$PWD/screenshots" | tee xcodebuild.log | grep -E "error:|warning: .*SteadyStrength|Test Case .* (passed|failed)|\*\* (TEST|BUILD)" || true
           grep -q "\*\* TEST SUCCEEDED \*\*" xcodebuild.log
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          if-no-files-found: warn
       - name: Upload log on failure
         if: failure()
         uses: actions/upload-artifact@v4
