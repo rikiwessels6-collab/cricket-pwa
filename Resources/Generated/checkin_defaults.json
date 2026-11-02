@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "source": "Copy_of_New_Done_For_You_Client_Check-In_System_MASTER_COPY.xlsx",
+ "checkInDay": "Tuesday",
+ "sleepGoalHours": 8.0,
+ "dailyStepsGoal": 10500,
+ "customMetricOptions": [
+  "Energy",
+  "Digestion",
+  "Stress",
+  "Hunger",
+  "Water"
+ ],
+ "customMetricsDefault": [
+  "Water",
+  "Hunger",
+  "Digestion"
+ ],
+ "customMetricScale": [
+  1,
+  10
+ ],
+ "separateRestDayTargets": true,
+ "measurementSites": [
+  "Chest (Nipple)",
+  "Left Arm",
+  "Right Arm",
+  "Stomach (Navel)",
+  "2\" Below Navel",
+  "Hips (Widest)",
+  "Left Leg",
+  "Right Leg"
+ ],
+ "measurementTotal": true,
+ "photoAngles": [
+  "front",
+  "side",
+  "rear"
+ ],
+ "placeholderSets": [
+  "Female silhouette",
+  "Male silhouette",
+  "Blank"
+ ],
+ "placeholderSetDefault": "Female silhouette",
+ "mealFrequency": {
+  "trainingDay": 5,
+  "restDay": 3
+ },
+ "periWorkout": {
+  "carbShare": 0.65,
+  "fatShare": 0.15
+ },
+ "mealTemplates": {
+  "morning": [
+   "Pre-Training",
+   "Post-Training",
+   "Breakfast",
+   "Lunch",
+   "Dinner",
+   "Bedtime"
+  ],
+  "afternoon": [
+   "Breakfast",
+   "Lunch",
+   "Pre-Training",
+   "Post-Training",
+   "Dinner",
+   "Bedtime"
+  ],
+  "evening": [
+   "Breakfast",
+   "Lunch",
+   "Dinner",
+   "Pre-Training",
+   "Post-Training",
+   "Bedtime"
+  ],
+  "restDay": [
+   "Breakfast",
+   "Lunch",
+   "Snack",
+   "Dinner",
+   "Bedtime"
+  ]
+ },
+ "fibrePer1000kcal": 14.0,
+ "dietaryPresets": [
+  {
+   "name": "Balanced",
+   "protein": 0.3,
+   "carbs": 0.35,
+   "fat": 0.35
+  },
+  {
+   "name": "Zone",
+   "protein": 0.3,
+   "carbs": 0.4,
+   "fat": 0.3
+  },
+  {
+   "name": "Keto",
+   "protein": 0.2,
+   "carbs": 0.05,
+   "fat": 0.75
+  },
+  {
+   "name": "Low Carb",
+   "protein": 0.25,
+   "carbs": 0.1,
+   "fat": 0.65
+  },
+  {
+   "name": "Vegan",
+   "protein": 0.15,
+   "carbs": 0.55,
+   "fat": 0.3
+  },
+  {
+   "name": "Low Fat",
+   "protein": 0.3,
+   "carbs": 0.5,
+   "fat": 0.2
+  },
+  {
+   "name": "High Protein",
+   "protein": 0.4,
+   "carbs": 0.3,
+   "fat": 0.3
+  }
+ ],
+ "activityFactors": {
+  "sedentary": 1.2,
+  "light": 1.375,
+  "moderate": 1.55,
+  "veryActive": 1.725
+ },
+ "activityFactorFromWorkbook": {
+  "moderate": 1.55
+ },
+ "maintenanceAdvice": "Establish maintenance for at least two weeks before starting a deficit or surplus.",
+ "weeklyQuestions": [
+  "Top two goals",
+  "Supplements, travel and holiday dates, other notes",
+  "Grade yourself (A-F, optional)"
+ ],
+ "placeholdersIgnored": "Sample client values (age 37, 179 cm, 83 kg, 2125 kcal, 125 g macros) are not used as defaults."
+}

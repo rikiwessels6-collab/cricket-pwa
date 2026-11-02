@@ -1,0 +1,448 @@
+[
+ {
+  "name": "Goblet squat",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Dumbbell at chest, sit down between your hips, heels flat, chest tall.",
+  "swap": "Leg press, or bodyweight squat to a box",
+  "muscles": [
+   "quads",
+   "glutes"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "goblet squat proper form tutorial"
+ },
+ {
+  "name": "Dumbbell Romanian deadlift",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Soft knees, push hips back, dumbbells slide down thighs, back flat.",
+  "swap": "Back extension, or cable pull-through",
+  "muscles": [
+   "hamstrings",
+   "glutes",
+   "lower back"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "dumbbell romanian deadlift proper form tutorial"
+ },
+ {
+  "name": "Barbell hip thrust",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Upper back on bench, ribs down, squeeze glutes at top, pause 1 second.",
+  "swap": "Dumbbell glute bridge on the floor",
+  "muscles": [
+   "glutes",
+   "hamstrings"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "barbell hip thrust proper form tutorial"
+ },
+ {
+  "name": "Leg press",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Feet mid-platform, lower to about 90 degrees at the knee, do not lock out.",
+  "swap": "Goblet squat, or hack squat machine",
+  "muscles": [
+   "quads",
+   "glutes"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "leg press proper form tutorial"
+ },
+ {
+  "name": "Reverse lunge",
+  "isMainLift": true,
+  "repsWeeks1to8": "8-10 each side",
+  "repsWeeks9to12": "8-10 each side",
+  "rest": "2 min",
+  "cues": "Step back, front heel down. Hold a support in weeks 1-4.",
+  "swap": "Split squat holding a support, or low step-up",
+  "muscles": [
+   "quads",
+   "glutes"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "reverse lunge proper form tutorial"
+ },
+ {
+  "name": "Dumbbell bench press",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Shoulder blades pinned back, forearms vertical, lower under control.",
+  "swap": "Machine chest press, or incline push-up",
+  "muscles": [
+   "chest",
+   "triceps",
+   "front shoulders"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "dumbbell bench press proper form tutorial"
+ },
+ {
+  "name": "Incline dumbbell press",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Bench at 30 degrees, press up and slightly in.",
+  "swap": "Incline machine press",
+  "muscles": [
+   "upper chest",
+   "front shoulders",
+   "triceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "incline dumbbell press proper form tutorial"
+ },
+ {
+  "name": "Seated dumbbell shoulder press",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Ribs down, press to just short of lockout.",
+  "swap": "Machine shoulder press",
+  "muscles": [
+   "shoulders",
+   "triceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "seated dumbbell shoulder press proper form tutorial"
+ },
+ {
+  "name": "Machine shoulder press",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Seat so handles start at shoulder height.",
+  "swap": "Seated dumbbell shoulder press, lighter",
+  "muscles": [
+   "shoulders",
+   "triceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "machine shoulder press proper form tutorial"
+ },
+ {
+  "name": "Lat pulldown",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Pull elbows to ribs, chest up, no swinging.",
+  "swap": "Assisted pull-up machine",
+  "muscles": [
+   "lats",
+   "upper back",
+   "biceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "lat pulldown proper form tutorial"
+ },
+ {
+  "name": "Neutral-grip lat pulldown",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Palms facing, elbows down and in.",
+  "swap": "Lat pulldown, wide grip",
+  "muscles": [
+   "lats",
+   "upper back",
+   "biceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "neutral-grip lat pulldown proper form tutorial"
+ },
+ {
+  "name": "Seated cable row",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Squeeze shoulder blades together, do not rock.",
+  "swap": "Machine row, or single-arm dumbbell row",
+  "muscles": [
+   "upper back",
+   "lats",
+   "biceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "seated cable row proper form tutorial"
+ },
+ {
+  "name": "Chest-supported row",
+  "isMainLift": true,
+  "repsWeeks1to8": "10-12",
+  "repsWeeks9to12": "8-10",
+  "rest": "2 min",
+  "cues": "Chest on pad, pull elbows back, pause at the top.",
+  "swap": "Seated cable row, or single-arm dumbbell row",
+  "muscles": [
+   "upper back",
+   "lats",
+   "rear shoulders"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "chest-supported row proper form tutorial"
+ },
+ {
+  "name": "Seated leg curl",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Slow lower, 2 seconds.",
+  "swap": "Lying leg curl, or stability-ball hamstring curl",
+  "muscles": [
+   "hamstrings"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "seated leg curl proper form tutorial"
+ },
+ {
+  "name": "Leg extension",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Pause at the top. Use lighter weight if knees complain.",
+  "swap": "Skip it and add a set of leg press (knee-friendly)",
+  "muscles": [
+   "quads"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "leg extension proper form tutorial"
+ },
+ {
+  "name": "Standing calf raise",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Full stretch at the bottom, pause at the top.",
+  "swap": "Seated calf raise, or calf raise on the leg press",
+  "muscles": [
+   "calves"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "standing calf raise proper form tutorial"
+ },
+ {
+  "name": "Machine hip abduction",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Controlled, no bouncing.",
+  "swap": "Banded lateral walk, or cable hip abduction",
+  "muscles": [
+   "glutes (side)"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "machine hip abduction proper form tutorial"
+ },
+ {
+  "name": "Back extension",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Hinge from the hips, stop when body is in a straight line.",
+  "swap": "Dumbbell Romanian deadlift, lighter",
+  "muscles": [
+   "lower back",
+   "glutes",
+   "hamstrings"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "back extension proper form tutorial"
+ },
+ {
+  "name": "Lateral raise",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Light weight, lead with the elbows.",
+  "swap": "Cable or machine lateral raise",
+  "muscles": [
+   "side shoulders"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "lateral raise proper form tutorial"
+ },
+ {
+  "name": "Triceps rope pushdown",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Elbows pinned to sides.",
+  "swap": "Overhead cable triceps extension",
+  "muscles": [
+   "triceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "triceps rope pushdown proper form tutorial"
+ },
+ {
+  "name": "Overhead cable triceps extension",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Elbows close to head, full stretch.",
+  "swap": "Triceps rope pushdown",
+  "muscles": [
+   "triceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "overhead cable triceps extension proper form tutorial"
+ },
+ {
+  "name": "Face pull",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Pull to eye level, elbows high, squeeze rear shoulders.",
+  "swap": "Band pull-apart, or reverse pec deck",
+  "muscles": [
+   "rear shoulders",
+   "upper back"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "face pull proper form tutorial"
+ },
+ {
+  "name": "Dumbbell biceps curl",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "No swinging, lower for 2 seconds.",
+  "swap": "Cable curl, or EZ-bar curl",
+  "muscles": [
+   "biceps"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "dumbbell biceps curl proper form tutorial"
+ },
+ {
+  "name": "Dumbbell hammer curl",
+  "isMainLift": false,
+  "repsWeeks1to8": "12-15",
+  "repsWeeks9to12": "12-15",
+  "rest": "60 sec",
+  "cues": "Palms facing in, elbows still.",
+  "swap": "Rope hammer curl on the cable",
+  "muscles": [
+   "biceps",
+   "forearms"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "dumbbell hammer curl proper form tutorial"
+ },
+ {
+  "name": "Dead bug",
+  "isMainLift": false,
+  "repsWeeks1to8": "8 each side",
+  "repsWeeks9to12": "8 each side",
+  "rest": "45 sec",
+  "cues": "Low back stays flat on the floor.",
+  "swap": "Bird dog",
+  "muscles": [
+   "core"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "dead bug proper form tutorial"
+ },
+ {
+  "name": "Plank",
+  "isMainLift": false,
+  "repsWeeks1to8": "20-40 sec",
+  "repsWeeks9to12": "30-45 sec",
+  "rest": "45 sec",
+  "cues": "Straight line from head to heels, breathe.",
+  "swap": "Incline plank with hands on a bench",
+  "muscles": [
+   "core"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "plank proper form tutorial"
+ },
+ {
+  "name": "Pallof press",
+  "isMainLift": false,
+  "repsWeeks1to8": "10 each side",
+  "repsWeeks9to12": "10 each side",
+  "rest": "45 sec",
+  "cues": "Resist the cable pulling you round.",
+  "swap": "Resistance-band Pallof press, or knee side plank",
+  "muscles": [
+   "core (anti-rotation)"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "pallof press proper form tutorial"
+ },
+ {
+  "name": "Farmer's carry",
+  "isMainLift": false,
+  "repsWeeks1to8": "30 m",
+  "repsWeeks9to12": "30-40 m",
+  "rest": "60 sec",
+  "cues": "Tall posture, heavy dumbbells, short steps.",
+  "swap": "Suitcase carry (one dumbbell)",
+  "muscles": [
+   "grip",
+   "core",
+   "upper back"
+  ],
+  "musclesSource": "added by importer author, not from the brief",
+  "videoSources": [],
+  "demoSearchQuery": "farmer's carry proper form tutorial"
+ }
+]

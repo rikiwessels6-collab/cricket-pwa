@@ -1,0 +1,53 @@
+{
+ "_about": "Decisions applied on top of the source workbooks. The workbooks are never edited; delete or change an entry here and re-run the importer to undo it. Each entry records why.",
+ "rirAboveIsRpe": {
+  "program": "rw-intermediate-18wk",
+  "threshold": 4,
+  "why": "15 rows in weeks 11 and 13 have 7 or 8 in the RIR column. Everything else in the program is RIR 0-1, and RIR 8 would be a warm-up. They are RPE values typed into the RIR column, so RIR = 10 - value (RPE 8 = RIR 2, RPE 7 = RIR 3)."
+ },
+ "fillSets": [
+  {"program": "rw-intermediate-18wk", "sheet": "Weeks 1 - 9", "row": 231, "sets": 3,
+   "why": "Supinated lat pulldown, week 7 Pull: no set count. Its superset partner and every other exercise in the session have 3."},
+  {"program": "rw-intermediate-18wk", "sheet": "Weeks 1 - 9", "row": 239, "sets": 3,
+   "why": "Cable crunch, week 7 Legs & Abs: no set count. Every other exercise in the session has 3."}
+ ],
+ "fillMissingRest": {
+  "rule": "Copy the rest from the same exercise in the same session in the nearest week; otherwise 2 min.",
+  "why": "Two 18-week rows have no rest. Both exercises appear in other weeks with a rest given."
+ },
+ "pairAsSuperset": [
+  {"program": "rw-12-week", "rows": [48, 49], "group": "C",
+   "why": "Pump day: calf raise then plate shrug with 0 min rest. Week 7's pump day pairs a calf raise as C1 with a C2, and weeks 3 and 5 label the shrug C1 with no partner. Treated as calf raise + shrug superset in weeks 1, 3 and 5."},
+  {"program": "rw-12-week", "rows": [124, 125], "group": "C", "why": "As above."},
+  {"program": "rw-12-week", "rows": [200, 201], "group": "C", "why": "As above."}
+ ],
+ "mainLiftRule": {
+  "appliesTo": ["rw-full-body-3day-8wk", "rw-upper-lower-4day-8wk", "rw-body-part-split-5day-8wk", "rw-intermediate-18wk"],
+  "rule": "Main lift if the exercise is a main lift in the library AND the program gives it 2+ min rest, or if the program gives anything 3+ min rest.",
+  "why": "Rest alone mislabelled lifts like leg press at 1 min as accessories and missed none. The library knows which movements are big compound lifts; the rest time shows the role it plays in that session."
+ },
+ "twelveWeekRotation": {
+  "decision": "Keep 5 sessions in odd weeks and 6 in even weeks, run as a rotation.",
+  "why": "Squeezing six sessions into five would change your programming. On a rotation, a 6-session week just takes 8 or 9 days instead of 7; the scheduler shows this when you pick the program."
+ },
+ "oneRepMaxVariations": {
+  "decision": "Accept: pin squat uses squat; pause bench, close-grip, Larsen and pin press use bench; block pulls, reset and opposite-stance deadlifts use deadlift.",
+  "why": "These are the percentages written in the sheet, which only make sense against the parent lift."
+ },
+ "upperLowerNames": {
+  "decision": "Sessions named by position: Lower Body #1, Upper Body #1, Lower Body #2, Upper Body #2 in every week.",
+  "why": "Weeks 6-8 repeat week 5 exactly; the 'Full Body' labels are copy-paste leftovers."
+ },
+ "ambiguousNames": {
+  "_why": "Names that could mean more than one exercise in the 18-week file, and how they were read. Change the alias in library_catalogue.py if any are wrong.",
+  "db press": "Dumbbell bench press (flat)",
+  "s arm press": "Half-kneeling single-arm dumbbell press",
+  "b stance db press": "Standing dumbbell shoulder press, staggered (B) stance",
+  "glute extension(s)": "45-degree back extension, glute-biased",
+  "kneeling push rotation(s)": "Kneeling cable rotation",
+  "horizontal tricep extension": "Horizontal cable triceps extension",
+  "cable side plank": "Side plank",
+  "close grip pull up": "Neutral-grip pull-up",
+  "pec flye (12-week)": "Cable fly (the note allows cables, bands or dumbbells)"
+ }
+}

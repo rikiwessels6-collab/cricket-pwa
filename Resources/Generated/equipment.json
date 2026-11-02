@@ -1,0 +1,145 @@
+{
+ "schemaVersion": 1,
+ "equipment": {
+  "barbell": "Barbell and plates",
+  "rack": "Squat rack or power rack (with safety pins)",
+  "ez_bar": "EZ curl bar",
+  "trap_bar": "Trap (hex) bar",
+  "landmine": "Landmine attachment (or barbell wedged in a corner)",
+  "plates": "Weight plates",
+  "dumbbells": "Dumbbells",
+  "kettlebell": "Kettlebell",
+  "bench": "Flat bench",
+  "adj_bench": "Adjustable (incline) bench",
+  "box": "Step or sturdy bench to step onto",
+  "plyo_box": "Plyo box rated for jumping",
+  "cable": "Cable station (adjustable pulley)",
+  "lat_pulldown": "Lat pulldown station",
+  "pullup_bar": "Pull-up bar",
+  "dip_bars": "Dip bars (or parallel bars)",
+  "assist_machine": "Assisted pull-up / dip machine",
+  "t_bar": "T-bar row (or landmine with handle)",
+  "leg_press": "Leg press",
+  "hack_squat": "Hack squat machine",
+  "leg_curl": "Leg curl machine (seated or lying)",
+  "leg_ext": "Leg extension machine",
+  "abductor": "Hip abduction machine",
+  "calf_machine": "Standing calf raise machine (or a step plus dumbbells)",
+  "seated_calf": "Seated calf raise machine",
+  "chest_press": "Chest press machine (flat or incline)",
+  "shoulder_press_machine": "Shoulder press machine",
+  "row_machine": "Seated row machine (plate or pin loaded)",
+  "pec_deck": "Pec deck / rear delt fly machine",
+  "back_ext": "45-degree back extension bench",
+  "ghr": "Glute-ham raise bench",
+  "bands": "Resistance bands (loop and long bands)",
+  "sliders": "Sliders (or a towel on a smooth floor)"
+ },
+ "alwaysAvailable": [
+  "bodyweight",
+  "mat",
+  "towel"
+ ],
+ "profiles": [
+  {
+   "id": "full_gym",
+   "name": "Full gym",
+   "description": "A commercial gym with free weights, cables and machines.",
+   "equipment": [
+    "abductor",
+    "adj_bench",
+    "assist_machine",
+    "back_ext",
+    "bands",
+    "barbell",
+    "bench",
+    "box",
+    "cable",
+    "calf_machine",
+    "chest_press",
+    "dip_bars",
+    "dumbbells",
+    "ez_bar",
+    "ghr",
+    "hack_squat",
+    "kettlebell",
+    "landmine",
+    "lat_pulldown",
+    "leg_curl",
+    "leg_ext",
+    "leg_press",
+    "pec_deck",
+    "plates",
+    "plyo_box",
+    "pullup_bar",
+    "rack",
+    "row_machine",
+    "seated_calf",
+    "shoulder_press_machine",
+    "sliders",
+    "t_bar",
+    "trap_bar"
+   ]
+  },
+  {
+   "id": "basic_gym",
+   "name": "Basic gym",
+   "description": "Racks, barbells, dumbbells, benches and a cable stack, but few machines.",
+   "equipment": [
+    "adj_bench",
+    "bands",
+    "barbell",
+    "bench",
+    "box",
+    "cable",
+    "dip_bars",
+    "dumbbells",
+    "ez_bar",
+    "kettlebell",
+    "landmine",
+    "lat_pulldown",
+    "plates",
+    "plyo_box",
+    "pullup_bar",
+    "rack"
+   ]
+  },
+  {
+   "id": "hotel_gym",
+   "name": "Hotel gym",
+   "description": "Dumbbells, an adjustable bench and usually one cable machine.",
+   "equipment": [
+    "adj_bench",
+    "bands",
+    "bench",
+    "box",
+    "cable",
+    "dumbbells"
+   ]
+  },
+  {
+   "id": "home_dumbbells",
+   "name": "Home: dumbbells and bench",
+   "description": "Adjustable dumbbells, an incline bench, bands and a doorway pull-up bar.",
+   "equipment": [
+    "adj_bench",
+    "bands",
+    "bench",
+    "box",
+    "dumbbells",
+    "pullup_bar",
+    "sliders"
+   ]
+  },
+  {
+   "id": "travel",
+   "name": "Travel: bodyweight and bands",
+   "description": "A set of resistance bands and whatever furniture the room has.",
+   "equipment": [
+    "bands",
+    "box",
+    "sliders"
+   ]
+  }
+ ]
+}
