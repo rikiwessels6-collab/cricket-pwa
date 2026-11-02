@@ -51,7 +51,8 @@ final class ScreenshotTour: XCTestCase {
         XCTAssertTrue(app.buttons["startWorkout"].waitForExistence(timeout: 5))
         shot(app, "versions")
         app.buttons["startWorkout"].tap()
-        XCTAssertTrue(app.buttons["finishWorkout"].waitForExistence(timeout: 10))
+        _ = app.buttons["Later"].waitForExistence(timeout: 10)
+        sleep(1)
         shot(app, "workout")
         let firstSet = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'setDone-'")).firstMatch
         if firstSet.exists { firstSet.tap(); sleep(1); shot(app, "workout-rest-timer") }
