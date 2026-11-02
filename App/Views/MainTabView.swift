@@ -37,65 +37,40 @@ struct ComingSoonView: View {
 
 struct TodayView: View {
     @Environment(ContentStore.self) private var store
+    @Environment(\.modelContext) private var context
     @Query private var profiles: [UserProfile]
     @Query private var plans: [TrainingPlan]
     @Query private var food: [NutritionPlan]
     @Query private var checkIns: [CheckInSettings]
-    @Query(filter: #Predicate<WorkoutLog> { $0.finishedAt == nil }, sort: \WorkoutLog.startedAt, order: .reverse)
-    private var unfinished: [WorkoutLog]
-    @Environment(\.modelContext) private var context
+    @Query(sort: \WorkoutLog.startedAt, order: .reverse) private var logs: [WorkoutLog]
     @State private var startSheet = false
     @State private var activeLog: WorkoutLog?
 
+    private var unfinished: WorkoutLog? { logs.first { $0.finishedAt == nil } }
+
     var body: some View {
         NavigationStack {
-            List {
-                if let plan = plans.first, let program = store.content?.program(plan.programId) {
-                    let next = program.session(at: plan.nextSessionIndex)
-                    Section("Next session") {
-                        if let next {
-                            NavigationLink {
-                                WorkoutPreview(program: program, week: next.week, workout: next.workout)
-                            } label: {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(next.workout.name).font(.headline)
-                                    Text("Week \(next.week.number) of \(program.weeks.count) · about \(next.workout.estimatedMinutes) min · \(next.workout.slots.count) exercises")
-                                        .font(.subheadline).foregroundStyle(.secondary)
-                                }
-                            }
-                            .accessibilityIdentifier("nextSession")
-                            if let open = unfinished.first {
-                                Button("Resume \(open.workoutName)") { activeLog = open }
-                                    .accessibilityIdentifier("resumeWorkout")
-                            } else {
-                                Button("Start workout") { startSheet = true }
-                                    .accessibilityIdentifier("startWorkoutButton")
-                            }
-                        } else {
-                            Text("Program complete. Choose your next one in Settings.")
-                        }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)).uppercased())
+                            .font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
+                        Text(greeting).font(.largeTitle.weight(.bold)).foregroundStyle(Color.ink)
                     }
-                }
-                if let n = food.first {
-                    Section("Food today") {
-                        LabeledContent("Calories", value: "\(n.calories) kcal")
-                        LabeledContent("Protein", value: "\(n.protein) g")
-                        if n.startAtMaintenance {
-                            Text("Eating at maintenance for your first two weeks.")
-                                .font(.footnote).foregroundStyle(.secondary)
-                        }
+                    .padding(.top, 8)
+
+                    if let plan = plans.first, let program = store.content?.program(plan.programId) {
+                        sessionCard(plan: plan, program: program)
+                        WeekStrip(logs: logs, plan: plan)
                     }
+                    if let n = food.first { FoodCard(plan: n) }
+                    if let c = checkIns.first { CheckInCard(settings: c) }
                 }
-                if let c = checkIns.first {
-                    Section("This week") {
-                        LabeledContent("Check-in day", value: weekdayNames[c.weekday - 1])
-                        LabeledContent("Sleep goal", value: String(format: "%g h", c.sleepGoalHours))
-                        LabeledContent("Steps goal", value: c.stepsGoal.formatted())
-                    }
-                }
+                .padding(.horizontal)
+                .padding(.bottom, 24)
             }
-            .themedList()
-            .navigationTitle(greeting)
+            .background(Color.night.ignoresSafeArea())
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $startSheet) {
                 if let plan = plans.first, let program = store.content?.program(plan.programId),
                    let next = program.session(at: plan.nextSessionIndex) {
@@ -111,6 +86,56 @@ struct TodayView: View {
                     ActiveWorkoutView(log: log, program: program, workout: workout)
                 }
             }
+        }
+    }
+
+    @ViewBuilder
+    private func sessionCard(plan: TrainingPlan, program: Program) -> some View {
+        if let next = program.session(at: plan.nextSessionIndex) {
+            VStack(alignment: .leading, spacing: 14) {
+                HStack {
+                    Text(unfinished == nil ? "NEXT SESSION" : "IN PROGRESS")
+                        .font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
+                    Spacer()
+                    Text("WEEK \(next.week.number) OF \(program.weeks.count)")
+                        .font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Color.inkMuted)
+                }
+                NavigationLink {
+                    WorkoutPreview(program: program, week: next.week, workout: next.workout)
+                } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Text(next.workout.name).font(.system(.title, design: .default).weight(.bold))
+                                .foregroundStyle(Color.ink)
+                            Image(systemName: "chevron.right").font(.headline).foregroundStyle(Color.inkMuted)
+                        }
+                        HStack(spacing: 16) {
+                            Label("\(next.workout.estimatedMinutes) min", systemImage: "clock")
+                            Label("\(next.workout.slots.count) exercises", systemImage: "dumbbell")
+                            if let phase = next.week.phase { Label(phase, systemImage: "flag") }
+                        }
+                        .font(.subheadline).foregroundStyle(Color.inkMuted)
+                    }
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("nextSession")
+                Button {
+                    if let open = unfinished { activeLog = open } else { startSheet = true }
+                } label: {
+                    Text(unfinished == nil ? "Start workout" : "Resume \(unfinished?.workoutName ?? "")")
+                        .font(.headline).foregroundStyle(Color.night)
+                        .frame(maxWidth: .infinity, minHeight: 52)
+                        .background(LinearGradient.brand, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier(unfinished == nil ? "startWorkoutButton" : "resumeWorkout")
+            }
+            .padding(18)
+            .background(LinearGradient.night, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .stroke(LinearGradient.brand.opacity(0.6), lineWidth: 1))
+        } else {
+            Text("Program complete. Choose your next one in Settings.").card()
         }
     }
 
@@ -130,6 +155,125 @@ struct TodayView: View {
         let hour = Calendar.current.component(.hour, from: .now)
         let part = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening"
         return name.isEmpty ? part : "\(part), \(name)"
+    }
+}
+
+/// This week, Monday to Sunday: trained days filled, planned days ringed, fixed activities dotted.
+struct WeekStrip: View {
+    let logs: [WorkoutLog]
+    let plan: TrainingPlan
+
+    var body: some View {
+        let cal = Calendar(identifier: .iso8601)
+        let start = cal.dateInterval(of: .weekOfYear, for: .now)?.start ?? .now
+        let days = (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: start) }
+        let trained = Set(logs.filter { $0.finishedAt != nil }.map { cal.startOfDay(for: $0.startedAt) })
+        HStack(spacing: 0) {
+            ForEach(days, id: \.self) { day in
+                let weekday = Calendar.current.component(.weekday, from: day)
+                let isToday = cal.isDateInToday(day)
+                let done = trained.contains(cal.startOfDay(for: day))
+                let planned = plan.preferredWeekdays.contains(weekday)
+                let fixed = plan.fixedCommitments.contains { $0.weekday == weekday }
+                VStack(spacing: 6) {
+                    Text(day.formatted(.dateTime.weekday(.narrow)))
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(isToday ? Color.gold : Color.inkMuted)
+                    ZStack {
+                        if done {
+                            Circle().fill(LinearGradient.brand)
+                            Image(systemName: "checkmark").font(.caption.weight(.bold)).foregroundStyle(Color.night)
+                        } else {
+                            Circle().stroke(planned ? Color.gold.opacity(0.7) : Color.hairline,
+                                            style: StrokeStyle(lineWidth: 1.5, dash: planned ? [] : [3, 3]))
+                            Text(day.formatted(.dateTime.day())).font(.caption.weight(.semibold).monospacedDigit())
+                                .foregroundStyle(isToday ? Color.ink : Color.inkMuted)
+                        }
+                    }
+                    .frame(width: 34, height: 34)
+                    Circle().fill(fixed ? Color.emerald : Color.clear).frame(width: 5, height: 5)
+                }
+                .frame(maxWidth: .infinity)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(day.formatted(.dateTime.weekday(.wide))): \(done ? "trained" : planned ? "training day" : "rest")\(fixed ? ", fixed activity" : "")")
+            }
+        }
+        .card()
+    }
+}
+
+struct FoodCard: View {
+    let plan: NutritionPlan
+    var eaten: Int = 0
+    var protein: Int = 0
+
+    var body: some View {
+        HStack(spacing: 18) {
+            ZStack {
+                Circle().stroke(Color.hairline, lineWidth: 10)
+                Circle().trim(from: 0, to: min(1, CGFloat(eaten) / CGFloat(max(plan.calories, 1))))
+                    .stroke(LinearGradient.brand, style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                VStack(spacing: 0) {
+                    Text("\(max(plan.calories - eaten, 0))").font(.title3.weight(.bold).monospacedDigit()).foregroundStyle(Color.ink)
+                    Text("kcal left").font(.caption2).foregroundStyle(Color.inkMuted)
+                }
+            }
+            .frame(width: 104, height: 104)
+            VStack(alignment: .leading, spacing: 10) {
+                Text("FOOD TODAY").font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
+                MacroBar(label: "Protein", value: protein, target: plan.protein)
+                MacroBar(label: "Carbs", value: 0, target: plan.carbs)
+                MacroBar(label: "Fat", value: 0, target: plan.fat)
+                if plan.startAtMaintenance {
+                    Text("Maintenance for your first two weeks").font(.caption2).foregroundStyle(Color.inkMuted)
+                }
+            }
+        }
+        .card()
+        .accessibilityElement(children: .combine)
+    }
+}
+
+struct MacroBar: View {
+    let label: String
+    let value: Int
+    let target: Int
+    var body: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            HStack {
+                Text(label).font(.caption.weight(.medium)).foregroundStyle(Color.ink)
+                Spacer()
+                Text("\(value) / \(target) g").font(.caption.monospacedDigit()).foregroundStyle(Color.inkMuted)
+            }
+            BrandProgress(value: Double(value) / Double(max(target, 1)))
+        }
+    }
+}
+
+struct CheckInCard: View {
+    let settings: CheckInSettings
+    var body: some View {
+        let days = daysUntil(settings.weekday)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("WEEKLY CHECK-IN").font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
+                Text(days == 0 ? "Today" : days == 1 ? "Tomorrow" : "\(weekdayNames[settings.weekday - 1]), in \(days) days")
+                    .font(.title3.weight(.semibold)).foregroundStyle(Color.ink)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 6) {
+                Label(String(format: "%g h sleep", settings.sleepGoalHours), systemImage: "moon.stars")
+                Label("\(settings.stepsGoal.formatted()) steps", systemImage: "figure.walk")
+            }
+            .font(.caption).foregroundStyle(Color.inkMuted)
+        }
+        .card()
+    }
+
+    private func daysUntil(_ weekday: Int) -> Int {
+        let today = Calendar.current.component(.weekday, from: .now)
+        return (weekday - today + 7) % 7
     }
 }
 
