@@ -54,9 +54,9 @@ jobs:
       - name: Build and test
         run: |
           set -o pipefail
-          xcodebuild test -project SteadyStrength.xcodeproj -scheme SteadyStrength \
+          TEST_RUNNER_SCREENSHOT_DIR="$PWD/screenshots" xcodebuild test -project SteadyStrength.xcodeproj -scheme SteadyStrength \
             -destination "id=${{ steps.sim.outputs.udid }}" \
-            CODE_SIGNING_ALLOWED=NO TEST_RUNNER_SCREENSHOT_DIR="$PWD/screenshots" | tee xcodebuild.log | grep -E "error:|warning: .*SteadyStrength|Test Case .* (passed|failed)|\*\* (TEST|BUILD)" || true
+            CODE_SIGNING_ALLOWED=NO | tee xcodebuild.log | grep -E "error:|warning: .*SteadyStrength|Test Case .* (passed|failed|skipped)|\*\* (TEST|BUILD)" || true
           grep -q "\*\* TEST SUCCEEDED \*\*" xcodebuild.log
       - name: Upload screenshots
         if: always()
