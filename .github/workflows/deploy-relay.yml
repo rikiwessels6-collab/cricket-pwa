@@ -49,10 +49,17 @@ jobs:
             echo "::error::CLOUDFLARE_ACCOUNT_ID should be 32 letters/numbers (0-9, a-f); it is ${#CLOUDFLARE_ACCOUNT_ID} characters. Re-copy it from Workers & Pages."
             exit 1
           fi
-          npx wrangler deploy | tee deploy.log
+          set -o pipefail
           printf '%s' "$ANTHROPIC_API_KEY" | npx wrangler secret put ANTHROPIC_API_KEY
           printf '%s' "$APP_TOKEN" | npx wrangler secret put APP_TOKEN
+          if ! npx wrangler deploy 2>&1 | tee deploy.log; then
+            if grep -q "register a workers.dev subdomain" deploy.log; then
+              echo "::error::Cloudflare needs a workers.dev subdomain first: dash.cloudflare.com > Workers & Pages > set up a subdomain, then push again."
+            fi
+            exit 1
+          fi
           URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          [ -n "$URL" ] || { echo "::error::Deployed, but couldn't find the workers.dev URL in the output."; exit 1; }
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "Relay URL: $URL"
       - name: Smoke test (no photo, no cost)
