@@ -22,6 +22,21 @@ enum DataExport {
         struct CheckIn: Encodable {
             let weekday: Int, sleepGoalHours: Double, stepsGoal: Int, metrics: [String], dailyCheckIns: Bool
         }
+        struct CheckInRecord: Encodable {
+            let date: Date, weightKg: Double?, sleepHours: Double?, steps: Int?
+            let ratings: [String: Int], measurements: [String: Double], note: String
+        }
+        struct FoodRecord: Encodable {
+            let loggedAt: Date, eatenAt: Date, meal: String, source: String, name: String, brand: String?, barcode: String?
+            let grams: Double, kcal: Double, protein: Double, carbs: Double, fat: Double, fibre: Double, confidence: String?
+        }
+        struct SetRecord: Encodable {
+            let exerciseId: String, setIndex: Int, weight: Double, reps: Int, rpe: Double?
+        }
+        struct WorkoutRecord: Encodable {
+            let programId: String, week: Int, name: String, version: String, startedAt: Date, finishedAt: Date?
+            let notes: String, sets: [SetRecord]
+        }
         let exportedAt: Date
         let app = "Steady Strength"
         let profile: Profile?
@@ -29,6 +44,9 @@ enum DataExport {
         let nutritionPlan: Food?
         let checkInSettings: CheckIn?
         let consents: [String: Date]
+        let checkIns: [CheckInRecord]
+        let foodEntries: [FoodRecord]
+        let workouts: [WorkoutRecord]
     }
 
     @MainActor
@@ -38,6 +56,9 @@ enum DataExport {
         let n = try context.fetch(FetchDescriptor<NutritionPlan>()).first
         let c = try context.fetch(FetchDescriptor<CheckInSettings>()).first
         let s = try context.fetch(FetchDescriptor<AppSettings>()).first
+        let checkIns = try context.fetch(FetchDescriptor<CheckInEntry>(sortBy: [SortDescriptor(\.date)]))
+        let food = try context.fetch(FetchDescriptor<FoodEntry>(sortBy: [SortDescriptor(\.eatenAt)]))
+        let workouts = try context.fetch(FetchDescriptor<WorkoutLog>(sortBy: [SortDescriptor(\.startedAt)]))
         let snapshot = Snapshot(
             exportedAt: .now,
             profile: p.map { Snapshot.Profile(name: $0.name, birthYear: $0.birthYear, sex: $0.sexRaw, heightCm: $0.heightCm,
@@ -54,7 +75,18 @@ enum DataExport {
                                          proteinPerKg: $0.proteinPerKg, startAtMaintenance: $0.startAtMaintenance) },
             checkInSettings: c.map { Snapshot.CheckIn(weekday: $0.weekday, sleepGoalHours: $0.sleepGoalHours, stepsGoal: $0.stepsGoal,
                                            metrics: $0.metrics, dailyCheckIns: $0.dailyCheckIns) },
-            consents: s?.consents ?? [:])
+            consents: s?.consents ?? [:],
+            checkIns: checkIns.map { Snapshot.CheckInRecord(date: $0.date, weightKg: $0.weightKg, sleepHours: $0.sleepHours, steps: $0.steps,
+                                                            ratings: $0.ratings, measurements: $0.measurements, note: $0.note) },
+            foodEntries: food.map { Snapshot.FoodRecord(loggedAt: $0.loggedAt, eatenAt: $0.eatenAt, meal: $0.mealRaw, source: $0.sourceRaw,
+                                                        name: $0.name, brand: $0.brand, barcode: $0.barcode, grams: $0.grams, kcal: $0.kcal,
+                                                        protein: $0.protein, carbs: $0.carbs, fat: $0.fat, fibre: $0.fibre, confidence: $0.confidence) },
+            workouts: workouts.map { w in
+                Snapshot.WorkoutRecord(programId: w.programId, week: w.weekNumber, name: w.workoutName, version: w.versionRaw,
+                                       startedAt: w.startedAt, finishedAt: w.finishedAt, notes: w.notes,
+                                       sets: w.sets.sorted { ($0.slotOrder, $0.setIndex) < ($1.slotOrder, $1.setIndex) }
+                                           .map { Snapshot.SetRecord(exerciseId: $0.exerciseId, setIndex: $0.setIndex, weight: $0.weight, reps: $0.reps, rpe: $0.rpe) })
+            })
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601

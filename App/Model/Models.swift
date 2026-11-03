@@ -326,3 +326,25 @@ final class SavedFood {
 
     var item: FoodItem? { try? JSONDecoder().decode(FoodItem.self, from: itemData) }
 }
+
+
+// MARK: - Weekly check-ins
+
+/// One weekly check-in: weight, sleep, steps, your own 1-10 ratings, tape measurements and a note.
+/// Everything is optional so a quick check-in can be just a weight. Stays on this phone.
+@Model
+final class CheckInEntry {
+    var date: Date
+    var weightKg: Double?
+    var sleepHours: Double?
+    var steps: Int?
+    var ratings: [String: Int] = [:]
+    var measurements: [String: Double] = [:]
+    var note: String = ""
+
+    init(date: Date, weightKg: Double?, sleepHours: Double?, steps: Int?,
+         ratings: [String: Int], measurements: [String: Double], note: String) {
+        self.date = date; self.weightKg = weightKg; self.sleepHours = sleepHours; self.steps = steps
+        self.ratings = ratings; self.measurements = measurements; self.note = note
+    }
+}

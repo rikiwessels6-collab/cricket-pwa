@@ -11,8 +11,7 @@ struct MainTabView: View {
                 .tabItem { Label("Train", systemImage: "dumbbell") }
             FoodView()
                 .tabItem { Label("Food", systemImage: "fork.knife") }
-            ComingSoonView(title: "Progress", systemImage: "chart.xyaxis.line",
-                           detail: "Weekly check-ins, measurements, photos and your weight trend arrive in a later update.")
+            ProgressTabView()
                 .tabItem { Label("Progress", systemImage: "chart.xyaxis.line") }
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gearshape") }
