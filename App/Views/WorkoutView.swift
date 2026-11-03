@@ -83,6 +83,8 @@ struct StartWorkoutSheet: View {
     @State private var answers = ReadinessAnswers()
     @State private var checkOpen = false
     @State private var choice: Readiness.Choice = .asPlanned
+    @State private var easeBack = true
+    @Query(filter: #Predicate<WorkoutLog> { $0.finishedAt != nil }, sort: \WorkoutLog.startedAt, order: .reverse) private var finished: [WorkoutLog]
 
     private var advice: Readiness.Advice { Readiness.advise(answers) }
     private var effectiveVersion: SessionVersion { choice == .fewerSets ? .lowEnergy : version }
@@ -90,6 +92,7 @@ struct StartWorkoutSheet: View {
     var body: some View {
         NavigationStack {
             Form {
+                returnSection
                 readinessSection
                 if let note = week.phaseNote, week.lowFatigueOptional != true {
                     Section("Week \(week.number) · \(week.phase ?? "")") { Text(note).font(.footnote) }
@@ -122,8 +125,28 @@ struct StartWorkoutSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Start") { onStart(effectiveVersion, choice, checkOpen ? advice.code : nil); dismiss() }.accessibilityIdentifier("startWorkout")
+                    Button("Start") {
+                        let easing = returnAdvice != nil && easeBack && choice == .asPlanned
+                        onStart(effectiveVersion, easing ? .lowerLoad : choice, easing ? ReasonCode.missedReturnReduction : (checkOpen ? advice.code : nil))
+                        dismiss()
+                    }.accessibilityIdentifier("startWorkout")
                 }
+            }
+        }
+    }
+
+    private var returnAdvice: ReturnAdvice? { ReturnToTraining.advice(lastSession: finished.first?.finishedAt) }
+
+    @ViewBuilder private var returnSection: some View {
+        if let advice = returnAdvice {
+            Section {
+                Toggle(isOn: $easeBack) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Ease back in")
+                        Text(advice.message).font(.footnote).foregroundStyle(.secondary)
+                    }
+                }
+                .accessibilityIdentifier("easeBack")
             }
         }
     }
