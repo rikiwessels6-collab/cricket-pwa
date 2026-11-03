@@ -40,9 +40,10 @@ jobs:
           TEAM: ${{ secrets.APPLE_TEAM_ID }}
           KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ISSUER: ${{ secrets.ASC_ISSUER_ID }}
+          RELAY_TOKEN: ${{ secrets.APP_TOKEN }}
         run: |
           set -o pipefail
-          printf 'DEVELOPMENT_TEAM = %s\nCODE_SIGN_STYLE = Automatic\n' "$TEAM" > Config/Local.xcconfig
+          printf 'DEVELOPMENT_TEAM = %s\nCODE_SIGN_STYLE = Automatic\nPLATE_RELAY_TOKEN = %s\n' "$TEAM" "$(printf '%s' "$RELAY_TOKEN" | tr -d '[:space:]')" > Config/Local.xcconfig
           xcodebuild archive -project SteadyStrength.xcodeproj -scheme SteadyStrength \
             -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/SteadyStrength.xcarchive" \

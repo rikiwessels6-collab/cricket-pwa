@@ -147,6 +147,7 @@ struct AddFoodSheet: View {
     @State private var scanning = false
     @State private var picked: (item: FoodItem, source: FoodSource)?
     @State private var creating = false
+    @State private var plate = false
     @State private var tab = 0
 
     var body: some View {
@@ -156,6 +157,8 @@ struct AddFoodSheet: View {
                     HStack(spacing: 12) {
                         actionButton("Scan barcode", "barcode.viewfinder") { scanning = true }
                             .accessibilityIdentifier("scanBarcode")
+                        actionButton("Plate photo", "camera.viewfinder") { plate = true }
+                            .accessibilityIdentifier("platePhoto")
                         actionButton("Create food", "square.and.pencil") { creating = true }
                     }
                     .listRowBackground(Color.clear)
@@ -202,6 +205,7 @@ struct AddFoodSheet: View {
                     PortionSheet(item: p.item, source: p.source, meal: meal, day: day) { dismiss() }
                 }
             }
+            .sheet(isPresented: $plate) { PlateFlow(meal: meal, day: day) { dismiss() } }
             .sheet(isPresented: $creating) {
                 CustomFoodForm { item in creating = false; picked = (item, .manual) }
             }

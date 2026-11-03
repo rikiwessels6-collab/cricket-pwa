@@ -2,4 +2,6 @@
 //   DEVELOPMENT_TEAM = ABCDE12345
 CODE_SIGN_STYLE = Automatic
 DEVELOPMENT_TEAM =
+// The plate relay (Cloudflare Worker). The token is added from a GitHub secret at build time.
+PLATE_RELAY_URL = https:/$()/steady-strength-relay.boundaryline.workers.dev
 #include? "Local.xcconfig"

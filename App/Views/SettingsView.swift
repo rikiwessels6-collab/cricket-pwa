@@ -125,7 +125,7 @@ struct PrivacyPolicyView: View {
                     heading("What's stored, and where")
                     Text("Your profile, training plan and history, food log, targets, check-ins, measurements and progress photos are stored only on your iPhone, in the app's own storage, encrypted by iOS. There is no Steady Strength account and no Steady Strength server.")
                     heading("What leaves your phone")
-                    Text("• Barcode lookups (when food logging arrives) send only the barcode number to Open Food Facts to find the product.\n• Demo video searches open YouTube in Safari; YouTube's own privacy policy applies there.\n• If you later turn on iCloud sync, your data is stored in your own iCloud account, encrypted by Apple.\n• If you connect Strava, the app reads your activities from Strava.\nNothing else is sent anywhere, and nothing is shared without you choosing to share it.")
+                    Text("• Barcode lookups send only the barcode number to Open Food Facts to find the product.\n• Plate photo estimates (off by default, turned on by you) send the one photo you choose, plus an optional note, through a small relay to Claude (Anthropic) to estimate the food. The photo isn't stored or linked to you.\n• Demo video searches open YouTube in Safari; YouTube's own privacy policy applies there.\n• If you later turn on iCloud sync, your data is stored in your own iCloud account, encrypted by Apple.\n• If you connect Strava, the app reads your activities from Strava.\nNothing else is sent anywhere, and nothing is shared without you choosing to share it.")
                 }
                 Group {
                     heading("Apple Health")

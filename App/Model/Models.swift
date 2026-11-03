@@ -157,7 +157,7 @@ final class AppSettings {
 
 /// The kinds of personal data the app keeps, each with its own consent.
 enum DataType: String, CaseIterable, Identifiable {
-    case profile, training, nutrition, checkIns, photos, appleHealth
+    case profile, training, nutrition, checkIns, photos, plateAnalysis, appleHealth
     var id: String { rawValue }
 
     var title: String {
@@ -167,6 +167,7 @@ enum DataType: String, CaseIterable, Identifiable {
         case .nutrition: return "Food log and nutrition targets"
         case .checkIns: return "Check-ins, sleep, energy and symptoms"
         case .photos: return "Progress photos"
+        case .plateAnalysis: return "Plate photo estimates"
         case .appleHealth: return "Apple Health"
         }
     }
@@ -178,6 +179,7 @@ enum DataType: String, CaseIterable, Identifiable {
         case .nutrition: return "What you eat and your targets. Barcode lookups send only the barcode to Open Food Facts."
         case .checkIns: return "Weekly check-ins and optional daily notes. Private to this phone."
         case .photos: return "Front, side and rear photos, kept in the app, behind Face ID, never analysed."
+        case .plateAnalysis: return "Off by default. When on, a plate photo you choose to analyse is sent once to estimate its food and macros, then discarded. Nothing is stored or linked to you."
         case .appleHealth: return "Steps, workouts, weight and sleep. Asked separately when that feature arrives."
         }
     }
