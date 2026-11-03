@@ -1,0 +1,59 @@
+name: Deploy plate relay
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [steady-strength]
+    paths: ["relay/**", ".github/workflows/deploy-relay.yml"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the secrets are set
+        env:
+          CF: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACC: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TOK: ${{ secrets.APP_TOKEN }}
+        run: |
+          missing=""
+          [ -n "$CF" ]  || missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -n "$ACC" ] || missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          [ -n "$KEY" ] || missing="$missing ANTHROPIC_API_KEY"
+          [ -n "$TOK" ] || missing="$missing APP_TOKEN"
+          if [ -n "$missing" ]; then echo "::error::Missing GitHub secrets:$missing"; exit 1; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install --no-audit --no-fund
+        working-directory: relay
+      - run: npm test
+        working-directory: relay
+      - name: Deploy to Cloudflare and set secrets
+        id: deploy
+        working-directory: relay
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+        run: |
+          npx wrangler deploy | tee deploy.log
+          printf '%s' "$ANTHROPIC_API_KEY" | npx wrangler secret put ANTHROPIC_API_KEY
+          printf '%s' "$APP_TOKEN" | npx wrangler secret put APP_TOKEN
+          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Relay URL: $URL"
+      - name: Smoke test (no photo, no cost)
+        env:
+          URL: ${{ steps.deploy.outputs.url }}
+          APP_TOKEN: ${{ secrets.APP_TOKEN }}
+        run: |
+          sleep 10
+          bad=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H 'x-app-token: wrong' -d '{}')
+          good=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H "x-app-token: $APP_TOKEN" -H 'content-type: application/json' -d '{}')
+          echo "wrong token -> $bad (want 401), right token -> $good (want 400: empty request)"
+          [ "$bad" = 401 ] && [ "$good" = 400 ]
+          echo "### Relay is live: $URL" >> "$GITHUB_STEP_SUMMARY"
