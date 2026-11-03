@@ -76,7 +76,7 @@ struct TodayView: View {
             .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $startSheet) {
                 if let plan = plans.first, let program = store.content?.program(plan.programId),
-                   let next = program.session(at: plan.nextSessionIndex) {
+                   let next = program.session(at: plan.nextSessionIndex, includeOptional: plan.daysPerWeek >= 3) {
                     StartWorkoutSheet(program: program, week: next.week, workout: next.workout) { version in
                         start(plan: plan, program: program, week: next.week, workout: next.workout, version: version)
                     }
@@ -94,7 +94,7 @@ struct TodayView: View {
 
     @ViewBuilder
     private func sessionCard(plan: TrainingPlan, program: Program) -> some View {
-        if let next = program.session(at: plan.nextSessionIndex) {
+        if let next = program.session(at: plan.nextSessionIndex, includeOptional: plan.daysPerWeek >= 3) {
             VStack(alignment: .leading, spacing: 14) {
                 HStack {
                     Text(unfinished == nil ? "NEXT SESSION" : "IN PROGRESS")
@@ -280,17 +280,6 @@ struct CheckInCard: View {
     }
 }
 
-extension Program {
-    /// The session at a rotation index (0 = week 1, session 1), or nil when finished.
-    func session(at index: Int) -> (week: ProgramWeek, workout: ProgramWorkout)? {
-        var i = index
-        for week in weeks {
-            if i < week.workouts.count { return (week, week.workouts[i]) }
-            i -= week.workouts.count
-        }
-        return nil
-    }
-}
 
 // MARK: - Train
 

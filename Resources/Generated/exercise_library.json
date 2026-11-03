@@ -92,14 +92,14 @@
      "samePattern": true
     },
     {
-     "id": "leg_press",
-     "score": 117.5,
+     "id": "goblet_squat",
+     "score": 111.0,
      "curated": true,
      "samePattern": true
     },
     {
-     "id": "goblet_squat",
-     "score": 107.0,
+     "id": "leg_press",
+     "score": 113.5,
      "curated": true,
      "samePattern": true
     },
@@ -163,7 +163,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -600,7 +603,9 @@
     "beginner-12wk-option-d",
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -740,14 +745,14 @@
    "demoSearchQuery": "leg press proper form tutorial",
    "substitutes": [
     {
-     "id": "goblet_squat",
-     "score": 119.0,
+     "id": "hack_squat",
+     "score": 113.0,
      "curated": true,
      "samePattern": true
     },
     {
-     "id": "hack_squat",
-     "score": 109.0,
+     "id": "goblet_squat",
+     "score": 115.0,
      "curated": true,
      "samePattern": true
     },
@@ -820,7 +825,12 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -1028,7 +1038,9 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-build-and-grow",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -1547,7 +1559,9 @@
    ],
    "usedIn": [
     "rw-full-body-3day-8wk",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -1582,14 +1596,20 @@
    "demoSearchQuery": "bulgarian split squat proper form tutorial",
    "substitutes": [
     {
-     "id": "walking_lunge",
-     "score": 88.0,
-     "curated": false,
+     "id": "reverse_lunge",
+     "score": 120.0,
+     "curated": true,
      "samePattern": true
     },
     {
-     "id": "reverse_lunge",
-     "score": 80.0,
+     "id": "step_up",
+     "score": 115.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
+     "id": "walking_lunge",
+     "score": 88.0,
      "curated": false,
      "samePattern": true
     },
@@ -1601,12 +1621,6 @@
     },
     {
      "id": "split_squat",
-     "score": 79.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "step_up",
      "score": 79.0,
      "curated": false,
      "samePattern": true
@@ -1656,7 +1670,9 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus"
    ]
   },
   {
@@ -1761,7 +1777,8 @@
     }
    ],
    "usedIn": [
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -2786,14 +2803,20 @@
      "samePattern": true
     },
     {
+     "id": "cable_pull_through",
+     "score": 111.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
      "id": "single_leg_rdl",
-     "score": 109.0,
+     "score": 105.0,
      "curated": true,
      "samePattern": true
     },
     {
      "id": "back_extension",
-     "score": 100.3,
+     "score": 96.3,
      "curated": true,
      "samePattern": true
     },
@@ -2828,12 +2851,6 @@
      "samePattern": true
     },
     {
-     "id": "cable_pull_through",
-     "score": 75.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
      "id": "trap_bar_deadlift",
      "score": 72.3,
      "curated": false,
@@ -2857,7 +2874,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -2972,7 +2992,9 @@
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
     "rw-full-body-3day-8wk",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -3664,6 +3686,12 @@
      "samePattern": true
     },
     {
+     "id": "stability_ball_leg_curl",
+     "score": 74.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "lying_leg_curl",
      "score": 73.5,
      "curated": false,
@@ -3707,12 +3735,6 @@
     },
     {
      "id": "db_deadlift",
-     "score": 31.7,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "deadlift",
      "score": 31.7,
      "curated": false,
      "samePattern": false
@@ -3765,6 +3787,12 @@
      "samePattern": true
     },
     {
+     "id": "stability_ball_leg_curl",
+     "score": 75.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "band_leg_curl",
      "score": 71.0,
      "curated": false,
@@ -3811,12 +3839,6 @@
      "score": 30.0,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "db_deadlift",
-     "score": 28.7,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
@@ -3857,8 +3879,14 @@
    "demoSearchQuery": "barbell hip thrust proper form tutorial",
    "substitutes": [
     {
-     "id": "db_glute_bridge",
+     "id": "machine_hip_thrust",
      "score": 120.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
+     "id": "db_glute_bridge",
+     "score": 116.0,
      "curated": true,
      "samePattern": true
     },
@@ -3871,6 +3899,12 @@
     {
      "id": "band_glute_bridge",
      "score": 72.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_glute_kickback",
+     "score": 69.0,
      "curated": false,
      "samePattern": true
     },
@@ -3915,18 +3949,6 @@
      "score": 39.0,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "trap_bar_block_pull",
-     "score": 39.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "opposite_stance_deadlift",
-     "score": 35.7,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
@@ -3937,7 +3959,11 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -3978,6 +4004,18 @@
     {
      "id": "hip_thrust",
      "score": 75.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "machine_hip_thrust",
+     "score": 75.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_glute_kickback",
+     "score": 75.0,
      "curated": false,
      "samePattern": true
     },
@@ -4028,18 +4066,6 @@
      "score": 29.7,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "reset_deadlift",
-     "score": 29.7,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "cable_pull_through",
-     "score": 29.0,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
@@ -4049,12 +4075,12 @@
    ]
   },
   {
-   "id": "db_glute_bridge",
-   "name": "Dumbbell glute bridge",
+   "id": "machine_hip_thrust",
+   "name": "Machine hip thrust",
    "pattern": "glute_bridge",
    "tier": "compound",
    "equipment": [
-    "dumbbells"
+    "glute_machine"
    ],
    "primaryMuscles": [
     "glutes"
@@ -4067,13 +4093,19 @@
    "timed": false,
    "difficulty": 1,
    "oneRepMaxLift": null,
-   "cues": "Lie on the floor, dumbbell on hips, drive through heels and squeeze at the top.",
+   "cues": "Pad across the hips, upper back on the support, drive up and squeeze for one second.",
    "aliases": [],
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell glute bridge proper form tutorial",
+   "demoSearchQuery": "machine hip thrust proper form tutorial",
    "substitutes": [
+    {
+     "id": "db_glute_bridge",
+     "score": 88.0,
+     "curated": false,
+     "samePattern": true
+    },
     {
      "id": "hip_thrust",
      "score": 80.0,
@@ -4089,6 +4121,12 @@
     {
      "id": "single_leg_hip_thrust",
      "score": 75.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_glute_kickback",
+     "score": 73.0,
      "curated": false,
      "samePattern": true
     },
@@ -4133,21 +4171,113 @@
      "score": 35.7,
      "curated": false,
      "samePattern": false
+    }
+   ],
+   "usedIn": []
+  },
+  {
+   "id": "db_glute_bridge",
+   "name": "Dumbbell glute bridge",
+   "pattern": "glute_bridge",
+   "tier": "compound",
+   "equipment": [
+    "dumbbells"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [
+    "hamstrings"
+   ],
+   "unilateral": false,
+   "loadable": true,
+   "timed": false,
+   "difficulty": 1,
+   "oneRepMaxLift": null,
+   "cues": "Lie on the floor, dumbbell on hips, drive through heels and squeeze at the top.",
+   "aliases": [],
+   "cueSource": "drafted - coach to review",
+   "seed": false,
+   "videoSources": [],
+   "demoSearchQuery": "dumbbell glute bridge proper form tutorial",
+   "substitutes": [
+    {
+     "id": "machine_hip_thrust",
+     "score": 88.0,
+     "curated": false,
+     "samePattern": true
     },
     {
-     "id": "trap_bar_deadlift",
-     "score": 35.7,
+     "id": "hip_thrust",
+     "score": 80.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "band_glute_bridge",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "single_leg_hip_thrust",
+     "score": 75.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_glute_kickback",
+     "score": 73.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "db_deadlift",
+     "score": 39.7,
      "curated": false,
      "samePattern": false
     },
     {
-     "id": "barbell_rdl",
-     "score": 35.0,
+     "id": "cable_pull_through",
+     "score": 39.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "db_rdl",
+     "score": 39.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "kb_swing",
+     "score": 39.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "trap_bar_block_pull",
+     "score": 39.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "good_morning_band",
+     "score": 36.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "back_extension",
+     "score": 35.7,
      "curated": false,
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [
+    "ss-lower-body-focus",
+    "ss-strength-foundations"
+   ]
   },
   {
    "id": "band_glute_bridge",
@@ -4178,6 +4308,18 @@
     {
      "id": "db_glute_bridge",
      "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "machine_hip_thrust",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_glute_kickback",
+     "score": 74.0,
      "curated": false,
      "samePattern": true
     },
@@ -4234,18 +4376,6 @@
      "score": 32.7,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "barbell_rdl",
-     "score": 32.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "kb_swing",
-     "score": 32.0,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": []
@@ -4288,8 +4418,14 @@
      "samePattern": true
     },
     {
-     "id": "sliding_leg_curl",
+     "id": "stability_ball_leg_curl",
      "score": 112.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
+     "id": "sliding_leg_curl",
+     "score": 108.0,
      "curated": true,
      "samePattern": true
     },
@@ -4346,12 +4482,6 @@
      "score": 35.7,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "trap_bar_deadlift",
-     "score": 35.7,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
@@ -4362,7 +4492,12 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -4393,8 +4528,14 @@
    "substitutes": [
     {
      "id": "seated_leg_curl",
-     "score": 83.0,
-     "curated": false,
+     "score": 123.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
+     "id": "stability_ball_leg_curl",
+     "score": 112.0,
+     "curated": true,
      "samePattern": true
     },
     {
@@ -4453,12 +4594,6 @@
     },
     {
      "id": "db_deadlift",
-     "score": 35.7,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "trap_bar_deadlift",
      "score": 35.7,
      "curated": false,
      "samePattern": false
@@ -4522,6 +4657,12 @@
      "samePattern": true
     },
     {
+     "id": "stability_ball_leg_curl",
+     "score": 70.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "glute_ham_raise",
      "score": 65.0,
      "curated": false,
@@ -4562,12 +4703,6 @@
      "score": 33.0,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "db_deadlift",
-     "score": 29.7,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
@@ -4602,6 +4737,12 @@
    "videoSources": [],
    "demoSearchQuery": "sliding leg curl proper form tutorial",
    "substitutes": [
+    {
+     "id": "stability_ball_leg_curl",
+     "score": 88.0,
+     "curated": false,
+     "samePattern": true
+    },
     {
      "id": "band_leg_curl",
      "score": 79.0,
@@ -4667,17 +4808,112 @@
      "score": 32.7,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "deadlift",
-     "score": 32.7,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
     "rw-12-week"
    ]
+  },
+  {
+   "id": "stability_ball_leg_curl",
+   "name": "Stability-ball leg curl",
+   "pattern": "knee_flexion",
+   "tier": "accessory",
+   "equipment": [
+    "stability_ball"
+   ],
+   "primaryMuscles": [
+    "hamstrings"
+   ],
+   "secondaryMuscles": [
+    "glutes"
+   ],
+   "unilateral": false,
+   "loadable": false,
+   "timed": false,
+   "difficulty": 2,
+   "oneRepMaxLift": null,
+   "cues": "Heels on the ball, bridge up, curl the ball in without letting the hips drop.",
+   "aliases": [],
+   "cueSource": "drafted - coach to review",
+   "seed": false,
+   "videoSources": [],
+   "demoSearchQuery": "stability-ball leg curl proper form tutorial",
+   "substitutes": [
+    {
+     "id": "sliding_leg_curl",
+     "score": 88.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "band_leg_curl",
+     "score": 79.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "lying_leg_curl",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "seated_leg_curl",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "nordic_curl",
+     "score": 75.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "glute_ham_raise",
+     "score": 74.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "single_leg_curl",
+     "score": 70.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "good_morning_band",
+     "score": 39.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "barbell_rdl",
+     "score": 36.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "cable_pull_through",
+     "score": 36.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "kb_swing",
+     "score": 36.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "back_extension",
+     "score": 32.7,
+     "curated": false,
+     "samePattern": false
+    }
+   ],
+   "usedIn": []
   },
   {
    "id": "band_leg_curl",
@@ -4717,6 +4953,12 @@
     },
     {
      "id": "sliding_leg_curl",
+     "score": 79.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "stability_ball_leg_curl",
      "score": 79.0,
      "curated": false,
      "samePattern": true
@@ -4765,12 +5007,6 @@
     },
     {
      "id": "db_deadlift",
-     "score": 32.7,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "trap_bar_deadlift",
      "score": 32.7,
      "curated": false,
      "samePattern": false
@@ -4888,7 +5124,9 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -5149,7 +5387,10 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-muscle-builder-pro",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -5294,6 +5535,107 @@
    "usedIn": []
   },
   {
+   "id": "cable_glute_kickback",
+   "name": "Cable glute kickback",
+   "pattern": "glute_bridge",
+   "tier": "accessory",
+   "equipment": [
+    "cable"
+   ],
+   "primaryMuscles": [
+    "glutes"
+   ],
+   "secondaryMuscles": [],
+   "unilateral": true,
+   "loadable": true,
+   "timed": false,
+   "difficulty": 1,
+   "oneRepMaxLift": null,
+   "cues": "Ankle strap on, slight forward lean, kick back and squeeze the glute without arching your back.",
+   "aliases": [],
+   "cueSource": "drafted - coach to review",
+   "seed": false,
+   "videoSources": [],
+   "demoSearchQuery": "cable glute kickback proper form tutorial",
+   "substitutes": [
+    {
+     "id": "single_leg_hip_thrust",
+     "score": 75.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "band_glute_bridge",
+     "score": 74.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "db_glute_bridge",
+     "score": 73.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "machine_hip_thrust",
+     "score": 73.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "hip_thrust",
+     "score": 69.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "cable_pull_through",
+     "score": 37.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "single_leg_rdl",
+     "score": 35.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "good_morning_band",
+     "score": 34.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "back_extension",
+     "score": 33.7,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "db_rdl",
+     "score": 33.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "trap_bar_block_pull",
+     "score": 33.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
+     "id": "db_deadlift",
+     "score": 29.7,
+     "curated": false,
+     "samePattern": false
+    }
+   ],
+   "usedIn": [
+    "ss-lower-body-focus"
+   ]
+  },
+  {
    "id": "hip_abduction_machine",
    "name": "Machine hip abduction",
    "pattern": "hip_abduction",
@@ -5350,7 +5692,8 @@
     "beginner-12wk-option-d",
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-lower-body-focus"
    ]
   },
   {
@@ -5582,14 +5925,14 @@
      "samePattern": true
     },
     {
-     "id": "db_floor_press",
-     "score": 75.0,
+     "id": "incline_push_up",
+     "score": 77.0,
      "curated": false,
      "samePattern": true
     },
     {
-     "id": "single_arm_chest_press",
-     "score": 73.0,
+     "id": "db_floor_press",
+     "score": 75.0,
      "curated": false,
      "samePattern": true
     }
@@ -5599,7 +5942,9 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -5682,6 +6027,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 77.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "db_floor_press",
      "score": 75.0,
      "curated": false,
@@ -5696,12 +6047,6 @@
     {
      "id": "push_up",
      "score": 74.5,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 73.0,
      "curated": false,
      "samePattern": true
     }
@@ -5808,7 +6153,7 @@
      "samePattern": true
     },
     {
-     "id": "single_arm_chest_press",
+     "id": "incline_push_up",
      "score": 77.0,
      "curated": false,
      "samePattern": true
@@ -5914,7 +6259,7 @@
      "samePattern": true
     },
     {
-     "id": "single_arm_chest_press",
+     "id": "incline_push_up",
      "score": 73.0,
      "curated": false,
      "samePattern": true
@@ -6103,6 +6448,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "bench_press",
      "score": 75.0,
      "curated": false,
@@ -6117,12 +6468,6 @@
     {
      "id": "pause_bench_press",
      "score": 75.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 73.0,
      "curated": false,
      "samePattern": true
     }
@@ -6205,6 +6550,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "bench_press",
      "score": 75.0,
      "curated": false,
@@ -6219,12 +6570,6 @@
     {
      "id": "pause_bench_press",
      "score": 75.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 73.0,
      "curated": false,
      "samePattern": true
     }
@@ -6293,6 +6638,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 81.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "close_grip_bench",
      "score": 80.0,
      "curated": false,
@@ -6333,12 +6684,6 @@
      "score": 75.0,
      "curated": false,
      "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 69.0,
-     "curated": false,
-     "samePattern": true
     }
    ],
    "usedIn": [
@@ -6346,7 +6691,8 @@
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -6529,6 +6875,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 81.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "bench_press",
      "score": 80.0,
      "curated": false,
@@ -6551,16 +6903,14 @@
      "score": 79.0,
      "curated": false,
      "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 73.0,
-     "curated": false,
-     "samePattern": true
     }
    ],
    "usedIn": [
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -6605,6 +6955,12 @@
     },
     {
      "id": "deficit_push_up",
+     "score": 81.5,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "incline_push_up",
      "score": 81.5,
      "curated": false,
      "samePattern": true
@@ -6656,16 +7012,114 @@
      "score": 74.5,
      "curated": false,
      "samePattern": true
+    }
+   ],
+   "usedIn": [
+    "rw-intermediate-18wk"
+   ]
+  },
+  {
+   "id": "incline_push_up",
+   "name": "Incline push-up",
+   "pattern": "horizontal_push",
+   "tier": "accessory",
+   "equipment": [
+    "bench/box"
+   ],
+   "primaryMuscles": [
+    "chest",
+    "triceps"
+   ],
+   "secondaryMuscles": [
+    "front_delts"
+   ],
+   "unilateral": false,
+   "loadable": false,
+   "timed": false,
+   "difficulty": 1,
+   "oneRepMaxLift": null,
+   "cues": "Hands on a bench, body in one straight line, lower the chest to the edge.",
+   "aliases": [],
+   "cueSource": "drafted - coach to review",
+   "seed": false,
+   "videoSources": [],
+   "demoSearchQuery": "incline push-up proper form tutorial",
+   "substitutes": [
+    {
+     "id": "push_up",
+     "score": 81.5,
+     "curated": false,
+     "samePattern": true
     },
     {
-     "id": "single_arm_chest_press",
-     "score": 70.0,
+     "id": "db_bench_press",
+     "score": 81.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "machine_chest_press",
+     "score": 81.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "band_push_up",
+     "score": 80.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "deficit_push_up",
+     "score": 80.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "bench_press",
+     "score": 77.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "close_grip_bench",
+     "score": 77.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "pause_bench_press",
+     "score": 77.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "db_floor_press",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "floor_press",
+     "score": 76.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "larsen_press",
+     "score": 73.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
+     "id": "pin_press",
+     "score": 72.0,
      "curated": false,
      "samePattern": true
     }
    ],
    "usedIn": [
-    "rw-intermediate-18wk"
+    "ss-strong-for-life"
    ]
   },
   {
@@ -6738,6 +7192,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 80.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "pin_press",
      "score": 80.0,
      "curated": false,
@@ -6758,12 +7218,6 @@
     {
      "id": "floor_press",
      "score": 76.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 74.0,
      "curated": false,
      "samePattern": true
     }
@@ -6951,6 +7405,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 80.0,
+     "curated": false,
+     "samePattern": true
+    },
+    {
      "id": "pin_press",
      "score": 80.0,
      "curated": false,
@@ -6971,12 +7431,6 @@
     {
      "id": "floor_press",
      "score": 76.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "single_arm_chest_press",
-     "score": 74.0,
      "curated": false,
      "samePattern": true
     }
@@ -7042,6 +7496,12 @@
      "samePattern": false
     },
     {
+     "id": "incline_push_up",
+     "score": 49.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "bench_press",
      "score": 46.0,
      "curated": false,
@@ -7073,12 +7533,6 @@
     },
     {
      "id": "db_bench_press",
-     "score": 42.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "db_floor_press",
      "score": 42.0,
      "curated": false,
      "samePattern": false
@@ -7179,6 +7633,12 @@
      "samePattern": false
     },
     {
+     "id": "incline_push_up",
+     "score": 37.7,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "close_grip_bench",
      "score": 36.7,
      "curated": false,
@@ -7186,12 +7646,6 @@
     },
     {
      "id": "db_floor_press",
-     "score": 35.7,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "floor_press",
      "score": 35.7,
      "curated": false,
      "samePattern": false
@@ -7205,7 +7659,11 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -7526,7 +7984,8 @@
     }
    ],
    "usedIn": [
-    "rw-body-part-split-5day-8wk"
+    "rw-body-part-split-5day-8wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -7667,13 +8126,13 @@
    "demoSearchQuery": "barbell overhead press proper form tutorial",
    "substitutes": [
     {
-     "id": "seated_db_shoulder_press",
+     "id": "machine_shoulder_press",
      "score": 121.5,
      "curated": true,
      "samePattern": true
     },
     {
-     "id": "machine_shoulder_press",
+     "id": "seated_db_shoulder_press",
      "score": 117.5,
      "curated": true,
      "samePattern": true
@@ -7744,7 +8203,8 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow"
    ]
   },
   {
@@ -7866,7 +8326,11 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -8595,8 +9059,8 @@
      "samePattern": false
     },
     {
-     "id": "bench_press",
-     "score": 50.0,
+     "id": "incline_push_up",
+     "score": 51.0,
      "curated": false,
      "samePattern": false
     }
@@ -8687,6 +9151,12 @@
      "samePattern": false
     },
     {
+     "id": "incline_push_up",
+     "score": 48.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "ez_skull_crusher",
      "score": 46.0,
      "curated": false,
@@ -8694,12 +9164,6 @@
     },
     {
      "id": "cable_kickback",
-     "score": 44.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "db_kickback",
      "score": 44.0,
      "curated": false,
      "samePattern": false
@@ -8742,15 +9206,15 @@
    "demoSearchQuery": "cable fly proper form tutorial",
    "substitutes": [
     {
-     "id": "db_fly",
-     "score": 88.0,
-     "curated": false,
+     "id": "pec_deck",
+     "score": 123.0,
+     "curated": true,
      "samePattern": true
     },
     {
-     "id": "pec_deck",
-     "score": 83.0,
-     "curated": false,
+     "id": "db_fly",
+     "score": 124.0,
+     "curated": true,
      "samePattern": true
     },
     {
@@ -8758,6 +9222,12 @@
      "score": 80.0,
      "curated": false,
      "samePattern": true
+    },
+    {
+     "id": "incline_push_up",
+     "score": 45.0,
+     "curated": false,
+     "samePattern": false
     },
     {
      "id": "db_bench_press",
@@ -8806,19 +9276,14 @@
      "score": 38.5,
      "curated": false,
      "samePattern": false
-    },
-    {
-     "id": "band_push_up",
-     "score": 37.0,
-     "curated": false,
-     "samePattern": false
     }
    ],
    "usedIn": [
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -8864,6 +9329,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 40.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "db_bench_press",
      "score": 39.0,
      "curated": false,
@@ -8907,12 +9378,6 @@
     },
     {
      "id": "pause_bench_press",
-     "score": 35.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "pin_press",
      "score": 35.0,
      "curated": false,
      "samePattern": false
@@ -8968,6 +9433,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 45.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "db_bench_press",
      "score": 44.0,
      "curated": false,
@@ -9012,12 +9483,6 @@
     {
      "id": "push_up",
      "score": 38.5,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "band_push_up",
-     "score": 37.0,
      "curated": false,
      "samePattern": false
     }
@@ -9067,6 +9532,12 @@
      "samePattern": true
     },
     {
+     "id": "incline_push_up",
+     "score": 43.0,
+     "curated": false,
+     "samePattern": false
+    },
+    {
      "id": "push_up",
      "score": 39.0,
      "curated": false,
@@ -9110,12 +9581,6 @@
     },
     {
      "id": "bench_press",
-     "score": 32.0,
-     "curated": false,
-     "samePattern": false
-    },
-    {
-     "id": "close_grip_bench",
      "score": 32.0,
      "curated": false,
      "samePattern": false
@@ -9239,7 +9704,12 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -9357,7 +9827,11 @@
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -9720,26 +10194,26 @@
      "samePattern": true
     },
     {
-     "id": "t_bar_row",
+     "id": "seated_cable_row",
      "score": 116.7,
      "curated": true,
      "samePattern": true
     },
     {
+     "id": "t_bar_row",
+     "score": 112.7,
+     "curated": true,
+     "samePattern": true
+    },
+    {
      "id": "db_row",
-     "score": 103.5,
+     "score": 99.5,
      "curated": true,
      "samePattern": true
     },
     {
      "id": "pendlay_row",
      "score": 85.5,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "seated_cable_row",
-     "score": 80.7,
      "curated": false,
      "samePattern": true
     },
@@ -10657,7 +11131,12 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -10989,7 +11468,8 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -11099,7 +11579,8 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -11517,7 +11998,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [
+    "ss-build-and-grow",
+    "ss-lower-body-focus"
+   ]
   },
   {
    "id": "band_pulldown",
@@ -12036,7 +12520,9 @@
     "beginner-12wk-option-d",
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus"
    ]
   },
   {
@@ -12153,7 +12639,8 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -12259,7 +12746,8 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -13093,7 +13581,8 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -13599,7 +14088,9 @@
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
-    "rw-12-week"
+    "rw-12-week",
+    "ss-build-and-grow",
+    "ss-lower-body-focus"
    ]
   },
   {
@@ -13794,7 +14285,8 @@
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
     "rw-12-week",
-    "rw-full-body-3day-8wk"
+    "rw-full-body-3day-8wk",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -14592,7 +15084,11 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -14680,18 +15176,18 @@
    "substitutes": [
     {
      "id": "lateral_raise",
-     "score": 77.0,
-     "curated": false,
-     "samePattern": true
-    },
-    {
-     "id": "lateral_raise_hold",
-     "score": 77.0,
-     "curated": false,
+     "score": 117.0,
+     "curated": true,
      "samePattern": true
     },
     {
      "id": "machine_lateral_raise",
+     "score": 113.0,
+     "curated": true,
+     "samePattern": true
+    },
+    {
+     "id": "lateral_raise_hold",
      "score": 77.0,
      "curated": false,
      "samePattern": true
@@ -14965,7 +15461,10 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-build-and-grow",
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro"
    ]
   },
   {
@@ -16285,7 +16784,8 @@
     "beginner-12wk-option-d",
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
-    "rw-upper-lower-4day-8wk"
+    "rw-upper-lower-4day-8wk",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -16692,7 +17192,8 @@
     "beginner-12wk-option-a",
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
-    "beginner-12wk-option-d"
+    "beginner-12wk-option-d",
+    "ss-strength-foundations"
    ]
   },
   {
@@ -16887,7 +17388,8 @@
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
-    "rw-intermediate-18wk"
+    "rw-intermediate-18wk",
+    "ss-strong-for-life"
    ]
   },
   {
@@ -17389,7 +17891,8 @@
    "usedIn": [
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
-    "beginner-12wk-option-d"
+    "beginner-12wk-option-d",
+    "ss-strong-for-life"
    ]
   },
   {

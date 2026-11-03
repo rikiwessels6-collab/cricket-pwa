@@ -112,6 +112,7 @@ nordic_curl | Nordic ham curl | knee_flexion | S | - | hamstrings | | N d3 | Ank
 # ---------------------------------------------------------------- glute bridge
 hip_thrust | Barbell hip thrust | glute_bridge | P | barbell+bench | glutes | hamstrings | d2 | Upper back on bench, ribs down, squeeze glutes at top, pause 1 second. | hip thrust
 single_leg_hip_thrust | Single-leg hip thrust | glute_bridge | S | bench | glutes | hamstrings,glute_med | U d2 | Upper back on bench, one foot down, drive through the heel and squeeze at the top. | dumbbell single-leg hip thrust
+machine_hip_thrust | Machine hip thrust | glute_bridge | S | glute_machine | glutes | hamstrings | d1 | Pad across the hips, upper back on the support, drive up and squeeze for one second. |
 db_glute_bridge | Dumbbell glute bridge | glute_bridge | S | dumbbells | glutes | hamstrings | d1 | Lie on the floor, dumbbell on hips, drive through heels and squeeze at the top. |
 band_glute_bridge | Banded glute bridge | glute_bridge | A | bands | glutes | glute_med | N d1 | Loop band above knees, push knees out, drive hips up and pause. |
 # ---------------------------------------------------------------- knee flexion / extension
@@ -119,6 +120,7 @@ seated_leg_curl | Seated leg curl | knee_flexion | A | leg_curl | hamstrings | |
 lying_leg_curl | Lying leg curl | knee_flexion | A | leg_curl | hamstrings | calves | d1 | Hips pressed into the pad, curl heels to glutes, lower for 2 seconds. |
 single_leg_curl | Single-leg leg curl | knee_flexion | A | leg_curl | hamstrings | | U d1 | One leg at a time, keep hips down, slow lower. | single-leg lying leg curl;unilateral leg curl (choice)
 sliding_leg_curl | Sliding leg curl | knee_flexion | A | sliders | hamstrings | glutes | N d2 | Bridge up, slide heels away slowly, curl them back in without dropping hips. |
+stability_ball_leg_curl | Stability-ball leg curl | knee_flexion | A | stability_ball | hamstrings | glutes | N d2 | Heels on the ball, bridge up, curl the ball in without letting the hips drop. |
 band_leg_curl | Banded leg curl | knee_flexion | A | bands | hamstrings | | N d1 | Band anchored low, lie face down, curl heel to glute and lower slowly. |
 leg_extension | Leg extension | knee_extension | A | leg_ext | quads | | d1 | Pause at the top. Use lighter weight if knees complain. | leg extensions;eccentric-accentuated leg extension
 single_leg_extension | Single-leg leg extension | knee_extension | A | leg_ext | quads | | U d1 | One leg at a time, squeeze at the top, lower slowly. | single-leg leg extension
@@ -128,6 +130,7 @@ standing_calf_raise | Standing calf raise | calf | A | calf_machine/dumbbells | 
 single_leg_calf_raise | Single-leg calf raise | calf | A | box | calves | | U N d1 | Ball of one foot on a step, full stretch, rise as high as you can, pause. | unilateral standing calf raise
 seated_calf_raise | Seated calf raise | calf | A | seated_calf | calves | | d1 | Knees under the pad, full stretch, pause at the top. |
 leg_press_calf_raise | Calf raise on the leg press | calf | A | leg_press | calves | | d1 | Balls of feet on the platform edge, knees soft, press through the big toe. |
+cable_glute_kickback | Cable glute kickback | glute_bridge | A | cable | glutes | | U d1 | Ankle strap on, slight forward lean, kick back and squeeze the glute without arching your back. |
 hip_abduction_machine | Machine hip abduction | hip_abduction | A | abductor | glute_med | glutes | d1 | Controlled, no bouncing. | machine seated hip abduction;hip abduction
 cable_hip_abduction | Cable hip abduction | hip_abduction | A | cable | glute_med | | U d1 | Ankle strap on, stand tall, sweep the leg out without leaning. |
 banded_lateral_walk | Banded lateral walk | hip_abduction | A | bands | glute_med | glutes | N d1 | Band above knees, half squat, step sideways keeping tension. |
@@ -144,6 +147,7 @@ db_bench_press | Dumbbell bench press | horizontal_push | P | dumbbells+bench | 
 single_arm_chest_press | Single-arm chest press | horizontal_push | S | cable/dumbbells+bench | chest,triceps | obliques | U d2 | Press one side at a time, don't let the torso twist. | s arm chest press;single arm chest press
 machine_chest_press | Machine chest press | horizontal_push | S | chest_press | chest,triceps | front_delts | d1 | Handles at mid-chest height, press without shrugging, slow return. | plate loaded press
 push_up | Push-up | horizontal_push | S | - | chest,triceps | front_delts,abs | N d1 | Hands under shoulders, body in one line, chest to the floor. Elevate hands to make it easier. | press up
+incline_push_up | Incline push-up | horizontal_push | A | bench/box | chest,triceps | front_delts | N d1 | Hands on a bench, body in one straight line, lower the chest to the edge. |
 deficit_push_up | Deficit push-up | horizontal_push | S | - | chest,triceps | front_delts | N d2 | Hands on plates or books, lower the chest below hand height. | deficit push-up
 decline_push_up | Decline push-up | incline_push | S | box/bench | upper_chest,triceps | front_delts | N d2 | Feet raised on a bench, body straight, lower the chest between your hands. | decline press up
 band_push_up | Band-resisted push-up | horizontal_push | S | bands | chest,triceps | front_delts | N d2 | Band across your back held under each hand, full push-up against the band. | banded press up;banded push ups

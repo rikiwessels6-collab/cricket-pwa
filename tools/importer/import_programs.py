@@ -29,6 +29,7 @@ import openpyxl
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # works under python -I too
 import equipment as equip  # noqa: E402
 import library_catalogue  # noqa: E402
+import steady_programs  # noqa: E402
 import substitution  # noqa: E402
 import versions  # noqa: E402
 from parsing import (  # noqa: E402
@@ -54,6 +55,7 @@ FILES = {
     "eighteen": "Intermediate_18_weeks.xlsx",
     "checkin": "Copy_of_New_Done_For_You_Client_Check-In_System_MASTER_COPY.xlsx",
     "beginner": "Beginner_12_Week_Strength_Program.xlsx",
+    "guide": "Steady_Strength_Program_Guide.pdf",
 }
 
 WORK_SEC, WARMUP_MIN, COOLDOWN_MIN = versions.WORK_SEC, versions.WARMUP_MIN, versions.COOLDOWN_MIN
@@ -765,8 +767,14 @@ def apply_main_lift_rule(programs, decisions, by_id, issues):
             for wo in w["workouts"]:
                 for s in wo["slots"]:
                     rest = (s["rest"] or {}).get("maxSec") or 0
-                    s["isMainLift"] = (by_id[s["exerciseId"]]["tier"] == "main" and rest >= 120) or rest >= 180
-                    s["mainLiftBasis"] = "library main lift with 2+ min rest, or 3+ min rest"
+                    tier = by_id[s["exerciseId"]]["tier"]
+                    if p.get("family") == "steady-strength":
+                        # Rest here is derived from the guide's rule, so it can't signal the role.
+                        s["isMainLift"] = tier == "main"
+                        s["mainLiftBasis"] = "library main lift"
+                    else:
+                        s["isMainLift"] = (tier == "main" and rest >= 120) or rest >= 180
+                        s["mainLiftBasis"] = "library main lift with 2+ min rest, or 3+ min rest"
 
 
 def program_equipment(p, by_id):
@@ -1079,6 +1087,7 @@ def main():
     seed = json.loads((HERE / "exercise_seed.json").read_text())
     library, index = build_catalogue(seed, cues, issues)
     by_id = {e["id"]: e for e in library}
+    programs += steady_programs.build(index, by_id)
     merges = resolve_exercises(programs, index, by_id, issues)
     apply_main_lift_rule(programs, decisions, by_id, issues)
     for p in programs:

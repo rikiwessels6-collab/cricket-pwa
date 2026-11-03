@@ -22,11 +22,12 @@ from library_catalogue import NEIGHBOUR_PATTERNS
 
 # Coach-curated swaps come first, in this order. The 28 seed exercises use the
 # swaps from the brief; main lifts get the obvious equipment fallbacks.
+# Approved substitutions from the Steady Strength guide (section 5) come first.
 CURATED = {
     "goblet_squat": ["leg_press", "bodyweight_squat"],
     "db_rdl": ["back_extension", "cable_pull_through"],
-    "hip_thrust": ["db_glute_bridge"],
-    "leg_press": ["goblet_squat", "hack_squat"],
+    "hip_thrust": ["machine_hip_thrust", "db_glute_bridge"],
+    "leg_press": ["hack_squat", "goblet_squat"],
     "reverse_lunge": ["split_squat", "step_up"],
     "db_bench_press": ["machine_chest_press", "push_up"],
     "incline_db_press": ["machine_incline_press"],
@@ -36,7 +37,7 @@ CURATED = {
     "neutral_pulldown": ["lat_pulldown"],
     "seated_cable_row": ["machine_row", "db_row"],
     "chest_supported_row": ["seated_cable_row", "db_row"],
-    "seated_leg_curl": ["lying_leg_curl", "sliding_leg_curl"],
+    "seated_leg_curl": ["lying_leg_curl", "stability_ball_leg_curl", "sliding_leg_curl"],
     "leg_extension": ["leg_press"],
     "standing_calf_raise": ["seated_calf_raise", "leg_press_calf_raise"],
     "hip_abduction_machine": ["banded_lateral_walk", "cable_hip_abduction"],
@@ -52,18 +53,18 @@ CURATED = {
     "pallof_press": ["side_plank"],
     "farmers_carry": ["suitcase_carry"],
     # main-lift fallbacks
-    "back_squat": ["hack_squat", "leg_press", "goblet_squat", "bulgarian_split_squat"],
+    "back_squat": ["hack_squat", "goblet_squat", "leg_press", "bulgarian_split_squat"],
     "front_squat": ["goblet_squat", "hack_squat", "back_squat"],
     "box_squat": ["back_squat", "goblet_squat", "leg_press"],
     "pin_squat": ["back_squat", "box_squat", "goblet_squat"],
     "bench_press": ["db_bench_press", "machine_chest_press", "floor_press", "push_up"],
     "pause_bench_press": ["bench_press", "db_bench_press", "machine_chest_press"],
     "deadlift": ["trap_bar_deadlift", "barbell_rdl", "db_deadlift", "db_rdl"],
-    "barbell_rdl": ["db_rdl", "single_leg_rdl", "back_extension"],
-    "ohp": ["seated_db_shoulder_press", "machine_shoulder_press", "landmine_press", "pike_push_up"],
+    "barbell_rdl": ["db_rdl", "cable_pull_through", "single_leg_rdl", "back_extension"],
+    "ohp": ["machine_shoulder_press", "seated_db_shoulder_press", "landmine_press", "pike_push_up"],
     "pull_up": ["assisted_pull_up", "lat_pulldown", "band_pulldown"],
     "chin_up": ["assisted_pull_up", "supinated_pulldown", "band_pulldown"],
-    "bent_over_row": ["chest_supported_row", "t_bar_row", "db_row"],
+    "bent_over_row": ["chest_supported_row", "seated_cable_row", "t_bar_row", "db_row"],
     "t_bar_row": ["chest_supported_row", "seated_cable_row", "db_row"],
     "dip": ["assisted_dip", "close_grip_push_up", "bench_dip"],
     "assisted_dip": ["dip", "close_grip_push_up", "bench_dip"],
@@ -71,6 +72,10 @@ CURATED = {
     "trap_bar_deadlift": ["deadlift", "db_deadlift"],
     "nordic_curl": ["glute_ham_raise", "sliding_leg_curl", "seated_leg_curl"],
     "glute_ham_raise": ["nordic_curl", "seated_leg_curl", "sliding_leg_curl"],
+    "bulgarian_split_squat": ["reverse_lunge", "step_up"],
+    "lying_leg_curl": ["seated_leg_curl", "stability_ball_leg_curl"],
+    "cable_fly": ["pec_deck", "db_fly"],
+    "cable_lateral_raise": ["lateral_raise", "machine_lateral_raise"],
 }
 
 TOP_N = 12

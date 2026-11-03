@@ -55,16 +55,26 @@ public enum ProgramAdvisor {
             if daysPerWeek >= 4 {
                 add("beginner-12wk-option-c", "Four days (upper/lower), best after about 8 weeks of Option B.")
             }
+            add("ss-strength-foundations", "Three full-body days to learn the main lifts and build muscle.")
             add("beginner-12wk-option-a", "Two days a week for busy weeks.")
+            add("ss-strong-for-life", "Two full-body days, with an optional third, for lasting strength.")
         case .intermediate:
             if daysPerWeek <= 3 { add("rw-full-body-3day-8wk", "Three full-body sessions a week.") }
-            if daysPerWeek == 4 { add("rw-upper-lower-4day-8wk", "Four days: upper and lower body.") }
-            if daysPerWeek >= 5 { add("rw-body-part-split-5day-8wk", "Five days, one or two muscle groups each.") }
+            if daysPerWeek == 4 {
+                add("ss-build-and-grow", "Four days, upper and lower, 12 weeks of steady gains.")
+                add("ss-lower-body-focus", "Four days with extra glute and leg work.")
+                add("rw-upper-lower-4day-8wk", "Four days: upper and lower body.")
+            }
+            if daysPerWeek >= 5 {
+                add("ss-muscle-builder-pro", "Five days: push, pull, legs, then upper and lower.")
+                add("rw-body-part-split-5day-8wk", "Five days, one or two muscle groups each.")
+            }
             add("rw-upper-lower-4day-8wk", "Four days: upper and lower body.")
             add("rw-full-body-3day-8wk", "Three full-body sessions a week.")
         case .advanced:
             if daysPerWeek >= 5 {
                 add("rw-intermediate-18wk", "Five days, 18 weeks, RIR-based with supersets.")
+                add("ss-muscle-builder-pro", "Five days: push, pull, legs, then upper and lower.")
                 add("rw-12-week", "5-6 sessions a week with %1RM loading; needs your squat, bench, deadlift and press 1RMs.")
             }
             if daysPerWeek == 4 { add("rw-upper-lower-4day-8wk", "Four days: upper and lower body.") }

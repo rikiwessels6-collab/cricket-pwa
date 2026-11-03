@@ -30,6 +30,10 @@ public struct Program: Decodable, Identifiable, Sendable {
     public let programNotes: [String]?
     public let equipmentNeeded: [String]
     public let equipmentCoverage: [String: EquipmentCoverage]
+    public let description: String?
+    public let experienceLevel: String?
+    public let split: String?
+    public let goalTags: [String]?
 
     /// Fewest and most sessions in any week (the 12-week program alternates 5 and 6).
     public var sessionsPerWeek: ClosedRange<Int> {
@@ -43,6 +47,18 @@ public struct Program: Decodable, Identifiable, Sendable {
         let all = weeks.flatMap { $0.workouts.map(\.estimatedMinutes) }
         guard !all.isEmpty else { return 0 }
         return Int((Double(all.reduce(0, +)) / Double(all.count)).rounded())
+    }
+
+    /// The session at a rotation index (0 = week 1, session 1), or nil when the program is finished.
+    /// Optional sessions are skipped unless `includeOptional`.
+    public func session(at index: Int, includeOptional: Bool = true) -> (week: ProgramWeek, workout: ProgramWorkout)? {
+        var i = index
+        for week in weeks {
+            let list = week.workouts.filter { includeOptional || $0.optional != true }
+            if i < list.count { return (week, list[i]) }
+            i -= list.count
+        }
+        return nil
     }
 
     public var sessionsPerWeekText: String {
@@ -63,6 +79,8 @@ public struct ProgramWeek: Decodable, Identifiable, Sendable {
     public let label: String
     public let isDeload: Bool?
     public let phase: String?
+    public let phaseNote: String?
+    public let lowFatigueOptional: Bool?
     public let workouts: [ProgramWorkout]
     public var id: Int { number }
 }
@@ -73,6 +91,8 @@ public struct ProgramWorkout: Decodable, Identifiable, Sendable {
     public let position: Int
     public let estimatedMinutes: Int
     public let slots: [ExerciseSlot]
+    /// Optional sessions are offered but never count as missed.
+    public let optional: Bool?
     public var id: Int { position }
 }
 

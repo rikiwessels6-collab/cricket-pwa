@@ -18,9 +18,9 @@ final class ContentTests: XCTestCase {
     var content: BundledContent { Self.content }
 
     func testAllProgramsDecode() {
-        XCTAssertEqual(content.programs.count, 9)
+        XCTAssertEqual(content.programs.count, 14)
         let slots = content.programs.flatMap { $0.weeks.flatMap { $0.workouts.flatMap(\.slots) } }
-        XCTAssertEqual(slots.count, 2788)
+        XCTAssertEqual(slots.count, 4012)
         XCTAssertFalse(slots.contains { if case .unknown = $0.reps.scheme { return true } else { return false } })
     }
 
@@ -40,6 +40,25 @@ final class ContentTests: XCTestCase {
         XCTAssertEqual(twelve.sessionsPerWeek, 5...6)
         XCTAssertTrue(twelve.requiresOneRepMax)
         XCTAssertFalse(b.requiresOneRepMax)
+    }
+
+    func testGuidePrograms() throws {
+        let ids = ["ss-strength-foundations", "ss-build-and-grow", "ss-lower-body-focus", "ss-muscle-builder-pro", "ss-strong-for-life"]
+        for id in ids {
+            let p = try XCTUnwrap(content.program(id), id)
+            XCTAssertEqual(p.weeks.count, 12, id)
+            XCTAssertNotNil(p.description)
+            XCTAssertTrue(p.weeks.allSatisfy { w in w.workouts.allSatisfy { $0.slots.allSatisfy { $0.effort?.type == .rir } } })
+        }
+        let life = try XCTUnwrap(content.program("ss-strong-for-life"))
+        XCTAssertEqual(life.weeks[0].workouts.map { $0.optional ?? false }, [false, false, true])
+        // Two-day plan skips the optional C; three-day plan includes it.
+        XCTAssertEqual(life.session(at: 2, includeOptional: false)?.week.number, 2)
+        XCTAssertEqual(life.session(at: 2, includeOptional: true)?.workout.name, "Full Body C")
+        let grow = try XCTUnwrap(content.program("ss-build-and-grow"))
+        XCTAssertEqual(grow.weeks[3].lowFatigueOptional, true)
+        XCTAssertEqual(grow.weeks[0].workouts[0].slots.first?.exerciseId, "bench_press")
+        XCTAssertEqual(grow.weeks[0].workouts[0].slots.first?.isMainLift, true)
     }
 
     func testRepSchemesAndDisplay() throws {
@@ -85,7 +104,7 @@ final class SubstitutionTests: XCTestCase {
         XCTAssertEqual(kept.id, "goblet_squat")
         XCTAssertEqual(kept.reason, .asWritten)
         let busy = Substitution.choose("leg_press", library: lib, available: kit("full_gym"), exclude: ["leg_press"])
-        XCTAssertEqual(busy.id, "goblet_squat")
+        XCTAssertEqual(busy.id, "hack_squat")   // guide section 5: leg press -> hack squat
         XCTAssertEqual(busy.reason, .coachSwap)
     }
 

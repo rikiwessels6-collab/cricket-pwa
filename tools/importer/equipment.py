@@ -41,6 +41,8 @@ EQUIPMENT = {
     "pec_deck": "Pec deck / rear delt fly machine",
     "back_ext": "45-degree back extension bench",
     "ghr": "Glute-ham raise bench",
+    "glute_machine": "Hip thrust / glute drive machine",
+    "stability_ball": "Stability (Swiss) ball",
     # small kit
     "bands": "Resistance bands (loop and long bands)",
     "sliders": "Sliders (or a towel on a smooth floor)",

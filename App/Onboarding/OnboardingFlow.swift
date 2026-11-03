@@ -385,7 +385,7 @@ struct ProgramStep: View {
                     Text(p.name).foregroundStyle(.primary)
                     Text("\(p.weeks.count) weeks · \(p.sessionsPerWeekText) sessions a week · about \(p.averageSessionMinutes) min")
                         .font(.footnote).foregroundStyle(.secondary)
-                    if let reason { Text(reason).font(.footnote).foregroundStyle(.secondary) }
+                    if let text = reason ?? p.description { Text(text).font(.footnote).foregroundStyle(.secondary) }
                     if let cov = p.equipmentCoverage[draft.equipmentProfileId], cov.swapped > 0 {
                         Text("\(cov.swapped) of \(cov.total) exercises swapped for your equipment")
                             .font(.footnote).foregroundStyle(.secondary)

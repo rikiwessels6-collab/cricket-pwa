@@ -68,8 +68,12 @@ jobs:
           APP_TOKEN: ${{ secrets.APP_TOKEN }}
         run: |
           APP_TOKEN="$(printf '%s' "$APP_TOKEN" | tr -d '[:space:]')"
-          sleep 10
-          bad=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H 'x-app-token: wrong' -d '{}')
+          # A new workers.dev subdomain can take a few minutes to get its certificate.
+          for i in $(seq 1 18); do
+            bad=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H 'x-app-token: wrong' -d '{}' || true)
+            [ "$bad" != "000" ] && break
+            echo "waiting for HTTPS ($i)"; sleep 20
+          done
           good=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H "x-app-token: $APP_TOKEN" -H 'content-type: application/json' -d '{}')
           echo "wrong token -> $bad (want 401), right token -> $good (want 400: empty request)"
           [ "$bad" = 401 ] && [ "$good" = 400 ]

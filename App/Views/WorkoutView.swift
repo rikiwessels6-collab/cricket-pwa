@@ -75,6 +75,9 @@ struct StartWorkoutSheet: View {
     var body: some View {
         NavigationStack {
             Form {
+                if let note = week.phaseNote, week.lowFatigueOptional != true {
+                    Section("Week \(week.number) · \(week.phase ?? "")") { Text(note).font(.footnote) }
+                }
                 Section {
                     ForEach(SessionVersion.allCases) { v in
                         Button { version = v } label: {
@@ -91,7 +94,11 @@ struct StartWorkoutSheet: View {
                         .accessibilityIdentifier("version-\(v.rawValue)")
                     }
                 } header: { Text("How much today?") } footer: {
-                    Text("Short on time or energy? A shorter version keeps your progress going; the program itself doesn't change.")
+                    if week.lowFatigueOptional == true {
+                        Text("\(week.phase ?? "Lower-fatigue week"): \(week.phaseNote ?? "Low energy is a good choice if you're feeling run down.")")
+                    } else {
+                        Text("Short on time or energy? A shorter version keeps your progress going; the program itself doesn't change.")
+                    }
                 }
             }
             .navigationTitle(workout.name)

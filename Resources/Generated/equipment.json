@@ -32,6 +32,8 @@
   "pec_deck": "Pec deck / rear delt fly machine",
   "back_ext": "45-degree back extension bench",
   "ghr": "Glute-ham raise bench",
+  "glute_machine": "Hip thrust / glute drive machine",
+  "stability_ball": "Stability (Swiss) ball",
   "bands": "Resistance bands (loop and long bands)",
   "sliders": "Sliders (or a towel on a smooth floor)"
  },
@@ -61,6 +63,7 @@
     "dumbbells",
     "ez_bar",
     "ghr",
+    "glute_machine",
     "hack_squat",
     "kettlebell",
     "landmine",
@@ -77,6 +80,7 @@
     "seated_calf",
     "shoulder_press_machine",
     "sliders",
+    "stability_ball",
     "t_bar",
     "trap_bar"
    ]

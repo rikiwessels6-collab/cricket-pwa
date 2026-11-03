@@ -201,6 +201,53 @@ class GeneratedOutput(unittest.TestCase):
         self.assertEqual(before, (GEN / "programs.json").read_bytes())
 
 
+class GuidePrograms(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        GeneratedOutput.setUpClass.__func__(cls)
+
+    def test_five_programs_with_12_weeks(self):
+        ids = ["ss-strength-foundations", "ss-build-and-grow", "ss-lower-body-focus", "ss-muscle-builder-pro", "ss-strong-for-life"]
+        days = [3, 4, 4, 5, 3]
+        for pid, d in zip(ids, days):
+            p = self.programs[pid]
+            self.assertEqual(len(p["weeks"]), 12)
+            self.assertEqual({len(w["workouts"]) for w in p["weeks"]}, {d})
+
+    def test_week_modifiers_change_effort_not_exercises(self):
+        p = self.programs["ss-build-and-grow"]
+        first = [s["exerciseId"] for s in p["weeks"][0]["workouts"][0]["slots"]]
+        for w in p["weeks"]:
+            self.assertEqual([s["exerciseId"] for s in w["workouts"][0]["slots"]], first)
+        self.assertEqual(p["weeks"][0]["workouts"][0]["slots"][0]["effort"]["raw"], "3")
+        self.assertEqual(p["weeks"][5]["workouts"][0]["slots"][0]["effort"]["raw"], "1-2")
+        self.assertEqual([w["number"] for w in p["weeks"] if w["lowFatigueOptional"]], [4, 8])
+
+    def test_guide_values(self):
+        upper_a = self.programs["ss-build-and-grow"]["weeks"][0]["workouts"][0]["slots"]
+        self.assertEqual([(s["exerciseId"], s["sets"]["count"], s["reps"]["raw"]) for s in upper_a][:2],
+                         [("bench_press", 3, "6-10"), ("chest_supported_row", 3, "8-12")])
+        life_c = self.programs["ss-strong-for-life"]["weeks"][0]["workouts"][2]
+        self.assertTrue(life_c["optional"])
+        self.assertEqual(life_c["slots"][0]["reps"]["perSide"], True)
+
+    def test_main_lifts_are_library_main_lifts(self):
+        import library_catalogue
+        tiers = {e["id"]: e["tier"] for e in library_catalogue.parse()}
+        for pid, p in self.programs.items():
+            if p.get("family") != "steady-strength":
+                continue
+            for w in p["weeks"]:
+                for wo in w["workouts"]:
+                    for s in wo["slots"]:
+                        self.assertEqual(s["isMainLift"], tiers[s["exerciseId"]] == "main", (pid, s["exercise"]))
+
+    def test_guide_substitutions_first(self):
+        import substitution
+        self.assertEqual(substitution.CURATED["hip_thrust"][:2], ["machine_hip_thrust", "db_glute_bridge"])
+        self.assertEqual(substitution.CURATED["leg_press"][:2], ["hack_squat", "goblet_squat"])
+
+
 class LibraryAndSwaps(unittest.TestCase):
     """Exercise library, equipment adaptation and coach decisions."""
 
@@ -247,7 +294,7 @@ class LibraryAndSwaps(unittest.TestCase):
     def test_unavailable_exercise_can_be_excluded(self):
         import substitution
         choice, why = substitution.choose("leg_press", self.lib, self.profiles["full_gym"], exclude={"leg_press"})
-        self.assertEqual((choice, why), ("goblet_squat", "coach swap"))
+        self.assertEqual((choice, why), ("hack_squat", "coach swap"))  # guide section 5: leg press -> hack squat
 
     def test_box_jumps_need_a_real_box(self):
         import substitution
