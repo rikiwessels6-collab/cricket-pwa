@@ -1,0 +1,51 @@
+base,module,type,base_target_direct_sets_wk,sets_replaced,sets_retained,module_sets,final_target_direct_sets_wk,net_sets_added_wk,est_longest_receiving_session_min_after,over_60min,note
+Strength Foundations,Arms,upper,0,0,0,20,20,20,74,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strength Foundations,Back,upper,15,0,15,28,43,28,84,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strength Foundations,Chest,upper,6,0,6,16,22,16,77,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strength Foundations,Shoulders,upper,6,0,6,24,30,24,76,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strength Foundations,Quad Builder,lower,27,19,8,34,42,15,71,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strength Foundations,Glute Growth,lower,27,19,8,39,47,20,75,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strength Foundations,Hamstring Builder,lower,27,19,8,38,46,19,73,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strength Foundations,Complete Leg Development,lower,27,19,8,37,45,18,74,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strength Foundations,Calf & Lower Leg Focus,lower,27,19,8,38,46,19,74,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strength Foundations,Lower Body Strength,lower,27,19,8,43,51,24,77,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Build & Grow,Arms,upper,5,5,0,20,20,15,77,yes,exceeds 60 min: trim required
+Build & Grow,Back,upper,21,3,18,28,46,25,91,yes,exceeds 60 min: trim required
+Build & Grow,Chest,upper,9,0,9,16,25,16,87,yes,exceeds 60 min: trim required
+Build & Grow,Shoulders,upper,12,6,6,24,30,18,80,yes,exceeds 60 min: trim required
+Build & Grow,Quad Builder,lower,40,40,0,34,34,-6,49,no,
+Build & Grow,Glute Growth,lower,40,40,0,39,39,-1,50,no,
+Build & Grow,Hamstring Builder,lower,40,40,0,38,38,-2,47,no,
+Build & Grow,Complete Leg Development,lower,40,40,0,37,37,-3,49,no,
+Build & Grow,Calf & Lower Leg Focus,lower,40,40,0,38,38,-2,49,no,
+Build & Grow,Lower Body Strength,lower,40,40,0,43,43,3,52,no,
+Lower Body Focus,Arms,upper,4,4,0,20,20,16,72,yes,exceeds 60 min: trim required
+Lower Body Focus,Back,upper,19,2,17,28,45,26,82,yes,exceeds 60 min: trim required
+Lower Body Focus,Chest,upper,6,0,6,16,22,16,75,yes,exceeds 60 min: trim required
+Lower Body Focus,Shoulders,upper,8,4,4,24,28,20,70,yes,exceeds 60 min: trim required
+Lower Body Focus,Quad Builder,lower,40,40,0,34,34,-6,49,no,
+Lower Body Focus,Glute Growth,lower,40,40,0,39,39,-1,50,no,
+Lower Body Focus,Hamstring Builder,lower,40,40,0,38,38,-2,47,no,
+Lower Body Focus,Complete Leg Development,lower,40,40,0,37,37,-3,49,no,
+Lower Body Focus,Calf & Lower Leg Focus,lower,40,40,0,38,38,-2,49,no,
+Lower Body Focus,Lower Body Strength,lower,40,40,0,43,43,3,52,no,
+Muscle Builder Pro,Arms,upper,10,7,3,20,23,13,71,yes,exceeds 60 min: trim required
+Muscle Builder Pro,Back,upper,22,3,19,28,47,25,85,yes,exceeds 60 min: trim required
+Muscle Builder Pro,Chest,upper,13,0,13,16,29,16,78,yes,exceeds 60 min: trim required
+Muscle Builder Pro,Shoulders,upper,15,6,9,24,33,18,71,yes,exceeds 60 min: trim required
+Muscle Builder Pro,Quad Builder,lower,42,42,0,34,34,-8,49,no,
+Muscle Builder Pro,Glute Growth,lower,42,42,0,39,39,-3,50,no,
+Muscle Builder Pro,Hamstring Builder,lower,42,42,0,38,38,-4,47,no,
+Muscle Builder Pro,Complete Leg Development,lower,42,42,0,37,37,-5,49,no,
+Muscle Builder Pro,Calf & Lower Leg Focus,lower,42,42,0,38,38,-4,49,no,
+Muscle Builder Pro,Lower Body Strength,lower,42,42,0,43,43,1,52,no,
+Strong for Life,Arms,upper,0,0,0,20,20,20,78,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strong for Life,Back,upper,12,0,12,28,40,28,87,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strong for Life,Chest,upper,3,0,3,16,19,16,81,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strong for Life,Shoulders,upper,4,0,4,24,28,24,79,yes,full-body base: module stacks on top of lower+upper work; exceeds 60 min: trim required
+Strong for Life,Quad Builder,lower,19,19,0,34,34,15,75,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strong for Life,Glute Growth,lower,19,19,0,39,39,20,79,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strong for Life,Hamstring Builder,lower,19,19,0,38,38,19,76,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strong for Life,Complete Leg Development,lower,19,19,0,37,37,18,77,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strong for Life,Calf & Lower Leg Focus,lower,19,19,0,38,38,19,78,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required
+Strong for Life,Lower Body Strength,lower,19,19,0,43,43,24,81,yes,full-body base loses its squat/hinge work in 2 of 3 sessions; exceeds 60 min: trim required

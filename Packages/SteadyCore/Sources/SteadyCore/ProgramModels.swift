@@ -34,6 +34,15 @@ public struct Program: Decodable, Identifiable, Sendable {
     public let experienceLevel: String?
     public let split: String?
     public let goalTags: [String]?
+    /// "core" (Steady Strength), "coach" (RW Fitness) or "legacy" (retired, hidden).
+    public let catalogue: String?
+    public let contentStatus: String?
+    public let reviewed: Bool?
+    /// The name used in the master documents, kept as a search alias.
+    public let masterName: String?
+
+    /// Draft content has not been reviewed by a qualified person and is hidden from release builds.
+    public var isDraft: Bool { contentStatus == "draft" && reviewed != true }
 
     /// Fewest and most sessions in any week (the 12-week program alternates 5 and 6).
     public var sessionsPerWeek: ClosedRange<Int> {
@@ -61,9 +70,11 @@ public struct Program: Decodable, Identifiable, Sendable {
         return nil
     }
 
+    /// "3", or "2-3" when a week includes an optional session.
     public var sessionsPerWeekText: String {
-        let r = sessionsPerWeek
-        return r.lowerBound == r.upperBound ? "\(r.lowerBound)" : "\(r.lowerBound)-\(r.upperBound)"
+        let required = weeks.map { $0.workouts.filter { $0.optional != true }.count }.min() ?? 0
+        let all = weeks.map { $0.workouts.count }.max() ?? 0
+        return required == all ? "\(required)" : "\(required)-\(all)"
     }
 }
 
@@ -93,6 +104,8 @@ public struct ProgramWorkout: Decodable, Identifiable, Sendable {
     public let slots: [ExerciseSlot]
     /// Optional sessions are offered but never count as missed.
     public let optional: Bool?
+    /// Unique across programs, e.g. "Build & Grow · Upper A".
+    public let displayName: String?
     public var id: Int { position }
 }
 

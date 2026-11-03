@@ -360,9 +360,9 @@ struct ProgramStep: View {
     let content: BundledContent
 
     var body: some View {
-        let recs = ProgramAdvisor.recommend(experience: draft.experience, daysPerWeek: draft.daysPerWeek, programs: content.programs)
+        let recs = ProgramAdvisor.recommend(experience: draft.experience, daysPerWeek: draft.daysPerWeek, programs: content.catalogue(showDraft: AppConfig.showDraft))
         let recIds = recs.map(\.programId)
-        let others = content.programs.filter { !recIds.contains($0.id) }
+        let others = content.catalogue(showDraft: AppConfig.showDraft).filter { !recIds.contains($0.id) }
         Form {
             Section("Suggested for you") {
                 ForEach(recs, id: \.programId) { rec in
@@ -382,7 +382,14 @@ struct ProgramStep: View {
         } label: {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(p.name).foregroundStyle(.primary)
+                    HStack(spacing: 6) {
+                        Text(p.name).foregroundStyle(.primary)
+                        if p.isDraft {
+                            Text("Draft").font(.caption2.weight(.semibold)).padding(.horizontal, 6).padding(.vertical, 2)
+                                .background(Capsule().fill(Color.secondary.opacity(0.2)))
+                                .accessibilityLabel("Draft, not yet reviewed")
+                        }
+                    }
                     Text("\(p.weeks.count) weeks · \(p.sessionsPerWeekText) sessions a week · about \(p.averageSessionMinutes) min")
                         .font(.footnote).foregroundStyle(.secondary)
                     if let text = reason ?? p.description { Text(text).font(.footnote).foregroundStyle(.secondary) }

@@ -44,6 +44,7 @@ targets:
         NSCameraUsageDescription: Steady Strength uses the camera to scan food barcodes and, if you choose, photograph your plate.
         NSFaceIDUsageDescription: Steady Strength uses Face ID to keep your health and training data private on this iPhone.
         ITSAppUsesNonExemptEncryption: false
+        HideUnreviewedContent: false
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: au.com.rwfitness.steadystrength

@@ -42,6 +42,21 @@ public struct PlannedExercise: Identifiable, Sendable, Equatable {
         notes = slot.notes
     }
 
+    /// A slot that comes from a specialisation module rather than a program workbook.
+    public init(moduleExerciseId: String, name: String, id: Int, sets: Int, repMin: Int, repMax: Int,
+                restSeconds: Int, perSide: Bool = false) {
+        self.id = id
+        self.exerciseId = moduleExerciseId
+        self.originalExerciseId = moduleExerciseId
+        self.name = name
+        self.sets = sets
+        self.reps = .range(Double(repMin), Double(repMax))
+        self.perSide = perSide
+        self.repsText = repMin == repMax ? "\(repMin)" : "\(repMin)-\(repMax)"
+        self.restSeconds = restSeconds
+        self.isMainLift = false
+    }
+
     public var effortText: String? {
         guard let t = effortType, let lo = effortMin, let hi = effortMax else { return nil }
         let v = lo == hi ? NumberText.format(lo) : "\(NumberText.format(lo))-\(NumberText.format(hi))"
@@ -160,6 +175,23 @@ public enum SessionBuilder {
                 }
             }
             return keep
+        }
+    }
+
+    /// Beginner on-ramp (weeks 1-4): at most 2 sets at an easy effort, about RPE 6-7 or 3-4 reps in reserve.
+    public static func applyOnRamp(_ plan: [PlannedExercise], week: Int) -> [PlannedExercise] {
+        guard (1...4).contains(week) else { return plan }
+        return plan.map { item in
+            var e = item
+            e.sets = min(e.sets, 2)
+            if e.effortType == .rir {
+                e.effortMin = max(e.effortMin ?? 3, 3)
+                e.effortMax = max(e.effortMax ?? 4, 4)
+            } else if e.effortType == .rpe {
+                e.effortMin = min(e.effortMin ?? 6, 6)
+                e.effortMax = min(e.effortMax ?? 7, 7)
+            }
+            return e
         }
     }
 

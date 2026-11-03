@@ -30,10 +30,20 @@ public struct Exercise: Decodable, Identifiable, Sendable {
     public let aliases: [String]
     public let demoSearchQuery: String
     public let advancedTip: String?
+    /// Advanced movements get a review prompt and easier options.
+    public let contraindicationReviewFlag: Bool?
+    public let easierRegression: [String]?
+    public let video: VideoInfo?
     public let substitutes: [Substitute]
     public let usedIn: [String]
 
     public var isMainLift: Bool { tier == "main" }
+}
+
+/// No video is approved until its licence, owner and evidence are recorded; until then the app only offers a search link.
+public struct VideoInfo: Decodable, Sendable {
+    public let status: String
+    public var isApproved: Bool { status == "approved" }
 }
 
 public struct Substitute: Decodable, Sendable {
@@ -117,4 +127,9 @@ public struct BundledContent: Sendable {
     }
 
     public func program(_ id: String) -> Program? { programs.first { $0.id == id } }
+
+    /// What users can choose from. Retired programs never appear; draft (unreviewed) programs appear only in internal builds.
+    public func catalogue(showDraft: Bool) -> [Program] {
+        programs.filter { $0.catalogue != "legacy" && (showDraft || !$0.isDraft) }
+    }
 }

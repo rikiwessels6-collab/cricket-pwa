@@ -49,6 +49,32 @@ public enum ProgramAdvisor {
         switch experience {
         case .new, .returning:
             if daysPerWeek <= 2 {
+                add("ss-strong-for-life", "Two full-body days, with an optional third, for lasting strength.")
+            }
+            add("ss-strength-foundations", "The recommended start: three full-body days to learn the main lifts. The first four weeks are an easy on-ramp.")
+            add("ss-strong-for-life", "Two full-body days, with an optional third, for lasting strength.")
+        case .intermediate: return "Lifting consistently for 1-3 years"
+        case .advanced: return "Lifting for 3+ years"
+        }
+    }
+}
+
+public struct ProgramRecommendation: Equatable, Sendable {
+    public let programId: String
+    public let reason: String
+}
+
+/// Suggests programs; the user always makes the final choice.
+public enum ProgramAdvisor {
+    public static func recommend(experience: Experience, daysPerWeek: Int, programs: [Program]) -> [ProgramRecommendation] {
+        let ids = Set(programs.map(\.id))
+        var out: [ProgramRecommendation] = []
+        func add(_ id: String, _ reason: String) {
+            if ids.contains(id), !out.contains(where: { $0.programId == id }) { out.append(.init(programId: id, reason: reason)) }
+        }
+        switch experience {
+        case .new, .returning:
+            if daysPerWeek <= 2 {
                 add("beginner-12wk-option-a", "Two full-body sessions a week; ideal for busy weeks.")
             }
             add("beginner-12wk-option-b", "The recommended start: three full-body sessions a week. Move to Option C after about 8 weeks.")

@@ -164,7 +164,7 @@ final class OnboardingDraft {
                                   bodyFatRange: bodyFatRange == "Not sure" ? nil : bodyFatRange,
                                   goal: goal, experience: experience, activity: activity, injuries: injuries,
                                   perimenopause: sex == .female && perimenopause)
-        let plan = TrainingPlan(programId: programId ?? "beginner-12wk-option-b", startDate: Calendar.current.startOfDay(for: .now),
+        let plan = TrainingPlan(programId: programId ?? "ss-strength-foundations", startDate: Calendar.current.startOfDay(for: .now),
                                 daysPerWeek: daysPerWeek, preferredWeekdays: preferredWeekdays.sorted(),
                                 sessionMinutes: sessionMinutes, fixedCommitments: commitments,
                                 avoidHeavyLegsNextToCommitments: avoidHeavyLegsNextToCommitments,

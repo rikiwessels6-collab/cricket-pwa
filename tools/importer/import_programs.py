@@ -30,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # works under python -
 import equipment as equip  # noqa: E402
 import library_catalogue  # noqa: E402
 import steady_programs  # noqa: E402
+import catalogue_meta  # noqa: E402
 import substitution  # noqa: E402
 import versions  # noqa: E402
 from parsing import (  # noqa: E402
@@ -685,7 +686,7 @@ def resolve_exercises(programs, index, by_id, issues):
                     if any(a is None for a in alts):
                         issues.add("warning", "alt-unknown", p["id"], f"row {s['source']['row']}",
                                    f"Alternative {s['alternatives']} not in the library")
-                    s["alternativeIds"] = [a for a in alts if a]
+                    s["alternativeIds"] = list(dict.fromkeys([a for a in alts if a] + list(s.get("alternativeIds", []))))
     if unknown:
         raise ValueError(f"exercise names not in the catalogue: {sorted(set(unknown))[:20]}")
     used = defaultdict(set)
@@ -932,6 +933,25 @@ def write_report(path, programs, issues, date_repairs, library, merges, duration
     for f, h in hashes.items():
         add(f"| {f} | `{h[:16]}` |")
 
+    core = [p for p in programs if p.get("catalogue") == "core"]
+    add("\n## Change request v5: status\n")
+    add("| Item | Expected | Imported | Note |\n|---|---|---|---|")
+    add(f"| Core programs | 5 | {len(core)} | draft, not reviewed (`contentStatus: draft`) |")
+    add(f"| Base templates | 19 | {sum(len(p['weeks'][0]['workouts']) for p in core)} | Appendix B, all with sets, reps and RIR |")
+    add("| Specialisation modules | 10 | **0** | **Blocked:** the module sessions are only in `catalogue_draft.json`, which wasn't supplied |")
+    add(f"| Canonical exercises | 90 | {len(library)} | **Blocked:** the 90-exercise draft wasn't supplied; the existing 185-entry library is used |")
+    add("| Strong Through Midlife pathway | schema only | 0 | **Blocked:** waiting for the .docx; nothing invented |")
+    add("| Beginner Options A-D | retired | hidden (`catalogue: legacy`) | data kept; cue library and the Learn-phase rule kept as the beginner on-ramp |")
+    add("| RW programs | Coach Series | 5 | unchanged |")
+    add("| Exercise videos approved | 0 | 0 | every exercise is `video.status = none_approved`; search fallback only |")
+    add("| Per-exercise load increments | null | null | settings default 2.5 kg upper / 5 kg lower, editable |")
+    add("\n**Null fields (listed, not invented):** per-exercise `load_increment_kg`; video licence, owner and evidence for every exercise; "
+        "specialisation module sessions and week modifiers; Strong Through Midlife prescriptions.\n")
+    add("**Needs coach confirmation:** the default picks for the audit's ambiguous names "
+        "(squat, calf raise, leg curl, chest press, shoulder press, lateral raise, cable row, seated row, biceps curl, triceps extension, "
+        "weighted-or-assisted pull-up) are marked `needsCoachConfirmation` on each slot; calf raise is standing in A sessions and seated in B.\n")
+    add("**Review flags:** Nordic curl, glute-ham raise, trap-bar deadlift (and block pull), and front squat carry "
+        "`contraindicationReviewFlag` with an easier regression. Back squat at 4 x 4-6 appears only in the Heavy Legs module, which isn't imported yet.\n")
     add("\n## Programs\n")
     add("| Program | Weeks | Sessions/week | Slots | Main-lift slots | Easy/deload weeks | Session length |\n|---|---|---|---|---|---|---|")
     for p in programs:
@@ -1095,6 +1115,7 @@ def main():
     programs += steady_programs.build(index, by_id)
     merges = resolve_exercises(programs, index, by_id, issues)
     apply_main_lift_rule(programs, decisions, by_id, issues)
+    catalogue_meta.annotate(programs, library, issues)
     for p in programs:
         validate_common(p, issues)
         p["equipmentNeeded"], p["equipmentCoverage"] = program_equipment(p, by_id)

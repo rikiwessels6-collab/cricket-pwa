@@ -55,7 +55,7 @@ PROGRAMS = [
         ],
     },
     {
-        "id": "ss-lower-body-focus", "name": "Lower Body Focus", "level": "intermediate",
+        "id": "ss-lower-body-focus", "name": "Lower Emphasis", "master": "Lower Body Focus", "level": "intermediate",
         "days": 4, "split": "Lower-body emphasis", "goals": ["glutes", "legs", "muscle"],
         "description": "Four days with extra glute and leg work, plus two upper-body days.",
         "workouts": [
@@ -73,7 +73,7 @@ PROGRAMS = [
         ],
     },
     {
-        "id": "ss-muscle-builder-pro", "name": "Muscle Builder Pro", "level": "intermediate-advanced",
+        "id": "ss-muscle-builder-pro", "name": "Muscle Builder", "master": "Muscle Builder Pro", "level": "intermediate-advanced",
         "days": 5, "split": "Push/pull/legs + upper/lower", "goals": ["muscle", "strength"],
         "description": "Five days: push, pull and legs, then upper and lower, for experienced lifters.",
         "workouts": [
@@ -116,11 +116,20 @@ NAME_TO_ID = {
     "cable row": "seated_cable_row", "seated row": "seated_cable_row", "chest press": "machine_chest_press",
     "incline machine press": "machine_incline_press", "one-arm lat pulldown": "single_arm_pulldown",
     "triceps extension": "overhead_cable_triceps", "hip abduction": "hip_abduction_machine",
-    "weighted or assisted pull-up": "pull_up", "farmer carry": "farmers_carry", "cable kickback": "cable_glute_kickback",
+    "weighted or assisted pull-up": "assisted_pull_up", "farmer carry": "farmers_carry", "cable kickback": "cable_glute_kickback",
     "incline push-up": "incline_push_up", "split squat": "split_squat",
 }
 # A slot may name its own fallback (the guide's "weighted or assisted pull-up").
-SLOT_ALTERNATIVES = {"weighted or assisted pull-up": ["assisted_pull_up"]}
+SLOT_ALTERNATIVES = {"weighted or assisted pull-up": ["pull_up"]}
+
+# Audit section 6: names the master leaves ambiguous get a default pick that the coach must confirm.
+AMBIGUOUS_NAMES = {"squat", "calf raise", "leg curl", "chest press", "shoulder press", "lateral raise", "cable row",
+                   "seated row", "biceps curl", "triceps extension", "weighted or assisted pull-up"}
+# Audit: calf raise is standing in lower sessions A and seated in B.
+SLOT_OVERRIDES = {
+    ("ss-build-and-grow", "Lower B", "calf raise"): "seated_calf_raise",
+    ("ss-muscle-builder-pro", "Lower", "calf raise"): "seated_calf_raise",
+}
 
 # Section 4: the 12-week progression, as dynamic week modifiers.
 PHASES = [
@@ -168,7 +177,7 @@ def build(index, by_id):
                 slots = []
                 for order, (ex_name, sets, reps) in enumerate(rows, start=1):
                     key = exercise_key(ex_name)
-                    eid = NAME_TO_ID.get(key) or index.get(key)
+                    eid = SLOT_OVERRIDES.get((spec["id"], name, key)) or NAME_TO_ID.get(key) or index.get(key)
                     if eid is None or eid not in by_id:
                         raise ValueError(f"{spec['id']}: '{ex_name}' is not in the exercise catalogue")
                     ex = by_id[eid]
@@ -181,12 +190,14 @@ def build(index, by_id):
                         "source": {"sheet": GUIDE, "row": order},
                         "exerciseId": eid, "alternativeIds": SLOT_ALTERNATIVES.get(key, []),
                         "order": order,
+                        **({"needsCoachConfirmation": True} if key in AMBIGUOUS_NAMES else {}),
                     })
                 workouts.append({"rawName": name, "name": name, "position": pos, "optional": optional, "slots": slots})
             weeks.append({"number": w, "label": f"Week {w}", "phase": phase, "isDeload": False,
                           "lowFatigueOptional": w in LOW_FATIGUE_WEEKS, "phaseNote": note, "workouts": workouts})
         programs.append({
-            "id": spec["id"], "name": spec["name"], "author": "Steady Strength", "family": "steady-strength",
+            "id": spec["id"], "name": spec["name"], "masterName": spec["master"] if "master" in spec else spec["name"],
+            "author": "Steady Strength", "family": "steady-strength",
             "intensityType": "rir", "unit": "kg", "weeks": weeks, "status": "complete",
             "experienceLevel": spec["level"], "defaultDaysPerWeek": spec["days"], "split": spec["split"],
             "goalTags": spec["goals"], "description": spec["description"], "durationWeeks": 12,

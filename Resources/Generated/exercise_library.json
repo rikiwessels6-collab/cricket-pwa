@@ -167,7 +167,10 @@
     "ss-build-and-grow",
     "ss-lower-body-focus",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "box_squat",
@@ -277,7 +280,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pin_squat",
@@ -382,7 +388,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "front_squat",
@@ -490,6 +499,14 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
+   ],
+   "video": {
+    "status": "none_approved"
+   },
+   "contraindicationReviewFlag": true,
+   "easierRegression": [
+    "goblet_squat",
+    "leg_press"
    ]
   },
   {
@@ -606,7 +623,10 @@
     "rw-upper-lower-4day-8wk",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "heel_elevated_squat",
@@ -711,7 +731,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "leg_press",
@@ -831,7 +854,10 @@
     "ss-muscle-builder-pro",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_press",
@@ -935,7 +961,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "hack_squat",
@@ -1041,7 +1070,10 @@
     "rw-intermediate-18wk",
     "ss-build-and-grow",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "sissy_squat",
@@ -1140,7 +1172,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bodyweight_squat",
@@ -1238,7 +1273,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reverse_lunge",
@@ -1346,7 +1384,10 @@
     "beginner-12wk-option-b",
     "beginner-12wk-option-c",
     "beginner-12wk-option-d"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "walking_lunge",
@@ -1452,7 +1493,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "split_squat",
@@ -1562,7 +1606,10 @@
     "rw-intermediate-18wk",
     "ss-muscle-builder-pro",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bulgarian_split_squat",
@@ -1673,7 +1720,10 @@
     "rw-intermediate-18wk",
     "ss-build-and-grow",
     "ss-lower-body-focus"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "step_up",
@@ -1779,7 +1829,10 @@
    "usedIn": [
     "rw-intermediate-18wk",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lateral_step_up",
@@ -1885,7 +1938,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_squat",
@@ -1990,7 +2046,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "deadlift",
@@ -2106,7 +2165,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reset_deadlift",
@@ -2211,7 +2273,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "opposite_stance_deadlift",
@@ -2318,7 +2383,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "block_pull",
@@ -2437,7 +2505,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "rack_pull",
@@ -2551,7 +2622,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "trap_bar_deadlift",
@@ -2656,6 +2730,14 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
+   ],
+   "video": {
+    "status": "none_approved"
+   },
+   "contraindicationReviewFlag": true,
+   "easierRegression": [
+    "db_deadlift",
+    "db_rdl"
    ]
   },
   {
@@ -2764,6 +2846,14 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
+   ],
+   "video": {
+    "status": "none_approved"
+   },
+   "contraindicationReviewFlag": true,
+   "easierRegression": [
+    "db_deadlift",
+    "db_rdl"
    ]
   },
   {
@@ -2879,7 +2969,10 @@
     "ss-build-and-grow",
     "ss-lower-body-focus",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_rdl",
@@ -2996,7 +3089,10 @@
     "rw-intermediate-18wk",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_deadlift",
@@ -3101,7 +3197,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_rdl",
@@ -3207,7 +3306,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_pull_through",
@@ -3313,7 +3415,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "kb_swing",
@@ -3415,7 +3520,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "good_morning_band",
@@ -3524,7 +3632,10 @@
      "fallbackFor": "travel"
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "back_extension",
@@ -3639,7 +3750,10 @@
     "beginner-12wk-option-d",
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "glute_ham_raise",
@@ -3745,6 +3859,14 @@
    ],
    "usedIn": [
     "rw-12-week"
+   ],
+   "video": {
+    "status": "none_approved"
+   },
+   "contraindicationReviewFlag": true,
+   "easierRegression": [
+    "seated_leg_curl",
+    "sliding_leg_curl"
    ]
   },
   {
@@ -3846,6 +3968,14 @@
    ],
    "usedIn": [
     "rw-12-week"
+   ],
+   "video": {
+    "status": "none_approved"
+   },
+   "contraindicationReviewFlag": true,
+   "easierRegression": [
+    "sliding_leg_curl",
+    "seated_leg_curl"
    ]
   },
   {
@@ -3967,7 +4097,10 @@
     "ss-lower-body-focus",
     "ss-muscle-builder-pro",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_hip_thrust",
@@ -4075,7 +4208,10 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_hip_thrust",
@@ -4176,7 +4312,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_glute_bridge",
@@ -4280,7 +4419,10 @@
    "usedIn": [
     "ss-lower-body-focus",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_glute_bridge",
@@ -4381,7 +4523,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "seated_leg_curl",
@@ -4502,7 +4647,10 @@
     "ss-muscle-builder-pro",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lying_leg_curl",
@@ -4608,7 +4756,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_curl",
@@ -4715,7 +4866,10 @@
     "rw-12-week",
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "sliding_leg_curl",
@@ -4818,7 +4972,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "stability_ball_leg_curl",
@@ -4919,7 +5076,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_leg_curl",
@@ -5018,7 +5178,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "leg_extension",
@@ -5134,7 +5297,10 @@
     "rw-upper-lower-4day-8wk",
     "ss-lower-body-focus",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_extension",
@@ -5239,7 +5405,10 @@
    "usedIn": [
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_leg_extension",
@@ -5338,7 +5507,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "standing_calf_raise",
@@ -5399,7 +5571,10 @@
     "ss-build-and-grow",
     "ss-muscle-builder-pro",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_leg_calf_raise",
@@ -5448,7 +5623,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "seated_calf_raise",
@@ -5494,8 +5672,13 @@
     }
    ],
    "usedIn": [
-    "rw-full-body-3day-8wk"
-   ]
+    "rw-full-body-3day-8wk",
+    "ss-build-and-grow",
+    "ss-muscle-builder-pro"
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "leg_press_calf_raise",
@@ -5540,7 +5723,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_glute_kickback",
@@ -5642,7 +5828,10 @@
    ],
    "usedIn": [
     "ss-lower-body-focus"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "hip_abduction_machine",
@@ -5704,7 +5893,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk",
     "ss-lower-body-focus"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_hip_abduction",
@@ -5750,7 +5942,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "banded_lateral_walk",
@@ -5797,7 +5992,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "side_lying_leg_raise",
@@ -5840,7 +6038,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bench_press",
@@ -5956,7 +6157,10 @@
     "rw-upper-lower-4day-8wk",
     "ss-build-and-grow",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pause_bench_press",
@@ -6064,7 +6268,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "close_grip_bench",
@@ -6172,7 +6379,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "larsen_press",
@@ -6278,7 +6488,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pin_press",
@@ -6382,7 +6595,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "floor_press",
@@ -6485,7 +6701,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_floor_press",
@@ -6587,7 +6806,10 @@
    ],
    "usedIn": [
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_bench_press",
@@ -6704,7 +6926,10 @@
     "beginner-12wk-option-d",
     "rw-intermediate-18wk",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_arm_chest_press",
@@ -6812,7 +7037,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_chest_press",
@@ -6922,7 +7150,10 @@
     "ss-lower-body-focus",
     "ss-muscle-builder-pro",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "push_up",
@@ -7027,7 +7258,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "incline_push_up",
@@ -7131,7 +7365,10 @@
    ],
    "usedIn": [
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "deficit_push_up",
@@ -7235,7 +7472,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "decline_push_up",
@@ -7341,7 +7581,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_push_up",
@@ -7448,7 +7691,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "close_grip_push_up",
@@ -7551,7 +7797,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "incline_db_press",
@@ -7675,7 +7924,10 @@
     "ss-lower-body-focus",
     "ss-muscle-builder-pro",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pause_incline_db_press",
@@ -7782,7 +8034,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "close_grip_incline_bench",
@@ -7890,7 +8145,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_incline_press",
@@ -7997,7 +8255,10 @@
    "usedIn": [
     "rw-body-part-split-5day-8wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "landmine_press",
@@ -8101,7 +8362,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "ohp",
@@ -8216,7 +8480,10 @@
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk",
     "ss-build-and-grow"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "seated_db_shoulder_press",
@@ -8342,7 +8609,10 @@
     "ss-muscle-builder-pro",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "standing_db_press",
@@ -8450,7 +8720,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "half_kneeling_db_press",
@@ -8558,7 +8831,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_shoulder_press",
@@ -8669,7 +8945,10 @@
     "beginner-12wk-option-d",
     "rw-12-week",
     "rw-full-body-3day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pike_push_up",
@@ -8767,7 +9046,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_overhead_press",
@@ -8867,7 +9149,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "dip",
@@ -8974,7 +9259,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "assisted_dip",
@@ -9079,7 +9367,10 @@
    "usedIn": [
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bench_dip",
@@ -9180,7 +9471,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_fly",
@@ -9296,7 +9590,10 @@
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pec_deck",
@@ -9398,7 +9695,10 @@
    ],
    "usedIn": [
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_fly",
@@ -9501,7 +9801,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_fly",
@@ -9600,7 +9903,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "seated_cable_row",
@@ -9724,7 +10030,10 @@
     "ss-muscle-builder-pro",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "chest_supported_row",
@@ -9846,7 +10155,10 @@
     "ss-lower-body-focus",
     "ss-muscle-builder-pro",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "chest_supported_high_row",
@@ -9953,7 +10265,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "t_bar_row",
@@ -10062,7 +10377,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_row",
@@ -10168,7 +10486,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bent_over_row",
@@ -10278,7 +10599,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pendlay_row",
@@ -10385,7 +10709,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pin_row",
@@ -10488,7 +10815,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_row",
@@ -10603,7 +10933,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "meadows_row",
@@ -10707,7 +11040,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "half_kneeling_cable_row",
@@ -10813,7 +11149,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "inverted_row",
@@ -10915,7 +11254,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_row",
@@ -11024,7 +11366,10 @@
      "fallbackFor": "travel"
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lat_pulldown",
@@ -11151,7 +11496,10 @@
     "ss-muscle-builder-pro",
     "ss-strength-foundations",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "neutral_pulldown",
@@ -11268,7 +11616,10 @@
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "supinated_pulldown",
@@ -11377,7 +11728,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_arm_pulldown",
@@ -11484,7 +11838,10 @@
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pull_up",
@@ -11593,9 +11950,11 @@
    ],
    "usedIn": [
     "rw-12-week",
-    "rw-intermediate-18wk",
-    "ss-muscle-builder-pro"
-   ]
+    "rw-intermediate-18wk"
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "neutral_pull_up",
@@ -11702,7 +12061,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "chin_up",
@@ -11804,7 +12166,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "eccentric_pull_up",
@@ -11910,7 +12275,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "assisted_pull_up",
@@ -12014,8 +12382,12 @@
    ],
    "usedIn": [
     "ss-build-and-grow",
-    "ss-lower-body-focus"
-   ]
+    "ss-lower-body-focus",
+    "ss-muscle-builder-pro"
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_pulldown",
@@ -12114,7 +12486,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "straight_arm_pulldown",
@@ -12220,7 +12595,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_pullover",
@@ -12323,7 +12701,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_straight_arm_pulldown",
@@ -12422,7 +12803,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_curl",
@@ -12540,7 +12924,10 @@
     "rw-upper-lower-4day-8wk",
     "ss-build-and-grow",
     "ss-lower-body-focus"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_hammer_curl",
@@ -12659,7 +13046,10 @@
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "incline_db_curl",
@@ -12767,7 +13157,10 @@
     "rw-12-week",
     "rw-intermediate-18wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "spider_curl",
@@ -12870,7 +13263,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "concentration_curl",
@@ -12972,7 +13368,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_preacher_curl",
@@ -13077,7 +13476,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "zottman_curl",
@@ -13182,7 +13584,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pinch_grip_curl",
@@ -13287,7 +13692,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "ez_bar_curl",
@@ -13398,7 +13806,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reverse_curl",
@@ -13503,7 +13914,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_curl",
@@ -13610,7 +14024,10 @@
     "rw-12-week",
     "rw-intermediate-18wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_arm_cable_curl",
@@ -13715,7 +14132,10 @@
    "usedIn": [
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bayesian_curl",
@@ -13819,7 +14239,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lying_cable_curl",
@@ -13921,7 +14344,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_curl",
@@ -14020,7 +14446,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "triceps_pushdown",
@@ -14122,7 +14551,10 @@
     "rw-12-week",
     "ss-build-and-grow",
     "ss-lower-body-focus"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_arm_pushdown",
@@ -14219,7 +14651,10 @@
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "overhead_cable_triceps",
@@ -14320,7 +14755,10 @@
     "rw-12-week",
     "rw-full-body-3day-8wk",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "single_arm_overhead_triceps",
@@ -14412,7 +14850,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_crossover_triceps",
@@ -14506,7 +14947,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "horizontal_cable_triceps",
@@ -14598,7 +15042,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_kickback",
@@ -14692,7 +15139,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_kickback",
@@ -14780,7 +15230,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "ez_skull_crusher",
@@ -14876,7 +15329,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "db_skull_crusher",
@@ -14967,7 +15423,10 @@
    ],
    "usedIn": [
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_pushdown",
@@ -15054,7 +15513,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lateral_raise",
@@ -15130,7 +15592,10 @@
     "ss-lower-body-focus",
     "ss-muscle-builder-pro",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "lateral_raise_hold",
@@ -15185,7 +15650,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_lateral_raise",
@@ -15246,7 +15714,10 @@
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "machine_lateral_raise",
@@ -15298,7 +15769,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_lateral_raise",
@@ -15349,7 +15823,10 @@
      "samePattern": true
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "face_pull",
@@ -15432,7 +15909,10 @@
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reverse_pec_deck",
@@ -15510,7 +15990,10 @@
     "ss-build-and-grow",
     "ss-lower-body-focus",
     "ss-muscle-builder-pro"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_reverse_fly",
@@ -15581,7 +16064,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reverse_db_fly",
@@ -15651,7 +16137,10 @@
    ],
    "usedIn": [
     "rw-body-part-split-5day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_pull_apart",
@@ -15719,7 +16208,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "prone_y_raise",
@@ -15788,7 +16280,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "wall_slide",
@@ -15852,7 +16347,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "shrug",
@@ -15928,7 +16426,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "incline_db_shrug",
@@ -16003,7 +16504,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "band_shrug",
@@ -16072,7 +16576,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_shrug_in",
@@ -16146,7 +16653,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "crunch",
@@ -16240,7 +16750,10 @@
    "usedIn": [
     "rw-body-part-split-5day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bicycle_crunch",
@@ -16336,7 +16849,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "weighted_crunch",
@@ -16436,7 +16952,10 @@
    "usedIn": [
     "rw-12-week",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_crunch",
@@ -16535,7 +17054,10 @@
     "rw-12-week",
     "rw-full-body-3day-8wk",
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "hanging_leg_raise",
@@ -16635,7 +17157,10 @@
     "rw-body-part-split-5day-8wk",
     "rw-full-body-3day-8wk",
     "rw-upper-lower-4day-8wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "reverse_crunch",
@@ -16726,7 +17251,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "plank",
@@ -16836,7 +17364,10 @@
     "rw-intermediate-18wk",
     "rw-upper-lower-4day-8wk",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "long_lever_plank",
@@ -16937,7 +17468,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "plank_saw",
@@ -17040,7 +17574,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "l_sit",
@@ -17137,7 +17674,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "dead_bug",
@@ -17244,7 +17784,10 @@
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
     "ss-strength-foundations"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "bird_dog",
@@ -17342,7 +17885,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "pallof_press",
@@ -17440,7 +17986,10 @@
     "beginner-12wk-option-d",
     "rw-intermediate-18wk",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "shoulder_taps",
@@ -17528,7 +18077,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "side_plank",
@@ -17619,7 +18171,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "renegade_row",
@@ -17711,7 +18266,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "cable_rotation",
@@ -17776,7 +18334,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "rotation_pull_across",
@@ -17838,7 +18399,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "farmers_carry",
@@ -17943,7 +18507,10 @@
     "beginner-12wk-option-c",
     "beginner-12wk-option-d",
     "ss-strong-for-life"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "suitcase_carry",
@@ -18037,7 +18604,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "goblet_hold",
@@ -18133,7 +18703,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "grip_hold",
@@ -18232,7 +18805,10 @@
    ],
    "usedIn": [
     "rw-12-week"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "box_jump",
@@ -18326,7 +18902,10 @@
    ],
    "usedIn": [
     "rw-intermediate-18wk"
-   ]
+   ],
+   "video": {
+    "status": "none_approved"
+   }
   },
   {
    "id": "squat_jump",
@@ -18414,7 +18993,10 @@
      "samePattern": false
     }
    ],
-   "usedIn": []
+   "usedIn": [],
+   "video": {
+    "status": "none_approved"
+   }
   }
  ]
 }

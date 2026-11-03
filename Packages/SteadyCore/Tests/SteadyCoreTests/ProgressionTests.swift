@@ -28,8 +28,10 @@ final class ProgressionTests: XCTestCase {
 
     func testIncreaseHoldRetryDeload() {
         let ex = content.library["goblet_squat"]
-        XCTAssertEqual(Progression.suggest(for: goblet, exercise: ex, history: [h(12, [12, 12])], oneRepMaxes: [:]),
-                       LoadSuggestion(weight: 14.5, kind: .increase, reason: "You hit every rep last time. Add 2.5 kg."))
+        let up = Progression.suggest(for: goblet, exercise: ex, history: [h(12, [12, 12])], oneRepMaxes: [:])
+        XCTAssertEqual(up.weight, 14.5)
+        XCTAssertEqual(up.kind, .increase)
+        XCTAssertTrue(up.needsConfirmation)
         XCTAssertEqual(Progression.suggest(for: goblet, exercise: ex, history: [h(12, [12, 11])], oneRepMaxes: [:]).kind, .hold)
         XCTAssertEqual(Progression.suggest(for: goblet, exercise: ex, history: [h(12, [9, 8])], oneRepMaxes: [:]).kind, .retry)
         let d = Progression.suggest(for: goblet, exercise: ex, history: [h(20, [9, 8]), h(20, [8, 8])], oneRepMaxes: [:])

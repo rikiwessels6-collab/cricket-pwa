@@ -186,9 +186,9 @@ final class TrainingTests: XCTestCase {
     func testAdvisor() {
         let content = try! BundledContent(directory: generated)
         let new3 = ProgramAdvisor.recommend(experience: .new, daysPerWeek: 3, programs: content.programs)
-        XCTAssertEqual(new3.first?.programId, "beginner-12wk-option-b")
+        XCTAssertEqual(new3.first?.programId, "ss-strength-foundations")
         let new2 = ProgramAdvisor.recommend(experience: .new, daysPerWeek: 2, programs: content.programs)
-        XCTAssertEqual(new2.first?.programId, "beginner-12wk-option-a")
+        XCTAssertEqual(new2.first?.programId, "ss-strong-for-life")
         let adv5 = ProgramAdvisor.recommend(experience: .advanced, daysPerWeek: 5, programs: content.programs)
         XCTAssertEqual(adv5.first?.programId, "rw-intermediate-18wk")
         XCTAssertFalse(new3.contains { $0.programId.hasPrefix("rw-12") })

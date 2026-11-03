@@ -248,6 +248,67 @@ class GuidePrograms(unittest.TestCase):
         self.assertEqual(substitution.CURATED["leg_press"][:2], ["hack_squat", "goblet_squat"])
 
 
+class ChangeRequestV5(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        GeneratedOutput.setUpClass.__func__(cls)
+        cls.lib = json.loads((GEN / "exercise_library.json").read_text())["exercises"]
+
+    def test_renames_keep_master_names_as_aliases(self):
+        p = self.programs
+        self.assertEqual(p["ss-lower-body-focus"]["name"], "Lower Emphasis")
+        self.assertEqual(p["ss-lower-body-focus"]["masterName"], "Lower Body Focus")
+        self.assertEqual(p["ss-muscle-builder-pro"]["name"], "Muscle Builder")
+        self.assertEqual(p["ss-muscle-builder-pro"]["masterName"], "Muscle Builder Pro")
+
+    def test_names_validator(self):
+        import catalogue_meta
+        self.assertEqual(catalogue_meta.names_errors(list(self.programs.values()), self.lib), [])
+        dup = [dict(self.lib[0]), dict(self.lib[0])]
+        self.assertTrue(catalogue_meta.names_errors([], dup))
+
+    def test_catalogues_and_draft_flags(self):
+        cats = {pid: p["catalogue"] for pid, p in self.programs.items()}
+        self.assertEqual(sorted(k for k, v in cats.items() if v == "core"),
+                         ["ss-build-and-grow", "ss-lower-body-focus", "ss-muscle-builder-pro", "ss-strength-foundations", "ss-strong-for-life"])
+        self.assertEqual(len([v for v in cats.values() if v == "legacy"]), 4)
+        for pid, p in self.programs.items():
+            if cats[pid] == "core":
+                self.assertEqual((p["contentStatus"], p["reviewed"]), ("draft", False), pid)
+
+    def test_template_display_names_are_unique(self):
+        names = [wo["displayName"] for p in self.programs.values() for wo in p["weeks"][0]["workouts"]]
+        self.assertEqual(len(names), len(set(n.lower() for n in names)))
+
+    def test_no_video_is_approved_and_flags_present(self):
+        self.assertTrue(all(e["video"]["status"] == "none_approved" and e["videoSources"] == [] for e in self.lib))
+        by = {e["id"]: e for e in self.lib}
+        for eid in ("nordic_curl", "trap_bar_deadlift", "front_squat"):
+            self.assertTrue(by[eid]["contraindicationReviewFlag"], eid)
+            self.assertTrue(by[eid]["easierRegression"], eid)
+        self.assertNotIn("contraindicationReviewFlag", by["goblet_squat"])
+
+    def test_ambiguous_defaults_follow_the_audit(self):
+        grow = self.programs["ss-build-and-grow"]["weeks"][0]["workouts"]
+        calf = lambda wo: next(s for s in wo["slots"] if "calf" in s["exerciseId"])
+        self.assertEqual(calf(grow[1])["exerciseId"], "standing_calf_raise")      # Lower A: standing
+        self.assertEqual(calf(grow[3])["exerciseId"], "seated_calf_raise")        # Lower B: seated
+        self.assertTrue(calf(grow[1])["needsCoachConfirmation"])
+        mb = self.programs["ss-muscle-builder-pro"]["weeks"][0]["workouts"]
+        self.assertEqual(next(s for s in mb[2]["slots"] if "calf" in s["exerciseId"])["exerciseId"], "standing_calf_raise")   # Legs
+        self.assertEqual(next(s for s in mb[4]["slots"] if "calf" in s["exerciseId"])["exerciseId"], "seated_calf_raise")     # Lower
+        life_a = self.programs["ss-strong-for-life"]["weeks"][0]["workouts"][0]["slots"]
+        self.assertEqual(next(s for s in life_a if "Seated" in s["exercise"])["exerciseId"], "seated_cable_row")
+        mb_pull = self.programs["ss-muscle-builder-pro"]["weeks"][0]["workouts"][1]["slots"][0]
+        self.assertEqual(mb_pull["exerciseId"], "assisted_pull_up")
+        self.assertIn("pull_up", mb_pull["alternativeIds"])
+
+    def test_report_states_what_is_blocked(self):
+        text = (GEN / "IMPORT_REPORT.md").read_text()
+        for phrase in ("Change request v5: status", "Specialisation modules", "Blocked", "needsCoachConfirmation"):
+            self.assertIn(phrase, text)
+
+
 class LibraryAndSwaps(unittest.TestCase):
     """Exercise library, equipment adaptation and coach decisions."""
 
