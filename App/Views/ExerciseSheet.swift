@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
 import SafariServices
+import AVKit
+import PhotosUI
 import SteadyCore
 
 /// Form cues, muscles, equipment and today's swaps for one exercise.
@@ -44,6 +46,7 @@ struct ExerciseSheet: View {
                         }
                         .accessibilityHint("Opens a YouTube search for Jeff Nippard's technique video in Safari")
                     }
+                    MyClipSection(exerciseId: exerciseId)
                     Section("Works") {
                         Text(ex.primaryMuscles.map(Self.muscleName).joined(separator: ", "))
                         if !ex.secondaryMuscles.isEmpty {
@@ -111,4 +114,58 @@ struct SafariView: UIViewControllerRepresentable {
     let url: URL
     func makeUIViewController(context: Context) -> SFSafariViewController { SFSafariViewController(url: url) }
     func updateUIViewController(_ controller: SFSafariViewController, context: Context) {}
+}
+
+
+/// "My clip": record or pick a short video of your own technique and play it back from here.
+struct MyClipSection: View {
+    let exerciseId: String
+    @State private var clipURL: URL?
+    @State private var picked: PhotosPickerItem?
+    @State private var player: AVPlayer?
+    @State private var message: String?
+
+    var body: some View {
+        Section {
+            if let player {
+                VideoPlayer(player: player)
+                    .frame(height: 220)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+            }
+            PhotosPicker(selection: $picked, matching: .videos) {
+                Label(clipURL == nil ? "Add my own clip" : "Replace my clip", systemImage: "video.badge.plus")
+            }
+            .accessibilityIdentifier("addClip")
+            if clipURL != nil {
+                Button(role: .destructive) {
+                    ClipStore.delete(for: exerciseId)
+                    load()
+                } label: { Label("Remove my clip", systemImage: "trash") }
+            }
+            if let message { Text(message).font(.footnote).foregroundStyle(Color.inkMuted) }
+        } header: { Text("My clip") } footer: {
+            Text("Kept on this phone only, never uploaded.")
+        }
+        .onAppear(perform: load)
+        .onChange(of: picked) { _, item in
+            guard let item else { return }
+            Task {
+                do {
+                    guard let video = try await item.loadTransferable(type: PickedVideo.self) else { message = "Couldn't read that video."; return }
+                    try ClipStore.save(video.url, for: exerciseId)
+                    message = nil
+                    load()
+                } catch {
+                    message = "Couldn't save that video."
+                }
+                picked = nil
+            }
+        }
+    }
+
+    private func load() {
+        clipURL = ClipStore.url(for: exerciseId)
+        player = clipURL.map { AVPlayer(url: $0) }
+    }
 }
