@@ -40,6 +40,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           APP_TOKEN: ${{ secrets.APP_TOKEN }}
         run: |
+          # Pasted secrets often carry stray spaces or line breaks; strip them.
+          export CLOUDFLARE_ACCOUNT_ID="$(printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | tr -d '[:space:]')"
+          export CLOUDFLARE_API_TOKEN="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '[:space:]')"
+          ANTHROPIC_API_KEY="$(printf '%s' "$ANTHROPIC_API_KEY" | tr -d '[:space:]')"
+          APP_TOKEN="$(printf '%s' "$APP_TOKEN" | tr -d '[:space:]')"
+          if ! printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | grep -qE '^[0-9a-f]{32}$'; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID should be 32 letters/numbers (0-9, a-f); it is ${#CLOUDFLARE_ACCOUNT_ID} characters. Re-copy it from Workers & Pages."
+            exit 1
+          fi
           npx wrangler deploy | tee deploy.log
           printf '%s' "$ANTHROPIC_API_KEY" | npx wrangler secret put ANTHROPIC_API_KEY
           printf '%s' "$APP_TOKEN" | npx wrangler secret put APP_TOKEN
@@ -51,6 +60,7 @@ jobs:
           URL: ${{ steps.deploy.outputs.url }}
           APP_TOKEN: ${{ secrets.APP_TOKEN }}
         run: |
+          APP_TOKEN="$(printf '%s' "$APP_TOKEN" | tr -d '[:space:]')"
           sleep 10
           bad=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H 'x-app-token: wrong' -d '{}')
           good=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/v1/plate" -H "x-app-token: $APP_TOKEN" -H 'content-type: application/json' -d '{}')
