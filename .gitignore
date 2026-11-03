@@ -8,3 +8,5 @@ Config/Local.xcconfig
 .build/
 .swiftpm/
 Config/Info.plist
+node_modules/
+.wrangler/

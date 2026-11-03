@@ -1,0 +1,8 @@
+name = "steady-strength-relay"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Secrets (set with `npx wrangler secret put NAME`, never committed):
+#   ANTHROPIC_API_KEY  - your Anthropic key
+#   APP_TOKEN          - shared token the app sends in the X-App-Token header
