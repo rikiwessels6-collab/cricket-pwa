@@ -103,7 +103,8 @@ public enum ModuleMerger {
         change.minutesAfter = SessionBuilder.estimatedMinutes(plan, version: version)
         change.fitsTimeLimit = change.minutesAfter <= rules.sessionLimitMinutes
         // Something added and then trimmed again is not a change the user needs to read twice.
-        change.added.removeAll { change.trimmed.contains($0) }
+        let trimmedNames = change.trimmed
+        change.added.removeAll { trimmedNames.contains($0) }
         return (plan, change)
     }
 
