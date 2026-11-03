@@ -33,6 +33,8 @@ Pushing to `relay/` on the `steady-strength` branch deploys automatically
    PLATE_RELAY_TOKEN = <the token>
    ```
 
+(The `$()` in the URL stops Xcode reading `//` as a comment.)
+
 To renew the Anthropic key later: create the new key, run
 `npx wrangler secret put ANTHROPIC_API_KEY`, then delete the old key in the Console.
 
