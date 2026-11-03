@@ -106,6 +106,7 @@ struct FoodView: View {
                 Button { addingTo = meal } label: {
                     Image(systemName: "plus").font(.subheadline.weight(.bold)).foregroundStyle(Color.night)
                         .frame(width: 30, height: 30).background(LinearGradient.brand, in: Circle())
+                        .frame(width: 44, height: 44).contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Add to \(meal.label)")
