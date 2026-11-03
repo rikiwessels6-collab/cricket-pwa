@@ -221,6 +221,7 @@ struct ActiveWorkoutView: View {
                 VStack(spacing: 16) {
                     WorkoutHeader(name: log.workoutName, version: log.version, week: log.weekNumber,
                                   done: log.sets.count, total: totalSets, started: log.startedAt)
+                    RoutineCard(kind: .warmup, version: log.version)
                     ForEach(Array(built.plan.enumerated()), id: \.element.id) { index, item in
                         let ex = content.library[item.exerciseId]
                         ExerciseCard(item: item, log: log, exercise: ex,
@@ -235,6 +236,7 @@ struct ActiveWorkoutView: View {
                                      onSwap: { swapFor = item },
                                      onInfo: { infoFor = item })
                     }
+                    RoutineCard(kind: .cooldown, version: log.version)
                     VStack(spacing: 10) {
                         Button { confirmFinish = true } label: {
                             Text("Finish workout").font(.headline).frame(maxWidth: .infinity, minHeight: 52)
