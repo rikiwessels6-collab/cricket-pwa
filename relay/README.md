@@ -9,7 +9,13 @@ returns it. It stores and logs nothing.
 - Model: `claude-opus-5-5`, structured JSON output, refusal fallback enabled
 - Cost: roughly 1-2 US cents per photo (check anthropic.com/pricing)
 
-## One-time setup (about 10 minutes)
+## Deploying
+
+Pushing to `relay/` on the `steady-strength` branch deploys automatically
+(`.github/workflows/deploy-relay.yml`), using four GitHub secrets:
+`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `ANTHROPIC_API_KEY`, `APP_TOKEN`.
+
+## Manual setup (alternative, about 10 minutes)
 
 1. Create a free Cloudflare account at dash.cloudflare.com.
 2. On your Mac, in this folder:
