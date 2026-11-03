@@ -4,13 +4,15 @@ import XCTest
 final class ReadinessAndModuleTests: XCTestCase {
     func ex(_ id: String, tier: String = "accessory", primary: [String], secondary: [String] = [],
             timed: Bool = false, pattern: String = "isolation") -> Exercise {
-        let json = """
-        {"id":"\\(id)","name":"\\(id)","pattern":"\\(pattern)","tier":"\\(tier)","equipment":[],
-         "primaryMuscles":\\(primary.map { "\\"\\($0)\\"" }),"secondaryMuscles":\\(secondary.map { "\\"\\($0)\\"" }),
-         "unilateral":false,"loadable":true,"timed":\\(timed),"difficulty":1,"cues":"","cueSource":"",
-         "seed":false,"aliases":[],"demoSearchQuery":"","substitutes":[],"usedIn":[]}
-        """
-        return try! JSONDecoder().decode(Exercise.self, from: Data(json.utf8))
+        let dict: [String: Any] = [
+            "id": id, "name": id, "pattern": pattern, "tier": tier, "equipment": [String](),
+            "primaryMuscles": primary, "secondaryMuscles": secondary,
+            "unilateral": false, "loadable": true, "timed": timed, "difficulty": 1,
+            "cues": "", "cueSource": "", "seed": false, "aliases": [String](),
+            "demoSearchQuery": "", "substitutes": [Any](), "usedIn": [String](),
+        ]
+        let data = try! JSONSerialization.data(withJSONObject: dict)
+        return try! JSONDecoder().decode(Exercise.self, from: data)
     }
 
     func planned(_ id: String, sets: Int, order: Int, main: Bool = false) -> PlannedExercise {
