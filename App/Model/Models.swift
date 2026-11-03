@@ -146,6 +146,10 @@ final class AppSettings {
     var disclaimerAcceptedAt: Date?
     /// Consent per data type (DataType.rawValue -> when it was given). Missing = not given.
     var consents: [String: Date]
+    /// Opt-in local reminders (training days and the weekly check-in).
+    var remindersEnabled: Bool = false
+    var reminderHour: Int = 7
+    var reminderMinute: Int = 0
 
     init() {
         onboardingComplete = false

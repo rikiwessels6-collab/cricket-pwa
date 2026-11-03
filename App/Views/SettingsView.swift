@@ -8,6 +8,8 @@ struct SettingsView: View {
     @Query private var settings: [AppSettings]
     @Query private var profiles: [UserProfile]
     @Query private var plans: [TrainingPlan]
+    @Query private var checkInSettings: [CheckInSettings]
+    @State private var reminderMessage: String?
     @State private var exportURL: URL?
     @State private var exportError: String?
     @State private var confirmErase = false
@@ -47,6 +49,39 @@ struct SettingsView: View {
                     }
                 }
                 if let s = settings.first {
+                    Section {
+                        Toggle("Remind me", isOn: Binding(
+                            get: { s.remindersEnabled },
+                            set: { on in
+                                if on {
+                                    Task {
+                                        if await ReminderService.enable() {
+                                            s.remindersEnabled = true; reminderMessage = nil
+                                            await rescheduleReminders(s)
+                                        } else {
+                                            s.remindersEnabled = false
+                                            reminderMessage = "Notifications are off for Steady Strength. You can allow them in the iPhone Settings app."
+                                        }
+                                    }
+                                } else {
+                                    s.remindersEnabled = false
+                                    Task { await ReminderService.schedule([]) }
+                                }
+                            }))
+                            .accessibilityIdentifier("remindersToggle")
+                        if s.remindersEnabled {
+                            DatePicker("At", selection: Binding(
+                                get: { Calendar.current.date(bySettingHour: s.reminderHour, minute: s.reminderMinute, second: 0, of: .now) ?? .now },
+                                set: { d in
+                                    let c = Calendar.current.dateComponents([.hour, .minute], from: d)
+                                    s.reminderHour = c.hour ?? 7; s.reminderMinute = c.minute ?? 0
+                                    Task { await rescheduleReminders(s) }
+                                }), displayedComponents: .hourAndMinute)
+                        }
+                        if let reminderMessage { Text(reminderMessage).font(.footnote).foregroundStyle(.secondary) }
+                    } header: { Text("Reminders") } footer: {
+                        Text("A reminder on your training days and your check-in day. They're set on this phone only.")
+                    }
                     Section("Security") {
                         Toggle("Lock with \(AppLock.biometryName)", isOn: Binding(get: { s.lockEnabled }, set: { s.lockEnabled = $0 }))
                             .accessibilityIdentifier("lockToggle")
@@ -90,6 +125,15 @@ struct SettingsView: View {
                 Button("OK") { exportError = nil }
             } message: { Text(exportError ?? "") }
         }
+    }
+}
+
+extension SettingsView {
+    @MainActor func rescheduleReminders(_ s: AppSettings) async {
+        let slots = Reminders.slots(trainingWeekdays: plans.first?.preferredWeekdays ?? [],
+                                    checkInWeekday: checkInSettings.first?.weekday,
+                                    hour: s.reminderHour, minute: s.reminderMinute)
+        await ReminderService.schedule(slots)
     }
 }
 
