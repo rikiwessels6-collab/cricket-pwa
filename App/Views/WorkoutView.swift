@@ -5,11 +5,20 @@ import SteadyCore
 // MARK: - Building today's session
 
 enum WorkoutPlanner {
+    /// Programs for beginners: weeks 1-4 are an easy on-ramp (2 sets, about 3-4 reps in reserve).
+    static let onRampPrograms: Set<String> = ["ss-strength-foundations", "ss-strong-for-life"]
+
+    /// A suggested weight scaled by the session's load factor, kept to 0.5 kg steps.
+    static func scaled(_ w: Double, factor: Double) -> Double {
+        factor == 1 ? w : max(0, (w * factor * 2).rounded(.down) / 2)
+    }
+
     /// Today's exercises: the version applied, then swaps for missing equipment
     /// (automatic) and any the user chose (stored on the log).
     static func plan(program: Program, workout: ProgramWorkout, version: SessionVersion, content: BundledContent,
-                     equipment: Set<String>, chosenSwaps: [Int: String]) -> (plan: [PlannedExercise], swaps: [Int: String]) {
+                     equipment: Set<String>, chosenSwaps: [Int: String], week: Int = 99) -> (plan: [PlannedExercise], swaps: [Int: String]) {
         var plan = SessionBuilder.build(workout, version: version, library: content.library)
+        if onRampPrograms.contains(program.id) { plan = SessionBuilder.applyOnRamp(plan, week: week) }
         var swaps = chosenSwaps
         for i in plan.indices {
             let slot = workout.slots.first { $0.order == plan[i].id }
@@ -67,14 +76,21 @@ struct StartWorkoutSheet: View {
     let program: Program
     let week: ProgramWeek
     let workout: ProgramWorkout
-    let onStart: (SessionVersion) -> Void
+    let onStart: (SessionVersion, Readiness.Choice, ReasonCode?) -> Void
     @Environment(ContentStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @State private var version: SessionVersion = .standard
+    @State private var answers = ReadinessAnswers()
+    @State private var checkOpen = false
+    @State private var choice: Readiness.Choice = .asPlanned
+
+    private var advice: Readiness.Advice { Readiness.advise(answers) }
+    private var effectiveVersion: SessionVersion { choice == .fewerSets ? .lowEnergy : version }
 
     var body: some View {
         NavigationStack {
             Form {
+                readinessSection
                 if let note = week.phaseNote, week.lowFatigueOptional != true {
                     Section("Week \(week.number) · \(week.phase ?? "")") { Text(note).font(.footnote) }
                 }
@@ -106,9 +122,45 @@ struct StartWorkoutSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Start") { onStart(version); dismiss() }.accessibilityIdentifier("startWorkout")
+                    Button("Start") { onStart(effectiveVersion, choice, checkOpen ? advice.code : nil); dismiss() }.accessibilityIdentifier("startWorkout")
                 }
             }
+        }
+    }
+
+    @ViewBuilder private var readinessSection: some View {
+        Section {
+            DisclosureGroup("How are you today? (optional)", isExpanded: $checkOpen) {
+                Picker("Sleep", selection: $answers.sleep) {
+                    ForEach(ReadinessAnswers.Level.allCases, id: \.self) { Text($0.label).tag($0) }
+                }
+                Picker("Energy", selection: $answers.energy) {
+                    ForEach(ReadinessAnswers.Level.allCases, id: \.self) { Text($0.label).tag($0) }
+                }
+                Picker("Anything bothering you?", selection: $answers.concern) {
+                    ForEach(ReadinessAnswers.Concern.allCases, id: \.self) { Text($0.label).tag($0) }
+                }
+                TextField("Note (stays on this phone)", text: $answers.note)
+                if let stop = advice.stopMessage {
+                    Label(stop, systemImage: "exclamationmark.triangle.fill").foregroundStyle(Color.gold).font(.callout)
+                }
+                ForEach(Readiness.Choice.allCases) { c in
+                    Button { choice = c } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(c.label + (c == advice.suggested ? " (suggested)" : "")).foregroundStyle(.primary)
+                                Text(c.detail).font(.footnote).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            if choice == c { Image(systemName: "checkmark").foregroundStyle(.tint) }
+                        }
+                    }
+                    .accessibilityAddTraits(choice == c ? .isSelected : [])
+                }
+            }
+            .onChange(of: answers) { _, _ in choice = advice.suggested }
+        } footer: {
+            Text("These are suggestions, not medical advice. You decide.")
         }
     }
 
@@ -140,7 +192,7 @@ struct ActiveWorkoutView: View {
     var body: some View {
         if let content = store.content, let trainingPlan = plans.first {
             let built = WorkoutPlanner.plan(program: program, workout: workout, version: log.version, content: content,
-                                            equipment: Set(trainingPlan.equipment), chosenSwaps: log.swaps)
+                                            equipment: Set(trainingPlan.equipment), chosenSwaps: log.swaps, week: log.weekNumber)
             let totalSets = built.plan.reduce(0) { $0 + $1.sets }
             ScrollView {
                 VStack(spacing: 16) {
@@ -151,7 +203,9 @@ struct ActiveWorkoutView: View {
                         ExerciseCard(item: item, log: log, exercise: ex,
                                      suggestion: Progression.suggest(for: item, exercise: ex,
                                                                      history: WorkoutPlanner.history(item.exerciseId, logs: logs.filter { $0 !== log }),
-                                                                     oneRepMaxes: trainingPlan.oneRepMaxes),
+                                                                     oneRepMaxes: trainingPlan.oneRepMaxes,
+                                                                     increment: (ex?.pattern.hasPrefix("squat") == true || ex?.pattern.hasPrefix("hinge") == true) && ex?.tier == "main"
+                                                                         ? trainingPlan.lowerIncrement : trainingPlan.upperIncrement),
                                      isSwapped: item.exerciseId != item.originalExerciseId,
                                      focused: $focused,
                                      onSetDone: { setDone(item, index: index, plan: built.plan) },
@@ -285,8 +339,19 @@ struct ExerciseCard: View {
         log.sets.filter { $0.slotOrder == item.id }.sorted { $0.setIndex < $1.setIndex }
     }
     private var loadable: Bool { exercise?.loadable ?? true }
+    private var accepted: Bool { log.acceptedSuggestions.contains(item.exerciseId) }
+    private var declined: Bool { log.declinedSuggestions.contains(item.exerciseId) }
+    /// Increases and deloads are only applied once you accept them.
+    private var pendingConfirmation: Bool { suggestion.needsConfirmation && !accepted && !declined && done.isEmpty }
+    private var suggestedWeight: Double? {
+        guard let w = suggestion.weight else { return nil }
+        if suggestion.needsConfirmation && !accepted {
+            return WorkoutPlanner.scaled(suggestion.previousWeight ?? w, factor: log.loadFactor)
+        }
+        return WorkoutPlanner.scaled(w, factor: log.loadFactor)
+    }
     private var startWeight: Double {
-        done.last?.weight ?? suggestion.weight ?? WorkoutPlanner.defaultStartWeight(exercise)
+        done.last?.weight ?? suggestedWeight ?? WorkoutPlanner.defaultStartWeight(exercise)
     }
 
     var body: some View {
@@ -326,6 +391,21 @@ struct ExerciseCard: View {
                     .padding(10)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.gold.opacity(0.08), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                if pendingConfirmation {
+                    HStack(spacing: 10) {
+                        Button("Use \(NumberText.format(WorkoutPlanner.scaled(suggestion.weight ?? 0, factor: log.loadFactor))) kg") {
+                            log.acceptedSuggestions.append(item.exerciseId); try? context.save()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityIdentifier("acceptSuggestion")
+                        Button("Keep \(NumberText.format(WorkoutPlanner.scaled(suggestion.previousWeight ?? 0, factor: log.loadFactor))) kg") {
+                            log.declinedSuggestions.append(item.exerciseId); try? context.save()
+                        }
+                        .buttonStyle(.bordered)
+                        .accessibilityIdentifier("declineSuggestion")
+                    }
+                    .font(.subheadline)
+                }
             }
             VStack(spacing: 8) {
                 HStack {
@@ -381,7 +461,8 @@ struct ExerciseCard: View {
         case .byFeel: return suggestion.reason
         default:
             guard let w = suggestion.weight else { return suggestion.reason }
-            return "\(NumberText.format(w)) kg. \(suggestion.reason)"
+            if declined { return "Keeping \(NumberText.format(suggestedWeight ?? w)) kg for today." }
+            return "\(NumberText.format(WorkoutPlanner.scaled(w, factor: log.loadFactor))) kg. \(suggestion.reason)"
         }
     }
 }

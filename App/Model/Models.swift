@@ -71,6 +71,9 @@ final class TrainingPlan {
     var oneRepMaxes: [String: Double]
     /// Rotation position: index of the next session across the whole program.
     var nextSessionIndex: Int
+    /// Smallest weight steps the app suggests when you hit the top of the rep range (kg). Editable in Settings.
+    var upperIncrement: Double = 2.5
+    var lowerIncrement: Double = 5
 
     init(programId: String, startDate: Date, daysPerWeek: Int, preferredWeekdays: [Int], sessionMinutes: Int,
          fixedCommitments: [FixedCommitment], avoidHeavyLegsNextToCommitments: Bool, equipmentProfileId: String,
@@ -197,6 +200,14 @@ final class WorkoutLog {
     var startedAt: Date
     var finishedAt: Date?
     var notes: String
+    /// Multiplier on suggested weights for this session (0.9 when "lower the load" was chosen at the readiness check).
+    var loadFactor: Double = 1.0
+    /// Readiness choice and reason code, kept on the phone only.
+    var readinessChoiceRaw: String = ""
+    var readinessCode: String = ""
+    /// Exercise ids where the user accepted or declined a suggested increase or deload today.
+    var acceptedSuggestions: [String] = []
+    var declinedSuggestions: [String] = []
     @Relationship(deleteRule: .cascade, inverse: \SetLog.workout) var sets: [SetLog] = []
 
     init(programId: String, weekNumber: Int, workoutPosition: Int, workoutName: String, version: SessionVersion, swaps: [Int: String]) {

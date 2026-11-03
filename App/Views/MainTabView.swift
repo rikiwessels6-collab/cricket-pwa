@@ -77,8 +77,9 @@ struct TodayView: View {
             .sheet(isPresented: $startSheet) {
                 if let plan = plans.first, let program = store.content?.program(plan.programId),
                    let next = program.session(at: plan.nextSessionIndex, includeOptional: plan.daysPerWeek >= 3) {
-                    StartWorkoutSheet(program: program, week: next.week, workout: next.workout) { version in
-                        start(plan: plan, program: program, week: next.week, workout: next.workout, version: version)
+                    StartWorkoutSheet(program: program, week: next.week, workout: next.workout) { version, choice, code in
+                        start(plan: plan, program: program, week: next.week, workout: next.workout, version: version,
+                              choice: choice, code: code)
                     }
                 }
             }
@@ -142,12 +143,16 @@ struct TodayView: View {
         }
     }
 
-    private func start(plan: TrainingPlan, program: Program, week: ProgramWeek, workout: ProgramWorkout, version: SessionVersion) {
-        guard let content = store.content else { return }
+    private func start(plan: TrainingPlan, program: Program, week: ProgramWeek, workout: ProgramWorkout, version: SessionVersion,
+                       choice: Readiness.Choice = .asPlanned, code: ReasonCode? = nil) {
+        guard let content = store.content, choice != .rest else { return }
         let built = WorkoutPlanner.plan(program: program, workout: workout, version: version, content: content,
-                                        equipment: Set(plan.equipment), chosenSwaps: [:])
+                                        equipment: Set(plan.equipment), chosenSwaps: [:], week: week.number)
         let log = WorkoutLog(programId: program.id, weekNumber: week.number, workoutPosition: workout.position,
                              workoutName: workout.name, version: version, swaps: built.swaps)
+        log.loadFactor = choice.loadFactor
+        log.readinessChoiceRaw = choice.rawValue
+        log.readinessCode = code?.rawValue ?? ""
         context.insert(log)
         try? context.save()
         activeLog = log

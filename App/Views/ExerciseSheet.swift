@@ -28,6 +28,11 @@ struct ExerciseSheet: View {
                         if let note = slot?.notes, !note.isEmpty, note != ex.cues {
                             Text(note).foregroundStyle(.secondary)
                         }
+                        if ex.contraindicationReviewFlag == true {
+                            Label("Advanced movement. Check with a qualified coach if you have any pain or past injury. Stop if anything hurts, and use an easier option.",
+                                  systemImage: "exclamationmark.shield")
+                                .font(.footnote).foregroundStyle(Color.gold)
+                        }
                         if let tip = ex.advancedTip {
                             Label(tip, systemImage: "arrow.left.and.right")
                                 .font(.footnote).foregroundStyle(Color.inkMuted)
