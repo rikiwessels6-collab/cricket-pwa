@@ -642,7 +642,12 @@ def build_catalogue(seed, beginner_cues, issues):
         else:
             e.update({"cueSource": "drafted - coach to review", "seed": False})
         e["videoSources"] = []
-        e["demoSearchQuery"] = f"{e['name'].lower()} proper form tutorial"
+        e["demoSearchQuery"] = f"{e['name'].lower()} Jeff Nippard technique"
+        # Stretch-focused tip for isolation work, after Jeff Nippard's public teaching on lengthened partials.
+        if e["tier"] == "accessory" and e["loadable"] and not e["timed"] and not e["pattern"].startswith("core") \
+                and e["pattern"] not in ("carry", "plyometric", "calf"):
+            e["advancedTip"] = ("Optional on the last set: once you can't do another full rep, add a few partial reps "
+                                "in the stretched half of the movement.")
     if problems:
         raise ValueError("catalogue problems:\n  " + "\n  ".join(problems))
     missing_seed = set(seed_by_key) - {exercise_key(e["name"]) for e in entries}

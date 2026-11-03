@@ -28,12 +28,16 @@ struct ExerciseSheet: View {
                         if let note = slot?.notes, !note.isEmpty, note != ex.cues {
                             Text(note).foregroundStyle(.secondary)
                         }
+                        if let tip = ex.advancedTip {
+                            Label(tip, systemImage: "arrow.left.and.right")
+                                .font(.footnote).foregroundStyle(Color.inkMuted)
+                        }
                         Button {
                             showSearch = true
                         } label: {
-                            Label("Find a demo video", systemImage: "play.rectangle")
+                            Label("Watch technique (Jeff Nippard on YouTube)", systemImage: "play.rectangle")
                         }
-                        .accessibilityHint("Opens a YouTube search in Safari")
+                        .accessibilityHint("Opens a YouTube search for Jeff Nippard's technique video in Safari")
                     }
                     Section("Works") {
                         Text(ex.primaryMuscles.map(Self.muscleName).joined(separator: ", "))

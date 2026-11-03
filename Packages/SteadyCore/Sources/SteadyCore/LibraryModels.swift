@@ -29,6 +29,7 @@ public struct Exercise: Decodable, Identifiable, Sendable {
     public let swapText: String?
     public let aliases: [String]
     public let demoSearchQuery: String
+    public let advancedTip: String?
     public let substitutes: [Substitute]
     public let usedIn: [String]
 

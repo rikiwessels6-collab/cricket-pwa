@@ -329,6 +329,12 @@ class LibraryAndSwaps(unittest.TestCase):
         self.assertTrue(fb[0]["isMainLift"])        # back squat, 3 min
         self.assertFalse(fb[-1]["isMainLift"])      # calf raise, 1 min
 
+    def test_demo_search_and_tips(self):
+        self.assertIn("Jeff Nippard", self.lib["back_squat"]["demoSearchQuery"])
+        self.assertIn("advancedTip", self.lib["lateral_raise"])
+        self.assertNotIn("advancedTip", self.lib["back_squat"])
+        self.assertNotIn("advancedTip", self.lib["plank"])
+
     def test_every_library_entry_is_complete(self):
         for e in self.lib.values():
             self.assertTrue(e["cues"] and e["primaryMuscles"] and e["pattern"], e["id"])

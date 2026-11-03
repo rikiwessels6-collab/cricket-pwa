@@ -83,7 +83,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "back squat proper form tutorial",
+   "demoSearchQuery": "back squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "hack_squat",
@@ -200,7 +200,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "box squat proper form tutorial",
+   "demoSearchQuery": "box squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "back_squat",
@@ -305,7 +305,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pin squat proper form tutorial",
+   "demoSearchQuery": "pin squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "back_squat",
@@ -412,7 +412,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "front squat proper form tutorial",
+   "demoSearchQuery": "front squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "goblet_squat",
@@ -521,7 +521,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "goblet squat proper form tutorial",
+   "demoSearchQuery": "goblet squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "leg_press",
@@ -634,7 +634,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "heel-elevated squat proper form tutorial",
+   "demoSearchQuery": "heel-elevated squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "hack_squat",
@@ -742,7 +742,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "leg press proper form tutorial",
+   "demoSearchQuery": "leg press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "hack_squat",
@@ -858,7 +858,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg leg press proper form tutorial",
+   "demoSearchQuery": "single-leg leg press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "split_squat",
@@ -961,7 +961,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "hack squat proper form tutorial",
+   "demoSearchQuery": "hack squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "leg_press",
@@ -1063,7 +1063,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "sissy squat proper form tutorial",
+   "demoSearchQuery": "sissy squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "band_leg_extension",
@@ -1163,7 +1163,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bodyweight squat proper form tutorial",
+   "demoSearchQuery": "bodyweight squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "goblet_squat",
@@ -1267,7 +1267,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "reverse lunge proper form tutorial",
+   "demoSearchQuery": "reverse lunge Jeff Nippard technique",
    "substitutes": [
     {
      "id": "split_squat",
@@ -1373,7 +1373,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell walking lunge proper form tutorial",
+   "demoSearchQuery": "dumbbell walking lunge Jeff Nippard technique",
    "substitutes": [
     {
      "id": "bulgarian_split_squat",
@@ -1482,7 +1482,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell split squat proper form tutorial",
+   "demoSearchQuery": "dumbbell split squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "single_leg_press",
@@ -1593,7 +1593,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bulgarian split squat proper form tutorial",
+   "demoSearchQuery": "bulgarian split squat Jeff Nippard technique",
    "substitutes": [
     {
      "id": "reverse_lunge",
@@ -1701,7 +1701,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "step-up proper form tutorial",
+   "demoSearchQuery": "step-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "single_leg_press",
@@ -1807,7 +1807,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "lateral step-up proper form tutorial",
+   "demoSearchQuery": "lateral step-up Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "reverse_lunge",
@@ -1912,7 +1913,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg squat to box proper form tutorial",
+   "demoSearchQuery": "single-leg squat to box Jeff Nippard technique",
    "substitutes": [
     {
      "id": "bulgarian_split_squat",
@@ -2018,7 +2019,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "deadlift proper form tutorial",
+   "demoSearchQuery": "deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "trap_bar_deadlift",
@@ -2133,7 +2134,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "reset deadlift proper form tutorial",
+   "demoSearchQuery": "reset deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "deadlift",
@@ -2240,7 +2241,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "opposite-stance deadlift proper form tutorial",
+   "demoSearchQuery": "opposite-stance deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "barbell_rdl",
@@ -2352,7 +2353,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "block pull proper form tutorial",
+   "demoSearchQuery": "block pull Jeff Nippard technique",
    "substitutes": [
     {
      "id": "rack_pull",
@@ -2466,7 +2467,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "rack pull proper form tutorial",
+   "demoSearchQuery": "rack pull Jeff Nippard technique",
    "substitutes": [
     {
      "id": "block_pull",
@@ -2578,7 +2579,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "trap bar deadlift proper form tutorial",
+   "demoSearchQuery": "trap bar deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "deadlift",
@@ -2686,7 +2687,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "trap bar block pull proper form tutorial",
+   "demoSearchQuery": "trap bar block pull Jeff Nippard technique",
    "substitutes": [
     {
      "id": "trap_bar_deadlift",
@@ -2794,7 +2795,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "romanian deadlift proper form tutorial",
+   "demoSearchQuery": "romanian deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_rdl",
@@ -2911,7 +2912,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell romanian deadlift proper form tutorial",
+   "demoSearchQuery": "dumbbell romanian deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "back_extension",
@@ -3023,7 +3024,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell deadlift proper form tutorial",
+   "demoSearchQuery": "dumbbell deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "trap_bar_deadlift",
@@ -3129,7 +3130,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg romanian deadlift proper form tutorial",
+   "demoSearchQuery": "single-leg romanian deadlift Jeff Nippard technique",
    "substitutes": [
     {
      "id": "kb_swing",
@@ -3233,7 +3234,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable pull-through proper form tutorial",
+   "demoSearchQuery": "cable pull-through Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "good_morning_band",
@@ -3338,7 +3340,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "kettlebell swing proper form tutorial",
+   "demoSearchQuery": "kettlebell swing Jeff Nippard technique",
    "substitutes": [
     {
      "id": "barbell_rdl",
@@ -3440,7 +3442,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded good morning proper form tutorial",
+   "demoSearchQuery": "banded good morning Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_rdl",
@@ -3556,7 +3558,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "back extension proper form tutorial",
+   "demoSearchQuery": "back extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_rdl",
@@ -3665,7 +3668,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "glute-ham raise proper form tutorial",
+   "demoSearchQuery": "glute-ham raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "nordic_curl",
@@ -3766,7 +3769,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "nordic ham curl proper form tutorial",
+   "demoSearchQuery": "nordic ham curl Jeff Nippard technique",
    "substitutes": [
     {
      "id": "glute_ham_raise",
@@ -3876,7 +3879,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "barbell hip thrust proper form tutorial",
+   "demoSearchQuery": "barbell hip thrust Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_hip_thrust",
@@ -3993,7 +3996,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg hip thrust proper form tutorial",
+   "demoSearchQuery": "single-leg hip thrust Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_glute_bridge",
@@ -4098,7 +4101,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "machine hip thrust proper form tutorial",
+   "demoSearchQuery": "machine hip thrust Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_glute_bridge",
@@ -4199,7 +4202,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell glute bridge proper form tutorial",
+   "demoSearchQuery": "dumbbell glute bridge Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_hip_thrust",
@@ -4303,7 +4306,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded glute bridge proper form tutorial",
+   "demoSearchQuery": "banded glute bridge Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_glute_bridge",
@@ -4409,7 +4412,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "seated leg curl proper form tutorial",
+   "demoSearchQuery": "seated leg curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "lying_leg_curl",
@@ -4524,7 +4528,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "lying leg curl proper form tutorial",
+   "demoSearchQuery": "lying leg curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "seated_leg_curl",
@@ -4630,7 +4635,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg leg curl proper form tutorial",
+   "demoSearchQuery": "single-leg leg curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "lying_leg_curl",
@@ -4735,7 +4741,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "sliding leg curl proper form tutorial",
+   "demoSearchQuery": "sliding leg curl Jeff Nippard technique",
    "substitutes": [
     {
      "id": "stability_ball_leg_curl",
@@ -4838,7 +4844,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "stability-ball leg curl proper form tutorial",
+   "demoSearchQuery": "stability-ball leg curl Jeff Nippard technique",
    "substitutes": [
     {
      "id": "sliding_leg_curl",
@@ -4937,7 +4943,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded leg curl proper form tutorial",
+   "demoSearchQuery": "banded leg curl Jeff Nippard technique",
    "substitutes": [
     {
      "id": "lying_leg_curl",
@@ -5043,7 +5049,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "leg extension proper form tutorial",
+   "demoSearchQuery": "leg extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "leg_press",
@@ -5153,7 +5160,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg leg extension proper form tutorial",
+   "demoSearchQuery": "single-leg leg extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "leg_extension",
@@ -5255,7 +5263,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded leg extension proper form tutorial",
+   "demoSearchQuery": "banded leg extension Jeff Nippard technique",
    "substitutes": [
     {
      "id": "leg_extension",
@@ -5360,7 +5368,7 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "standing calf raise proper form tutorial",
+   "demoSearchQuery": "standing calf raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "seated_calf_raise",
@@ -5417,7 +5425,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-leg calf raise proper form tutorial",
+   "demoSearchQuery": "single-leg calf raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "leg_press_calf_raise",
@@ -5464,7 +5472,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "seated calf raise proper form tutorial",
+   "demoSearchQuery": "seated calf raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "leg_press_calf_raise",
@@ -5511,7 +5519,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "calf raise on the leg press proper form tutorial",
+   "demoSearchQuery": "calf raise on the leg press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "seated_calf_raise",
@@ -5556,7 +5564,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable glute kickback proper form tutorial",
+   "demoSearchQuery": "cable glute kickback Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "single_leg_hip_thrust",
@@ -5666,7 +5675,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "machine hip abduction proper form tutorial",
+   "demoSearchQuery": "machine hip abduction Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "banded_lateral_walk",
@@ -5718,7 +5728,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable hip abduction proper form tutorial",
+   "demoSearchQuery": "cable hip abduction Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "side_lying_leg_raise",
@@ -5765,7 +5776,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded lateral walk proper form tutorial",
+   "demoSearchQuery": "banded lateral walk Jeff Nippard technique",
    "substitutes": [
     {
      "id": "hip_abduction_machine",
@@ -5808,7 +5819,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "side-lying leg raise proper form tutorial",
+   "demoSearchQuery": "side-lying leg raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_hip_abduction",
@@ -5862,7 +5873,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "barbell bench press proper form tutorial",
+   "demoSearchQuery": "barbell bench press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_bench_press",
@@ -5976,7 +5987,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pause bench press proper form tutorial",
+   "demoSearchQuery": "pause bench press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "bench_press",
@@ -6084,7 +6095,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "close-grip bench press proper form tutorial",
+   "demoSearchQuery": "close-grip bench press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "band_push_up",
@@ -6190,7 +6201,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "larsen press proper form tutorial",
+   "demoSearchQuery": "larsen press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_bench",
@@ -6294,7 +6305,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pin press proper form tutorial",
+   "demoSearchQuery": "pin press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_bench",
@@ -6397,7 +6408,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "floor press proper form tutorial",
+   "demoSearchQuery": "floor press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_floor_press",
@@ -6499,7 +6510,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell floor press proper form tutorial",
+   "demoSearchQuery": "dumbbell floor press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "floor_press",
@@ -6611,7 +6622,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell bench press proper form tutorial",
+   "demoSearchQuery": "dumbbell bench press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_chest_press",
@@ -6724,7 +6735,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm chest press proper form tutorial",
+   "demoSearchQuery": "single-arm chest press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_bench",
@@ -6830,7 +6841,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "machine chest press proper form tutorial",
+   "demoSearchQuery": "machine chest press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_bench",
@@ -6939,7 +6950,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "push-up proper form tutorial",
+   "demoSearchQuery": "push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_chest_press",
@@ -7043,7 +7054,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "incline push-up proper form tutorial",
+   "demoSearchQuery": "incline push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "push_up",
@@ -7147,7 +7158,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "deficit push-up proper form tutorial",
+   "demoSearchQuery": "deficit push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "band_push_up",
@@ -7253,7 +7264,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "decline push-up proper form tutorial",
+   "demoSearchQuery": "decline push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_incline_bench",
@@ -7360,7 +7371,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "band-resisted push-up proper form tutorial",
+   "demoSearchQuery": "band-resisted push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "deficit_push_up",
@@ -7463,7 +7474,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "close-grip push-up proper form tutorial",
+   "demoSearchQuery": "close-grip push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "dip",
@@ -7576,7 +7587,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "incline dumbbell press proper form tutorial",
+   "demoSearchQuery": "incline dumbbell press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_incline_press",
@@ -7694,7 +7705,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pause incline dumbbell press proper form tutorial",
+   "demoSearchQuery": "pause incline dumbbell press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_incline_bench",
@@ -7802,7 +7813,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "close-grip incline bench press proper form tutorial",
+   "demoSearchQuery": "close-grip incline bench press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "pause_incline_db_press",
@@ -7908,7 +7919,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "incline machine press proper form tutorial",
+   "demoSearchQuery": "incline machine press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "close_grip_incline_bench",
@@ -8013,7 +8024,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "landmine press proper form tutorial",
+   "demoSearchQuery": "landmine press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_incline_press",
@@ -8123,7 +8134,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "barbell overhead press proper form tutorial",
+   "demoSearchQuery": "barbell overhead press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_shoulder_press",
@@ -8243,7 +8254,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "seated dumbbell shoulder press proper form tutorial",
+   "demoSearchQuery": "seated dumbbell shoulder press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_shoulder_press",
@@ -8362,7 +8373,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "standing dumbbell shoulder press proper form tutorial",
+   "demoSearchQuery": "standing dumbbell shoulder press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "ohp",
@@ -8470,7 +8481,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "half-kneeling dumbbell press proper form tutorial",
+   "demoSearchQuery": "half-kneeling dumbbell press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "standing_db_press",
@@ -8578,7 +8589,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "machine shoulder press proper form tutorial",
+   "demoSearchQuery": "machine shoulder press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "seated_db_shoulder_press",
@@ -8681,7 +8692,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pike push-up proper form tutorial",
+   "demoSearchQuery": "pike push-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "standing_db_press",
@@ -8781,7 +8792,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded overhead press proper form tutorial",
+   "demoSearchQuery": "banded overhead press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_shoulder_press",
@@ -8885,7 +8896,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dip proper form tutorial",
+   "demoSearchQuery": "dip Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_dip",
@@ -8990,7 +9001,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "assisted dip proper form tutorial",
+   "demoSearchQuery": "assisted dip Jeff Nippard technique",
    "substitutes": [
     {
      "id": "dip",
@@ -9094,7 +9105,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bench dip proper form tutorial",
+   "demoSearchQuery": "bench dip Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_dip",
@@ -9203,7 +9214,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable fly proper form tutorial",
+   "demoSearchQuery": "cable fly Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "pec_deck",
@@ -9308,7 +9320,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pec deck proper form tutorial",
+   "demoSearchQuery": "pec deck Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_fly",
@@ -9412,7 +9425,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell fly proper form tutorial",
+   "demoSearchQuery": "dumbbell fly Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_fly",
@@ -9511,7 +9525,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded chest fly proper form tutorial",
+   "demoSearchQuery": "banded chest fly Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_fly",
@@ -9620,7 +9634,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "seated cable row proper form tutorial",
+   "demoSearchQuery": "seated cable row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_row",
@@ -9747,7 +9761,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "chest-supported row proper form tutorial",
+   "demoSearchQuery": "chest-supported row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "seated_cable_row",
@@ -9862,7 +9876,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "chest-supported high-elbow row proper form tutorial",
+   "demoSearchQuery": "chest-supported high-elbow row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_row",
@@ -9969,7 +9983,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "chest-supported t-bar row proper form tutorial",
+   "demoSearchQuery": "chest-supported t-bar row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "chest_supported_row",
@@ -10077,7 +10091,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "machine row proper form tutorial",
+   "demoSearchQuery": "machine row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_row",
@@ -10185,7 +10199,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "barbell bent-over row proper form tutorial",
+   "demoSearchQuery": "barbell bent-over row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "chest_supported_row",
@@ -10293,7 +10307,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pendlay row proper form tutorial",
+   "demoSearchQuery": "pendlay row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "bent_over_row",
@@ -10397,7 +10411,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pin row proper form tutorial",
+   "demoSearchQuery": "pin row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "inverted_row",
@@ -10509,7 +10523,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "one-arm dumbbell row proper form tutorial",
+   "demoSearchQuery": "one-arm dumbbell row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "half_kneeling_cable_row",
@@ -10616,7 +10630,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "meadows row proper form tutorial",
+   "demoSearchQuery": "meadows row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_row",
@@ -10722,7 +10736,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "half-kneeling single-arm cable row proper form tutorial",
+   "demoSearchQuery": "half-kneeling single-arm cable row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_row",
@@ -10826,7 +10840,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "inverted row proper form tutorial",
+   "demoSearchQuery": "inverted row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_row",
@@ -10928,7 +10942,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded row proper form tutorial",
+   "demoSearchQuery": "banded row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "machine_row",
@@ -11047,7 +11061,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "lat pulldown proper form tutorial",
+   "demoSearchQuery": "lat pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11173,7 +11187,7 @@
    "defaultRest": "2 min",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "neutral-grip lat pulldown proper form tutorial",
+   "demoSearchQuery": "neutral-grip lat pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "lat_pulldown",
@@ -11284,7 +11298,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "reverse-grip lat pulldown proper form tutorial",
+   "demoSearchQuery": "reverse-grip lat pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11390,7 +11404,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm pulldown proper form tutorial",
+   "demoSearchQuery": "single-arm pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11502,7 +11516,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pull-up proper form tutorial",
+   "demoSearchQuery": "pull-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11610,7 +11624,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "neutral-grip pull-up proper form tutorial",
+   "demoSearchQuery": "neutral-grip pull-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "pull_up",
@@ -11713,7 +11727,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "chin-up proper form tutorial",
+   "demoSearchQuery": "chin-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11819,7 +11833,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "eccentric pull-up proper form tutorial",
+   "demoSearchQuery": "eccentric pull-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -11923,7 +11937,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "assisted pull-up proper form tutorial",
+   "demoSearchQuery": "assisted pull-up Jeff Nippard technique",
    "substitutes": [
     {
      "id": "neutral_pulldown",
@@ -12025,7 +12039,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded pulldown proper form tutorial",
+   "demoSearchQuery": "banded pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "assisted_pull_up",
@@ -12127,7 +12141,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "straight-arm pulldown proper form tutorial",
+   "demoSearchQuery": "straight-arm pulldown Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_pullover",
@@ -12232,7 +12247,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell pullover proper form tutorial",
+   "demoSearchQuery": "dumbbell pullover Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "straight_arm_pulldown",
@@ -12331,7 +12347,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded straight-arm pulldown proper form tutorial",
+   "demoSearchQuery": "banded straight-arm pulldown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "db_pullover",
@@ -12438,7 +12454,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell biceps curl proper form tutorial",
+   "demoSearchQuery": "dumbbell biceps curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -12556,7 +12573,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell hammer curl proper form tutorial",
+   "demoSearchQuery": "dumbbell hammer curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -12669,7 +12687,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "incline dumbbell curl proper form tutorial",
+   "demoSearchQuery": "incline dumbbell curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -12773,7 +12792,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "spider curl proper form tutorial",
+   "demoSearchQuery": "spider curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -12874,7 +12894,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "concentration curl proper form tutorial",
+   "demoSearchQuery": "concentration curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "bayesian_curl",
@@ -12978,7 +12999,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm preacher curl proper form tutorial",
+   "demoSearchQuery": "single-arm preacher curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "bayesian_curl",
@@ -13082,7 +13104,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "inverse zottman curl proper form tutorial",
+   "demoSearchQuery": "inverse zottman curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_hammer_curl",
@@ -13186,7 +13209,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "pinch-grip curl proper form tutorial",
+   "demoSearchQuery": "pinch-grip curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_hammer_curl",
@@ -13293,7 +13317,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "ez bar curl proper form tutorial",
+   "demoSearchQuery": "ez bar curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_curl",
@@ -13400,7 +13425,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "reverse-grip ez bar curl proper form tutorial",
+   "demoSearchQuery": "reverse-grip ez bar curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_hammer_curl",
@@ -13504,7 +13530,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable curl proper form tutorial",
+   "demoSearchQuery": "cable curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_curl",
@@ -13609,7 +13636,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm cable curl proper form tutorial",
+   "demoSearchQuery": "single-arm cable curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "bayesian_curl",
@@ -13713,7 +13741,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bayesian cable curl proper form tutorial",
+   "demoSearchQuery": "bayesian cable curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "concentration_curl",
@@ -13814,7 +13843,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "lying cable curl proper form tutorial",
+   "demoSearchQuery": "lying cable curl Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -13915,7 +13945,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded curl proper form tutorial",
+   "demoSearchQuery": "banded curl Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_curl",
@@ -14021,7 +14051,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "triceps rope pushdown proper form tutorial",
+   "demoSearchQuery": "triceps rope pushdown Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "overhead_cable_triceps",
@@ -14119,7 +14150,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm rope triceps extension proper form tutorial",
+   "demoSearchQuery": "single-arm rope triceps extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_kickback",
@@ -14218,7 +14250,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "overhead cable triceps extension proper form tutorial",
+   "demoSearchQuery": "overhead cable triceps extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "triceps_pushdown",
@@ -14313,7 +14346,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "single-arm overhead triceps extension proper form tutorial",
+   "demoSearchQuery": "single-arm overhead triceps extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_kickback",
@@ -14406,7 +14440,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cross-body cable triceps extension proper form tutorial",
+   "demoSearchQuery": "cross-body cable triceps extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_skull_crusher",
@@ -14497,7 +14532,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "horizontal cable triceps extension proper form tutorial",
+   "demoSearchQuery": "horizontal cable triceps extension Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_crossover_triceps",
@@ -14589,7 +14625,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable triceps kickback proper form tutorial",
+   "demoSearchQuery": "cable triceps kickback Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "db_kickback",
@@ -14679,7 +14716,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell triceps kickback proper form tutorial",
+   "demoSearchQuery": "dumbbell triceps kickback Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_kickback",
@@ -14771,7 +14809,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "skull crusher proper form tutorial",
+   "demoSearchQuery": "skull crusher Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_crossover_triceps",
@@ -14862,7 +14901,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell skull crusher proper form tutorial",
+   "demoSearchQuery": "dumbbell skull crusher Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_crossover_triceps",
@@ -14951,7 +14991,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded triceps pushdown proper form tutorial",
+   "demoSearchQuery": "banded triceps pushdown Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_crossover_triceps",
@@ -15049,7 +15089,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "lateral raise proper form tutorial",
+   "demoSearchQuery": "lateral raise Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_lateral_raise",
@@ -15115,7 +15156,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "lateral raise iso-hold proper form tutorial",
+   "demoSearchQuery": "lateral raise iso-hold Jeff Nippard technique",
    "substitutes": [
     {
      "id": "lateral_raise",
@@ -15172,7 +15213,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable lateral raise proper form tutorial",
+   "demoSearchQuery": "cable lateral raise Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "lateral_raise",
@@ -15228,7 +15270,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "machine lateral raise proper form tutorial",
+   "demoSearchQuery": "machine lateral raise Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "lateral_raise",
@@ -15279,7 +15322,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded lateral raise proper form tutorial",
+   "demoSearchQuery": "banded lateral raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "lateral_raise",
@@ -15339,7 +15382,8 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "face pull proper form tutorial",
+   "demoSearchQuery": "face pull Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "band_pull_apart",
@@ -15418,7 +15462,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "reverse pec deck proper form tutorial",
+   "demoSearchQuery": "reverse pec deck Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_reverse_fly",
@@ -15493,7 +15538,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable reverse fly proper form tutorial",
+   "demoSearchQuery": "cable reverse fly Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "reverse_db_fly",
@@ -15563,7 +15609,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bent-over dumbbell reverse fly proper form tutorial",
+   "demoSearchQuery": "bent-over dumbbell reverse fly Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_reverse_fly",
@@ -15631,7 +15678,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "band pull-apart proper form tutorial",
+   "demoSearchQuery": "band pull-apart Jeff Nippard technique",
    "substitutes": [
     {
      "id": "face_pull",
@@ -15700,7 +15747,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "prone y raise proper form tutorial",
+   "demoSearchQuery": "prone y raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "wall_slide",
@@ -15764,7 +15811,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "wall slide proper form tutorial",
+   "demoSearchQuery": "wall slide Jeff Nippard technique",
    "substitutes": [
     {
      "id": "prone_y_raise",
@@ -15833,7 +15880,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "dumbbell shrug proper form tutorial",
+   "demoSearchQuery": "dumbbell shrug Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_shrug_in",
@@ -15907,7 +15955,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "incline dumbbell shrug proper form tutorial",
+   "demoSearchQuery": "incline dumbbell shrug Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "cable_shrug_in",
@@ -15978,7 +16027,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "banded shrug proper form tutorial",
+   "demoSearchQuery": "banded shrug Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_shrug_in",
@@ -16049,7 +16098,8 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable shrug-in proper form tutorial",
+   "demoSearchQuery": "cable shrug-in Jeff Nippard technique",
+   "advancedTip": "Optional on the last set: once you can't do another full rep, add a few partial reps in the stretched half of the movement.",
    "substitutes": [
     {
      "id": "incline_db_shrug",
@@ -16118,7 +16168,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "crunch proper form tutorial",
+   "demoSearchQuery": "crunch Jeff Nippard technique",
    "substitutes": [
     {
      "id": "reverse_crunch",
@@ -16213,7 +16263,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bicycle crunch proper form tutorial",
+   "demoSearchQuery": "bicycle crunch Jeff Nippard technique",
    "substitutes": [
     {
      "id": "crunch",
@@ -16314,7 +16364,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "weighted crunch proper form tutorial",
+   "demoSearchQuery": "weighted crunch Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_crunch",
@@ -16412,7 +16462,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "cable crunch proper form tutorial",
+   "demoSearchQuery": "cable crunch Jeff Nippard technique",
    "substitutes": [
     {
      "id": "weighted_crunch",
@@ -16511,7 +16561,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "hanging leg raise proper form tutorial",
+   "demoSearchQuery": "hanging leg raise Jeff Nippard technique",
    "substitutes": [
     {
      "id": "crunch",
@@ -16607,7 +16657,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "reverse crunch proper form tutorial",
+   "demoSearchQuery": "reverse crunch Jeff Nippard technique",
    "substitutes": [
     {
      "id": "crunch",
@@ -16702,7 +16752,7 @@
    "defaultRest": "45 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "plank proper form tutorial",
+   "demoSearchQuery": "plank Jeff Nippard technique",
    "substitutes": [
     {
      "id": "dead_bug",
@@ -16810,7 +16860,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "long-lever plank proper form tutorial",
+   "demoSearchQuery": "long-lever plank Jeff Nippard technique",
    "substitutes": [
     {
      "id": "plank_saw",
@@ -16913,7 +16963,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "plank saw proper form tutorial",
+   "demoSearchQuery": "plank saw Jeff Nippard technique",
    "substitutes": [
     {
      "id": "long_lever_plank",
@@ -17016,7 +17066,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "l-sit hold proper form tutorial",
+   "demoSearchQuery": "l-sit hold Jeff Nippard technique",
    "substitutes": [
     {
      "id": "hanging_leg_raise",
@@ -17113,7 +17163,7 @@
    "defaultRest": "45 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "dead bug proper form tutorial",
+   "demoSearchQuery": "dead bug Jeff Nippard technique",
    "substitutes": [
     {
      "id": "bird_dog",
@@ -17217,7 +17267,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "bird dog proper form tutorial",
+   "demoSearchQuery": "bird dog Jeff Nippard technique",
    "substitutes": [
     {
      "id": "dead_bug",
@@ -17321,7 +17371,7 @@
    "defaultRest": "45 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "pallof press proper form tutorial",
+   "demoSearchQuery": "pallof press Jeff Nippard technique",
    "substitutes": [
     {
      "id": "side_plank",
@@ -17413,7 +17463,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "shoulder taps proper form tutorial",
+   "demoSearchQuery": "shoulder taps Jeff Nippard technique",
    "substitutes": [
     {
      "id": "pallof_press",
@@ -17504,7 +17554,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "side plank proper form tutorial",
+   "demoSearchQuery": "side plank Jeff Nippard technique",
    "substitutes": [
     {
      "id": "pallof_press",
@@ -17596,7 +17646,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "renegade row proper form tutorial",
+   "demoSearchQuery": "renegade row Jeff Nippard technique",
    "substitutes": [
     {
      "id": "pallof_press",
@@ -17691,7 +17741,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "kneeling cable rotation proper form tutorial",
+   "demoSearchQuery": "kneeling cable rotation Jeff Nippard technique",
    "substitutes": [
     {
      "id": "rotation_pull_across",
@@ -17753,7 +17803,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "rotational pull-across proper form tutorial",
+   "demoSearchQuery": "rotational pull-across Jeff Nippard technique",
    "substitutes": [
     {
      "id": "cable_rotation",
@@ -17819,7 +17869,7 @@
    "defaultRest": "60 sec",
    "seed": true,
    "videoSources": [],
-   "demoSearchQuery": "farmer's carry proper form tutorial",
+   "demoSearchQuery": "farmer's carry Jeff Nippard technique",
    "substitutes": [
     {
      "id": "suitcase_carry",
@@ -17918,7 +17968,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "suitcase carry proper form tutorial",
+   "demoSearchQuery": "suitcase carry Jeff Nippard technique",
    "substitutes": [
     {
      "id": "grip_hold",
@@ -18012,7 +18062,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "goblet hold proper form tutorial",
+   "demoSearchQuery": "goblet hold Jeff Nippard technique",
    "substitutes": [
     {
      "id": "farmers_carry",
@@ -18111,7 +18161,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "isometric grip hold proper form tutorial",
+   "demoSearchQuery": "isometric grip hold Jeff Nippard technique",
    "substitutes": [
     {
      "id": "farmers_carry",
@@ -18211,7 +18261,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "box jump proper form tutorial",
+   "demoSearchQuery": "box jump Jeff Nippard technique",
    "substitutes": [
     {
      "id": "squat_jump",
@@ -18301,7 +18351,7 @@
    "cueSource": "drafted - coach to review",
    "seed": false,
    "videoSources": [],
-   "demoSearchQuery": "squat jump proper form tutorial",
+   "demoSearchQuery": "squat jump Jeff Nippard technique",
    "substitutes": [
     {
      "id": "box_jump",
