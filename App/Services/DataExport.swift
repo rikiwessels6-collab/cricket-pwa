@@ -25,6 +25,7 @@ enum DataExport {
         struct CheckInRecord: Encodable {
             let date: Date, weightKg: Double?, sleepHours: Double?, steps: Int?
             let ratings: [String: Int], measurements: [String: Double], note: String
+            let activeMinutes: Int?, healthWorkoutCount: Int?
         }
         struct FoodRecord: Encodable {
             let loggedAt: Date, eatenAt: Date, meal: String, source: String, name: String, brand: String?, barcode: String?
@@ -80,7 +81,8 @@ enum DataExport {
                                            metrics: $0.metrics, dailyCheckIns: $0.dailyCheckIns) },
             consents: s?.consents ?? [:],
             checkIns: checkIns.map { Snapshot.CheckInRecord(date: $0.date, weightKg: $0.weightKg, sleepHours: $0.sleepHours, steps: $0.steps,
-                                                            ratings: $0.ratings, measurements: $0.measurements, note: $0.note) },
+                                                            ratings: $0.ratings, measurements: $0.measurements, note: $0.note,
+                                                            activeMinutes: $0.activeMinutes, healthWorkoutCount: $0.healthWorkoutCount) },
             foodEntries: food.map { Snapshot.FoodRecord(loggedAt: $0.loggedAt, eatenAt: $0.eatenAt, meal: $0.mealRaw, source: $0.sourceRaw,
                                                         name: $0.name, brand: $0.brand, barcode: $0.barcode, grams: $0.grams, kcal: $0.kcal,
                                                         protein: $0.protein, carbs: $0.carbs, fat: $0.fat, fibre: $0.fibre, confidence: $0.confidence) },

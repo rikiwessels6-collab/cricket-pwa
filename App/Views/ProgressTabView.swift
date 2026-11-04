@@ -44,6 +44,7 @@ struct ProgressTabView: View {
                     NavigationLink { WorkoutHistoryView() } label: { Label("Workout history", systemImage: "calendar") }
                         .accessibilityIdentifier("workoutHistory")
                 }
+                HealthActivitySection()
                 Section("Weight trend") { weightSection }
                 if let m = measurementSummary { Section("Measurements") { m } }
                 Section("Check-ins") {
@@ -128,6 +129,8 @@ struct CheckInDetail: View {
                 if let w = entry.weightKg { LabeledContent("Weight", value: String(format: "%.1f kg", w)) }
                 if let s = entry.sleepHours { LabeledContent("Sleep (average)", value: String(format: "%.1f h", s)) }
                 if let s = entry.steps { LabeledContent("Steps (average)", value: s.formatted()) }
+                if let n = entry.healthWorkoutCount { LabeledContent("Workouts (from Health)", value: "\(n)") }
+                if let m = entry.activeMinutes { LabeledContent("Active minutes (from Health)", value: "\(m)") }
             }
             if !entry.ratings.isEmpty {
                 Section("How you felt (1-10)") {
@@ -156,6 +159,8 @@ struct CheckInSheet: View {
     @Query private var profiles: [UserProfile]
     @Query private var appSettings: [AppSettings]
     @State private var healthNote: String?
+    @State private var activeMinutes: Int?
+    @State private var workoutCount: Int?
     @State private var date = Date.now
     @State private var weight: Double?
     @State private var sleep: Double?
@@ -186,11 +191,18 @@ struct CheckInSheet: View {
                             Task {
                                 let steps = await HealthService.averageDailySteps()
                                 let kg = await HealthService.latestWeightKg()
+                                let workouts = await HealthService.recentWorkouts(days: 7)
                                 if let steps { self.steps = steps }
                                 if let kg { weight = (kg * 10).rounded() / 10 }
-                                healthNote = (steps == nil && kg == nil)
+                                if !workouts.isEmpty {
+                                    workoutCount = workouts.count
+                                    activeMinutes = workouts.reduce(0) { $0 + $1.minutes }
+                                }
+                                healthNote = (steps == nil && kg == nil && workouts.isEmpty)
                                     ? "Nothing found in Apple Health. Check Health > Data Access for Steady Strength."
-                                    : "Filled in from Apple Health. Check the numbers and edit anything."
+                                    : "Filled in from Apple Health"
+                                        + (workouts.isEmpty ? "" : " (\(workouts.count) workout\(workouts.count == 1 ? "" : "s"), \(workouts.reduce(0) { $0 + $1.minutes }) active minutes this week)")
+                                        + ". Check the numbers and edit anything."
                             }
                         } label: { Label("Fill from Apple Health", systemImage: "heart.text.square") }
                         .accessibilityIdentifier("fillFromHealth")
@@ -237,9 +249,82 @@ struct CheckInSheet: View {
         let tapClean = tape.filter { $0.value > 0 }
         let entry = CheckInEntry(date: date, weightKg: weight.flatMap { $0 > 0 ? $0 : nil }, sleepHours: sleep, steps: steps,
                                  ratings: ratings, measurements: tapClean, note: note)
+        entry.activeMinutes = activeMinutes
+        entry.healthWorkoutCount = workoutCount
         context.insert(entry)
         if let w = entry.weightKg, let p = profiles.first, Calendar.current.isDateInToday(date) { p.weightKg = w }
         try? context.save()
         dismiss()
+    }
+}
+
+
+/// Your week from Apple Health: steps each day, workouts and active minutes, next to what you do in the app.
+struct HealthActivitySection: View {
+    @Query private var appSettings: [AppSettings]
+    @State private var days: [HealthService.DailySteps] = []
+    @State private var workouts: [HealthService.Workout] = []
+    @State private var loaded = false
+
+    private var enabled: Bool { appSettings.first?.consents[DataType.appleHealth.rawValue] != nil }
+
+    var body: some View {
+        Section {
+            if !enabled {
+                Text("Turn on Apple Health in Settings to see your steps and activities here.")
+                    .font(.footnote).foregroundStyle(Color.inkMuted)
+            } else if !loaded {
+                ProgressView()
+            } else if days.allSatisfy({ $0.steps == 0 }) && workouts.isEmpty {
+                Text("Nothing found in Apple Health for the last 7 days. Check Health > Data Access for Steady Strength.")
+                    .font(.footnote).foregroundStyle(Color.inkMuted)
+            } else {
+                let withData = days.filter { $0.steps > 0 }
+                let average = withData.isEmpty ? 0 : withData.map(\.steps).reduce(0, +) / withData.count
+                let minutes = workouts.reduce(0) { $0 + $1.minutes }
+                HStack(spacing: 0) {
+                    stat(average.formatted(), "avg steps a day")
+                    stat("\(workouts.count)", "workouts")
+                    stat("\(minutes)", "active min")
+                }
+                Chart(days) { d in
+                    BarMark(x: .value("Day", d.date, unit: .day), y: .value("Steps", d.steps))
+                        .foregroundStyle(Color.emerald)
+                }
+                .frame(height: 120)
+                .accessibilityLabel("Steps each day for the last 7 days")
+                ForEach(workouts) { w in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(w.name).foregroundStyle(Color.ink)
+                            Text(w.start.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute()))
+                                .font(.caption).foregroundStyle(Color.inkMuted)
+                        }
+                        Spacer()
+                        Text("\(w.minutes) min" + (w.kcal.map { " · \($0) kcal" } ?? ""))
+                            .font(.footnote.monospacedDigit()).foregroundStyle(Color.inkMuted)
+                    }
+                }
+            }
+        } header: { Text("This week from Apple Health") } footer: {
+            if enabled { Text("Read from Apple Health on this phone. It includes workouts recorded by your watch and other apps. Nothing is written back or shared.") }
+        }
+        .task(id: enabled) {
+            guard enabled else { return }
+            _ = await HealthService.requestAccess()
+            async let d = HealthService.dailySteps(days: 7)
+            async let w = HealthService.recentWorkouts(days: 7)
+            days = await d
+            workouts = await w
+            loaded = true
+        }
+    }
+
+    private func stat(_ value: String, _ label: String) -> some View {
+        VStack(spacing: 2) {
+            Text(value).font(.title3.weight(.bold).monospacedDigit()).foregroundStyle(Color.ink)
+            Text(label).font(.caption2).foregroundStyle(Color.inkMuted).multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
     }
 }

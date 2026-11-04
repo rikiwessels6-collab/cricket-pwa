@@ -349,6 +349,9 @@ final class CheckInEntry {
     var ratings: [String: Int] = [:]
     var measurements: [String: Double] = [:]
     var note: String = ""
+    /// From Apple Health when you tap Fill from Apple Health: minutes of recorded workouts and how many, in the last 7 days.
+    var activeMinutes: Int? = nil
+    var healthWorkoutCount: Int? = nil
 
     init(date: Date, weightKg: Double?, sleepHours: Double?, steps: Int?,
          ratings: [String: Int], measurements: [String: Double], note: String) {

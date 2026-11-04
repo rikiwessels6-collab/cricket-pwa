@@ -33,12 +33,8 @@ struct SettingsView: View {
                         HStack {
                             Text("Weight")
                             Spacer()
-                            TextField("kg", value: Binding(get: { p.weightKg },
-                                                           set: { p.weightKg = min(max($0, 30), 300) }), format: .number.precision(.fractionLength(0...1)))
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                                .frame(width: 70)
-                                .accessibilityIdentifier("weightField")
+                            WeightField(kg: Binding(get: { p.weightKg }, set: { p.weightKg = $0 }))
+                                .frame(maxWidth: 150)
                             Text("kg").foregroundStyle(.secondary)
                             Stepper("Weight", value: Binding(get: { p.weightKg }, set: { p.weightKg = $0 }), in: 30...300, step: 0.5)
                                 .labelsHidden()
@@ -98,9 +94,15 @@ struct SettingsView: View {
                                 }
                             }))
                             .accessibilityIdentifier("healthToggle")
+                        if s.consents[DataType.appleHealth.rawValue] != nil {
+                            Button("Review what Steady Strength can read") {
+                                Task { _ = await HealthService.requestAccess() }
+                            }
+                            .accessibilityIdentifier("reviewHealth")
+                        }
                         if let healthMessage { Text(healthMessage).font(.footnote).foregroundStyle(.secondary) }
                     } header: { Text("Apple Health") } footer: {
-                        Text("Reads your daily steps and body weight so your check-in can fill itself in. Nothing is written to Health or shared. To change what the app can read, open the iPhone Settings app, then Health, then Data Access.")
+                        Text("Reads your daily steps, workouts and body weight so your check-in can fill itself in and Progress can show your week. Nothing is written to Health or shared. To change what the app can read, open the iPhone Settings app, then Health, then Data Access.")
                     }
                     Section {
                         Toggle("Remind me", isOn: Binding(
@@ -246,4 +248,38 @@ struct PrivacyPolicyView: View {
     }
 
     private func heading(_ s: String) -> some View { Text(s).font(.headline).padding(.top, 4) }
+}
+
+
+/// A weight box you can type into. It only checks the number when you finish (tap Done or leave the box),
+/// so typing 82.5 works digit by digit. Numbers outside 30 to 300 kg are ignored and the old value comes back.
+struct WeightField: View {
+    @Binding var kg: Double
+    @State private var text = ""
+    @FocusState private var focused: Bool
+
+    var body: some View {
+        HStack(spacing: 8) {
+            TextField("kg", text: $text)
+                .keyboardType(.decimalPad)
+                .multilineTextAlignment(.trailing)
+                .focused($focused)
+                .accessibilityIdentifier("weightField")
+            if focused {
+                Button("Done") { focused = false }.font(.footnote.weight(.semibold))
+            }
+        }
+        .onAppear { text = Self.display(kg) }
+        .onChange(of: focused) { _, isFocused in if !isFocused { commit() } }
+        .onChange(of: kg) { _, new in if !focused { text = Self.display(new) } }
+        .onSubmit { commit() }
+    }
+
+    private func commit() {
+        let cleaned = text.replacingOccurrences(of: ",", with: ".").trimmingCharacters(in: .whitespaces)
+        if let value = Double(cleaned), value >= 30, value <= 300 { kg = (value * 10).rounded() / 10 }
+        text = Self.display(kg)
+    }
+
+    static func display(_ value: Double) -> String { NumberText.format((value * 10).rounded() / 10) }
 }
