@@ -38,6 +38,12 @@ struct ProgressTabView: View {
                     }
                     .accessibilityIdentifier("startCheckIn")
                 }
+                Section("Strength and history") {
+                    NavigationLink { StrengthListView() } label: { Label("Lifts and records", systemImage: "chart.line.uptrend.xyaxis") }
+                        .accessibilityIdentifier("liftsAndRecords")
+                    NavigationLink { WorkoutHistoryView() } label: { Label("Workout history", systemImage: "calendar") }
+                        .accessibilityIdentifier("workoutHistory")
+                }
                 Section("Weight trend") { weightSection }
                 if let m = measurementSummary { Section("Measurements") { m } }
                 Section("Check-ins") {

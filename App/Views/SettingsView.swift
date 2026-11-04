@@ -71,6 +71,8 @@ struct SettingsView: View {
                         Stepper(value: Binding(get: { plan.lowerIncrement }, set: { plan.lowerIncrement = $0 }), in: 1...10, step: 0.5) {
                             LabeledContent("Squat and deadlift step", value: "\(NumberText.format(plan.lowerIncrement)) kg")
                         }
+                        NavigationLink("Bar, plates and warm-ups") { PlateCalculatorView() }
+                            .accessibilityIdentifier("platesLink")
                     } header: { Text("Training") } footer: {
                         Text("Change equipment when you're somewhere different, such as a hotel; exercises are swapped automatically. Weight steps are how much the app suggests adding after a good session; you always confirm.")
                     }

@@ -257,6 +257,7 @@ struct ActiveWorkoutView: View {
                 if let end = restEndsAt {
                     RestTimerBar(endsAt: end, total: restTotal,
                                  onAdd: { restEndsAt = (restEndsAt ?? .now).addingTimeInterval(30); restTotal += 30 },
+                                 onLess: { restEndsAt = (restEndsAt ?? .now).addingTimeInterval(-15); restTotal = max(15, restTotal - 15) },
                                  onDone: { restEndsAt = nil })
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
@@ -359,6 +360,9 @@ struct ExerciseCard: View {
     let onSwap: () -> Void
     let onInfo: () -> Void
     @Environment(\.modelContext) private var context
+    @Query private var appSettings: [AppSettings]
+    @Query private var notes: [ExerciseNote]
+    @State private var showPlates = false
 
     private var done: [SetLog] {
         log.sets.filter { $0.slotOrder == item.id }.sorted { $0.setIndex < $1.setIndex }
@@ -377,6 +381,18 @@ struct ExerciseCard: View {
     }
     private var startWeight: Double {
         done.last?.weight ?? suggestedWeight ?? WorkoutPlanner.defaultStartWeight(exercise)
+    }
+    private var isBarbell: Bool {
+        exercise?.equipment.contains { $0.contains("barbell") || $0.contains("ez_bar") || $0.contains("trap_bar") } ?? false
+    }
+    /// A guide for the warm-up before a heavy lift; never logged.
+    private var warmup: [LoggedSet] {
+        guard item.isMainLift, loadable, let settings = appSettings.first else { return [] }
+        return Warmup.sets(style: Warmup.Style(rawValue: settings.warmupStyleRaw) ?? .percent, working: startWeight, bar: settings.barWeightKg)
+    }
+    private var myNote: String? {
+        let text = notes.first { $0.exerciseId == item.exerciseId }?.text ?? ""
+        return text.isEmpty ? nil : text
     }
 
     var body: some View {
@@ -398,6 +414,10 @@ struct ExerciseCard: View {
                     .buttonStyle(.plain)
                     .accessibilityHint("Form cues and demo video")
                     Text(prescription).font(.subheadline).foregroundStyle(.secondary)
+                    if let myNote {
+                        Label(myNote, systemImage: "note.text").font(.footnote).foregroundStyle(Color.gold)
+                            .accessibilityLabel("Your note: \(myNote)")
+                    }
                 }
                 Spacer()
                 Button(action: onSwap) {
@@ -432,9 +452,26 @@ struct ExerciseCard: View {
                     .font(.subheadline)
                 }
             }
+            if loadable && isBarbell {
+                Button { showPlates = true } label: {
+                    Label("Plates for \(NumberText.format(startWeight)) kg", systemImage: "circle.grid.2x1")
+                }
+                .font(.footnote).buttonStyle(.bordered).tint(Color.gold)
+                .accessibilityIdentifier("platesButton")
+            }
+            if !warmup.isEmpty {
+                DisclosureGroup {
+                    Text(warmup.map { "\(NumberText.format($0.weight)) kg × \($0.reps)" }.joined(separator: "   ·   "))
+                        .font(.footnote.monospacedDigit()).foregroundStyle(Color.inkMuted)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                } label: {
+                    Text("Warm-up sets (a guide)").font(.footnote.weight(.semibold)).foregroundStyle(Color.inkMuted)
+                }
+                .tint(Color.gold)
+            }
             VStack(spacing: 8) {
                 HStack {
-                    Text("SET").frame(width: 34, alignment: .leading)
+                    Text("SET".frame(width: 34, alignment: .leading)
                     Text(loadable ? "KG" : "LOAD").frame(maxWidth: .infinity)
                     Text("REPS").frame(maxWidth: .infinity)
                     Color.clear.frame(width: 44)
@@ -454,11 +491,25 @@ struct ExerciseCard: View {
                     } onUndo: { set in
                         context.delete(set)
                         try? context.save()
+                    } onEffort: { set, value in
+                        set.rpe = value
+                        try? context.save()
                     }
+                }
+                if !done.isEmpty && done.allSatisfy({ $0.rpe == nil }) {
+                    Text("Press and hold a ticked set to record how hard it felt (RPE).")
+                        .font(.caption2).foregroundStyle(Color.inkMuted)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }
         .card()
+        .sheet(isPresented: $showPlates) {
+            NavigationStack {
+                PlateCalculatorView(target: startWeight)
+                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { showPlates = false } } }
+            }
+        }
     }
 
     private var prescription: String {
@@ -513,6 +564,7 @@ struct SetRow: View {
     var focused: FocusState<Bool>.Binding
     let onDone: (Double, Int) -> Void
     let onUndo: (SetLog) -> Void
+    let onEffort: (SetLog, Double) -> Void
     @State private var weight: Double?
     @State private var reps: Int?
     @State private var ready = false
@@ -525,14 +577,19 @@ struct SetRow: View {
                 .frame(width: 34, alignment: .leading)
             if let logged {
                 ValuePill(text: loadable ? NumberText.format(logged.weight) : "BW", done: true)
-                ValuePill(text: "\(logged.reps)", done: true)
+                ValuePill(text: logged.rpe.map { "\(logged.reps) @\(NumberText.format($0))" } ?? "\(logged.reps)", done: true)
                 Button { onUndo(logged) } label: {
                     Image(systemName: "checkmark")
                         .font(.body.weight(.bold)).foregroundStyle(Color.night)
                         .frame(width: 44, height: 44)
                         .background(LinearGradient.brand, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
-                .accessibilityLabel("Set \(index + 1) done, \(NumberText.format(logged.weight)) kilograms, \(logged.reps) reps. Tap to undo")
+                .accessibilityLabel("Set \(index + 1) done, \(NumberText.format(logged.weight)) kilograms, \(logged.reps) reps. Tap to undo. Hold to record effort.")
+                .contextMenu {
+                    ForEach([6.0, 7.0, 8.0, 9.0, 10.0], id: \.self) { value in
+                        Button("RPE \(NumberText.format(value)): \(SetRow.effortWord(value))") { onEffort(logged, value) }
+                    }
+                }
             } else {
                 if loadable {
                     TextField("0", value: $weight, format: .number)
@@ -567,6 +624,19 @@ struct SetRow: View {
     }
 }
 
+extension SetRow {
+    /// Plain words for the effort scale (reps left in the tank: RPE 10 means none).
+    static func effortWord(_ rpe: Double) -> String {
+        switch rpe {
+        case ..<6.5: return "easy"
+        case ..<7.5: return "comfortable"
+        case ..<8.5: return "challenging"
+        case ..<9.5: return "very hard"
+        default: return "all-out"
+        }
+    }
+}
+
 struct PillField: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -595,6 +665,7 @@ struct RestTimerBar: View {
     let endsAt: Date
     let total: Int
     let onAdd: () -> Void
+    let onLess: () -> Void
     let onDone: () -> Void
     var body: some View {
         TimelineView(.periodic(from: .now, by: 0.5)) { ctx in
@@ -614,9 +685,14 @@ struct RestTimerBar: View {
                 }
                 Spacer()
                 if left > 0 {
-                    Button("+30s", action: onAdd).font(.subheadline.weight(.semibold))
-                        .padding(.horizontal, 12).padding(.vertical, 8)
+                    Button("-15", action: onLess).font(.subheadline.weight(.semibold))
+                        .padding(.horizontal, 10).padding(.vertical, 8)
                         .background(Color.white.opacity(0.10), in: Capsule())
+                        .accessibilityLabel("15 seconds less rest")
+                    Button("+30", action: onAdd).font(.subheadline.weight(.semibold))
+                        .padding(.horizontal, 10).padding(.vertical, 8)
+                        .background(Color.white.opacity(0.10), in: Capsule())
+                        .accessibilityLabel("30 seconds more rest")
                 }
                 Button(left > 0 ? "Skip" : "OK", action: onDone).font(.subheadline.weight(.semibold))
                     .padding(.horizontal, 12).padding(.vertical, 8)

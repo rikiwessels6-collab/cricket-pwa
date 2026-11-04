@@ -150,6 +150,10 @@ final class AppSettings {
     var remindersEnabled: Bool = false
     var reminderHour: Int = 7
     var reminderMinute: Int = 0
+    /// Your bar and plates, used by the plate calculator and warm-up sets. Plate keys are weights in kg; values are pairs owned.
+    var barWeightKg: Double = 20
+    var plateStock: [String: Int] = ["25": 4, "20": 2, "15": 2, "10": 4, "5": 4, "2.5": 4, "1.25": 2]
+    var warmupStyleRaw: String = "percent"
 
     init() {
         onboardingComplete = false
@@ -350,5 +354,20 @@ final class CheckInEntry {
          ratings: [String: Int], measurements: [String: Double], note: String) {
         self.date = date; self.weightKg = weightKg; self.sleepHours = sleepHours; self.steps = steps
         self.ratings = ratings; self.measurements = measurements; self.note = note
+    }
+}
+
+
+// MARK: - Exercise notes
+
+/// A note you keep on an exercise, for example a pin hole or a cue. Shown during the workout.
+@Model
+final class ExerciseNote {
+    @Attribute(.unique) var exerciseId: String
+    var text: String
+
+    init(exerciseId: String, text: String) {
+        self.exerciseId = exerciseId
+        self.text = text
     }
 }

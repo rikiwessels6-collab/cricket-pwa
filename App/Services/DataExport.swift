@@ -37,6 +37,7 @@ enum DataExport {
             let programId: String, week: Int, name: String, version: String, startedAt: Date, finishedAt: Date?
             let notes: String, sets: [SetRecord]
         }
+        struct NoteRecord: Encodable { let exerciseId: String, text: String }
         let exportedAt: Date
         let app = "Steady Strength"
         let profile: Profile?
@@ -47,6 +48,7 @@ enum DataExport {
         let checkIns: [CheckInRecord]
         let foodEntries: [FoodRecord]
         let workouts: [WorkoutRecord]
+        let exerciseNotes: [NoteRecord]
     }
 
     @MainActor
@@ -59,6 +61,7 @@ enum DataExport {
         let checkIns = try context.fetch(FetchDescriptor<CheckInEntry>(sortBy: [SortDescriptor(\.date)]))
         let food = try context.fetch(FetchDescriptor<FoodEntry>(sortBy: [SortDescriptor(\.eatenAt)]))
         let workouts = try context.fetch(FetchDescriptor<WorkoutLog>(sortBy: [SortDescriptor(\.startedAt)]))
+        let notes = try context.fetch(FetchDescriptor<ExerciseNote>())
         let snapshot = Snapshot(
             exportedAt: .now,
             profile: p.map { Snapshot.Profile(name: $0.name, birthYear: $0.birthYear, sex: $0.sexRaw, heightCm: $0.heightCm,
@@ -86,7 +89,8 @@ enum DataExport {
                                        startedAt: w.startedAt, finishedAt: w.finishedAt, notes: w.notes,
                                        sets: w.sets.sorted { ($0.slotOrder, $0.setIndex) < ($1.slotOrder, $1.setIndex) }
                                            .map { Snapshot.SetRecord(exerciseId: $0.exerciseId, setIndex: $0.setIndex, weight: $0.weight, reps: $0.reps, rpe: $0.rpe) })
-            })
+            },
+            exerciseNotes: notes.map { Snapshot.NoteRecord(exerciseId: $0.exerciseId, text: $0.text) })
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601

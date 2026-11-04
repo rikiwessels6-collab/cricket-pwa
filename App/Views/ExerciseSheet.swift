@@ -47,6 +47,7 @@ struct ExerciseSheet: View {
                         .accessibilityHint("Opens a YouTube search for Jeff Nippard's technique video in Safari")
                     }
                     MyClipSection(exerciseId: exerciseId)
+                    MyNoteSection(exerciseId: exerciseId)
                     Section("Works") {
                         Text(ex.primaryMuscles.map(Self.muscleName).joined(separator: ", "))
                         if !ex.secondaryMuscles.isEmpty {
@@ -167,5 +168,34 @@ struct MyClipSection: View {
     private func load() {
         clipURL = ClipStore.url(for: exerciseId)
         player = clipURL.map { AVPlayer(url: $0) }
+    }
+}
+
+
+/// A note that shows on the exercise during workouts, for example a pin hole or a cue.
+struct MyNoteSection: View {
+    let exerciseId: String
+    @Environment(\.modelContext) private var context
+    @Query private var notes: [ExerciseNote]
+
+    private var existing: ExerciseNote? { notes.first { $0.exerciseId == exerciseId } }
+
+    var body: some View {
+        Section {
+            TextField("e.g. bench: pin hole 4", text: Binding(
+                get: { existing?.text ?? "" },
+                set: { text in
+                    if let note = existing {
+                        note.text = text
+                    } else if !text.isEmpty {
+                        context.insert(ExerciseNote(exerciseId: exerciseId, text: text))
+                    }
+                    try? context.save()
+                }), axis: .vertical)
+                .lineLimit(1...4)
+                .accessibilityIdentifier("exerciseNote")
+        } header: { Text("My note") } footer: {
+            Text("Shown on this exercise during your workouts. Stays on this phone.")
+        }
     }
 }
