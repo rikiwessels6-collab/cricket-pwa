@@ -1,10 +1,13 @@
 name: TestFlight
 
 # Builds the app on a GitHub Mac, signs it with your Apple account, and uploads
-# it to TestFlight. Run it from the Actions tab (Run workflow) once the six
-# secrets below are saved.
+# it to TestFlight once the secrets below are saved.
+# Start it by pushing to a branch called `testflight` (this repo's default
+# branch has no workflows, so the Actions tab can't show a Run button).
 on:
   workflow_dispatch:
+  push:
+    branches: [testflight]
 
 jobs:
   testflight:
