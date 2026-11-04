@@ -120657,8 +120657,9 @@
     "sheet": "section 3"
    },
    "catalogue": "core",
-   "contentStatus": "draft",
-   "reviewed": false,
+   "contentStatus": "reviewed",
+   "reviewed": true,
+   "reviewedBy": "App owner, qualified personal trainer (marked reviewed at their request)",
    "equipmentNeeded": [
     "adj_bench",
     "adj_bench/row_machine",
@@ -131427,8 +131428,9 @@
     "sheet": "section 3"
    },
    "catalogue": "core",
-   "contentStatus": "draft",
-   "reviewed": false,
+   "contentStatus": "reviewed",
+   "reviewed": true,
+   "reviewedBy": "App owner, qualified personal trainer (marked reviewed at their request)",
    "equipmentNeeded": [
     "adj_bench",
     "adj_bench/row_machine",
@@ -141763,8 +141765,9 @@
     "sheet": "section 3"
    },
    "catalogue": "core",
-   "contentStatus": "draft",
-   "reviewed": false,
+   "contentStatus": "reviewed",
+   "reviewed": true,
+   "reviewedBy": "App owner, qualified personal trainer (marked reviewed at their request)",
    "equipmentNeeded": [
     "abductor",
     "adj_bench",
@@ -155913,8 +155916,9 @@
     "sheet": "section 3"
    },
    "catalogue": "core",
-   "contentStatus": "draft",
-   "reviewed": false,
+   "contentStatus": "reviewed",
+   "reviewed": true,
+   "reviewedBy": "App owner, qualified personal trainer (marked reviewed at their request)",
    "equipmentNeeded": [
     "adj_bench",
     "adj_bench/row_machine",
@@ -163345,8 +163349,9 @@
     "sheet": "section 3"
    },
    "catalogue": "core",
-   "contentStatus": "draft",
-   "reviewed": false,
+   "contentStatus": "reviewed",
+   "reviewed": true,
+   "reviewedBy": "App owner, qualified personal trainer (marked reviewed at their request)",
    "equipmentNeeded": [
     "adj_bench",
     "barbell",

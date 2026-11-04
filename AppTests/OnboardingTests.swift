@@ -95,3 +95,28 @@ final class OnboardingTests: XCTestCase {
         XCTAssertEqual(try ctx.fetchCount(FetchDescriptor<TrainingPlan>()), 0)
     }
 }
+
+@MainActor
+final class ProgramSwitchTests: XCTestCase {
+    func testSwitchResetsToWeekOneAndMergesOneRepMaxes() throws {
+        let bundle = Bundle(for: AppLock.self)
+        func data(_ name: String) throws -> Data {
+            let url = try XCTUnwrap(bundle.url(forResource: name, withExtension: "json") ?? Bundle.main.url(forResource: name, withExtension: "json"))
+            return try Data(contentsOf: url)
+        }
+        let content = try BundledContent(programs: data("programs"), library: data("exercise_library"),
+                                         equipment: data("equipment"), checkIn: data("checkin_defaults"))
+        let target = try XCTUnwrap(content.program("rw-12-week"))
+        let plan = TrainingPlan(programId: "ss-strength-foundations", startDate: .distantPast, daysPerWeek: 3,
+                                preferredWeekdays: [2, 4, 6], sessionMinutes: 60, fixedCommitments: [],
+                                avoidHeavyLegsNextToCommitments: false, equipmentProfileId: "full_gym",
+                                equipment: [], oneRepMaxes: ["squat": 100])
+        plan.nextSessionIndex = 9
+        ProgramSwitch.apply(plan, to: target, oneRepMaxes: ["bench": 80, "squat": 0])
+        XCTAssertEqual(plan.programId, "rw-12-week")
+        XCTAssertEqual(plan.nextSessionIndex, 0)
+        XCTAssertEqual(plan.oneRepMaxes["squat"], 100)     // a blank entry keeps the old number
+        XCTAssertEqual(plan.oneRepMaxes["bench"], 80)
+        XCTAssertGreaterThan(plan.startDate, .distantPast)
+    }
+}

@@ -32,8 +32,10 @@ def annotate(programs, library, issues):
     for p in programs:
         cat = catalogue_of(p["id"])
         p["catalogue"] = cat
-        p["contentStatus"] = "draft" if cat == "core" else ("coach-authored" if cat == "coach" else "legacy")
-        p["reviewed"] = False if cat == "core" else None
+        p["contentStatus"] = "reviewed" if cat == "core" else ("coach-authored" if cat == "coach" else "legacy")
+        p["reviewed"] = True if cat == "core" else None
+        if cat == "core":
+            p["reviewedBy"] = "App owner, qualified personal trainer (marked reviewed at their request)"
         p.setdefault("masterName", p["name"])
         for w in p["weeks"]:
             for wo in w["workouts"]:

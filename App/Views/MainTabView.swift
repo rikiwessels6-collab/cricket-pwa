@@ -290,6 +290,7 @@ struct CheckInCard: View {
 struct TrainView: View {
     @Environment(ContentStore.self) private var store
     @Query private var plans: [TrainingPlan]
+    @State private var changingProgram = false
 
     var body: some View {
         NavigationStack {
@@ -300,7 +301,7 @@ struct TrainView: View {
                         LabeledContent("Sessions a week", value: program.sessionsPerWeekText)
                         LabeledContent("Typical session", value: "about \(program.averageSessionMinutes) min")
                     } footer: {
-                        Text("Workout logging, progression and swaps during a session arrive in the next update. You can preview every session now.")
+                        Text("Preview any session here. Start your next one from Today.")
                     }
                     ForEach(program.weeks) { week in
                         Section {
@@ -318,6 +319,12 @@ struct TrainView: View {
                 }
                 .themedList()
                 .navigationTitle("Train")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Change program") { changingProgram = true }.accessibilityIdentifier("trainChangeProgram")
+                    }
+                }
+                .sheet(isPresented: $changingProgram) { ChangeProgramView() }
             } else {
                 ContentUnavailableView("No program yet", systemImage: "dumbbell")
                     .navigationTitle("Train")

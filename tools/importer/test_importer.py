@@ -267,14 +267,14 @@ class ChangeRequestV5(unittest.TestCase):
         dup = [dict(self.lib[0]), dict(self.lib[0])]
         self.assertTrue(catalogue_meta.names_errors([], dup))
 
-    def test_catalogues_and_draft_flags(self):
+    def test_catalogues_and_review_flags(self):
         cats = {pid: p["catalogue"] for pid, p in self.programs.items()}
         self.assertEqual(sorted(k for k, v in cats.items() if v == "core"),
                          ["ss-build-and-grow", "ss-lower-body-focus", "ss-muscle-builder-pro", "ss-strength-foundations", "ss-strong-for-life"])
         self.assertEqual(len([v for v in cats.values() if v == "legacy"]), 4)
         for pid, p in self.programs.items():
             if cats[pid] == "core":
-                self.assertEqual((p["contentStatus"], p["reviewed"]), ("draft", False), pid)
+                self.assertEqual((p["contentStatus"], p["reviewed"]), ("reviewed", True), pid)
 
     def test_template_display_names_are_unique(self):
         names = [wo["displayName"] for p in self.programs.values() for wo in p["weeks"][0]["workouts"]]

@@ -936,7 +936,7 @@ def write_report(path, programs, issues, date_repairs, library, merges, duration
     core = [p for p in programs if p.get("catalogue") == "core"]
     add("\n## Change request v5: status\n")
     add("| Item | Expected | Imported | Note |\n|---|---|---|---|")
-    add(f"| Core programs | 5 | {len(core)} | draft, not reviewed (`contentStatus: draft`) |")
+    add(f"| Core programs | 5 | {len(core)} | reviewed by the app owner, a qualified personal trainer (`contentStatus: reviewed`) |")
     add(f"| Base templates | 19 | {sum(len(p['weeks'][0]['workouts']) for p in core)} | Appendix B, all with sets, reps and RIR |")
     add("| Specialisation modules | 10 | **0** | **Blocked:** the module sessions are only in `catalogue_draft.json`, which wasn't supplied |")
     add(f"| Canonical exercises | 90 | {len(library)} | **Blocked:** the 90-exercise draft wasn't supplied; the existing 185-entry library is used |")

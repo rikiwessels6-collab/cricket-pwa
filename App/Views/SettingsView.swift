@@ -10,6 +10,7 @@ struct SettingsView: View {
     @Query private var plans: [TrainingPlan]
     @Query private var checkInSettings: [CheckInSettings]
     @State private var reminderMessage: String?
+    @State private var changingProgram = false
     @State private var exportURL: URL?
     @State private var exportError: String?
     @State private var confirmErase = false
@@ -19,17 +20,42 @@ struct SettingsView: View {
             Form {
                 if let p = profiles.first {
                     Section("You") {
-                        LabeledContent("Name", value: p.name)
+                        HStack {
+                            Text("Name")
+                            TextField("Name", text: Binding(get: { p.name }, set: { p.name = $0 }))
+                                .multilineTextAlignment(.trailing)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.words)
+                                .accessibilityIdentifier("nameField")
+                        }
                         LabeledContent("Age", value: "\(p.age)")
-                        Stepper(value: Binding(get: { p.weightKg }, set: { p.weightKg = $0 }), in: 35...250, step: 0.5) {
-                            LabeledContent("Weight", value: String(format: "%.1f kg", p.weightKg))
+                        HStack {
+                            Text("Weight")
+                            Spacer()
+                            TextField("kg", value: Binding(get: { p.weightKg },
+                                                           set: { p.weightKg = min(max($0, 30), 300) }), format: .number.precision(.fractionLength(0...1)))
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 70)
+                                .accessibilityIdentifier("weightField")
+                            Text("kg").foregroundStyle(.secondary)
+                            Stepper("Weight", value: Binding(get: { p.weightKg }, set: { p.weightKg = $0 }), in: 30...300, step: 0.5)
+                                .labelsHidden()
                         }
                         LabeledContent("Goal", value: p.goal.label)
                     }
                 }
                 if let plan = plans.first, let content = store.content {
                     Section {
-                        LabeledContent("Program", value: content.program(plan.programId)?.name ?? plan.programId)
+                        Button { changingProgram = true } label: {
+                            HStack {
+                                Text("Program").foregroundStyle(.primary)
+                                Spacer()
+                                Text(content.program(plan.programId)?.name ?? plan.programId).foregroundStyle(.secondary)
+                                Image(systemName: "chevron.right").font(.footnote).foregroundStyle(.tertiary)
+                            }
+                        }
+                        .accessibilityIdentifier("changeProgram")
                         Picker("Equipment", selection: Binding(
                             get: { plan.equipmentProfileId },
                             set: { id in
@@ -112,6 +138,7 @@ struct SettingsView: View {
             }
             .themedList()
             .navigationTitle("Settings")
+            .sheet(isPresented: $changingProgram) { ChangeProgramView() }
             .confirmationDialog("Erase everything?", isPresented: $confirmErase, titleVisibility: .visible) {
                 Button("Erase all my data", role: .destructive) {
                     try? Persistence.eraseAll(context)
