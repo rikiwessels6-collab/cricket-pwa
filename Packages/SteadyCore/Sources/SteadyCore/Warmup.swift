@@ -21,7 +21,7 @@ public enum Warmup {
             var out: [LoggedSet] = []
             for step in percents {
                 let w = max(bar, Progression.roundDown(working * step.percent, to: increment))
-                if w < working, w > (out.last?.weight ?? 0) { out.append(LoggedSet(weight: w, reps: step.reps)) }
+                if w < working && w > (out.last?.weight ?? 0) { out.append(LoggedSet(weight: w, reps: step.reps)) }
             }
             return out
         }
