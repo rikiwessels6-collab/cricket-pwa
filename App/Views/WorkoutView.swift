@@ -471,7 +471,7 @@ struct ExerciseCard: View {
             }
             VStack(spacing: 8) {
                 HStack {
-                    Text("SET".frame(width: 34, alignment: .leading)
+                    Text("SET").frame(width: 34, alignment: .leading)
                     Text(loadable ? "KG" : "LOAD").frame(maxWidth: .infinity)
                     Text("REPS").frame(maxWidth: .infinity)
                     Color.clear.frame(width: 44)
