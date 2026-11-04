@@ -1,7 +1,8 @@
 import Foundation
 import HealthKit
+import SteadyCore
 
-/// Apple Health, read only: daily steps, workouts and body weight. Nothing is written to Health and nothing leaves the phone.
+/// Apple Health, read only: daily steps, workouts, sleep and body weight. Nothing is written to Health and nothing leaves the phone.
 /// iOS never tells an app whether read access was granted, so a missing value just means "nothing found".
 enum HealthService {
     private static let store = HKHealthStore()
@@ -16,6 +17,7 @@ enum HealthService {
         guard isAvailable, let steps = stepType, let weight = weightType else { return false }
         var types: Set<HKObjectType> = [steps, weight, HKObjectType.workoutType()]
         if let energy = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) { types.insert(energy) }
+        if let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) { types.insert(sleep) }
         do {
             try await store.requestAuthorization(toShare: [], read: types)
             return true
@@ -150,6 +152,28 @@ enum HealthService {
         case .golf: return "Golf"
         case .cricket: return "Cricket"
         default: return "Workout"
+        }
+    }
+
+    /// Hours asleep for each of the last `days` nights (oldest first), counting only the asleep stages.
+    /// Time in bed and time awake are not counted, and duplicate recordings are merged.
+    static func nightlySleep(days: Int = 7) async -> [SleepNight] {
+        guard isAvailable, let type = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else { return [] }
+        let start = Calendar.current.date(byAdding: .day, value: -(days + 1), to: .now) ?? .now
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: nil)
+        let asleep: Set<Int> = [HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue,
+                                HKCategoryValueSleepAnalysis.asleepCore.rawValue,
+                                HKCategoryValueSleepAnalysis.asleepDeep.rawValue,
+                                HKCategoryValueSleepAnalysis.asleepREM.rawValue]
+        return await withCheckedContinuation { continuation in
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit,
+                                      sortDescriptors: nil) { _, samples, _ in
+                let intervals = (samples as? [HKCategorySample] ?? [])
+                    .filter { asleep.contains($0.value) }
+                    .map { DateInterval(start: $0.startDate, end: max($0.endDate, $0.startDate)) }
+                continuation.resume(returning: Array(SleepMath.nights(intervals).suffix(days)))
+            }
+            store.execute(query)
         }
     }
 }

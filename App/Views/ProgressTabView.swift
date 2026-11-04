@@ -41,6 +41,8 @@ struct ProgressTabView: View {
                 Section("Strength and history") {
                     NavigationLink { StrengthListView() } label: { Label("Lifts and records", systemImage: "chart.line.uptrend.xyaxis") }
                         .accessibilityIdentifier("liftsAndRecords")
+                    NavigationLink { ProgressPhotosView() } label: { Label("Progress photos", systemImage: "person.crop.rectangle") }
+                        .accessibilityIdentifier("progressPhotos")
                     NavigationLink { WorkoutHistoryView() } label: { Label("Workout history", systemImage: "calendar") }
                         .accessibilityIdentifier("workoutHistory")
                 }
@@ -192,13 +194,15 @@ struct CheckInSheet: View {
                                 let steps = await HealthService.averageDailySteps()
                                 let kg = await HealthService.latestWeightKg()
                                 let workouts = await HealthService.recentWorkouts(days: 7)
+                                let sleepAverage = SleepMath.average(await HealthService.nightlySleep(days: 7))
+                                if let sleepAverage { sleep = (sleepAverage * 10).rounded() / 10 }
                                 if let steps { self.steps = steps }
                                 if let kg { weight = (kg * 10).rounded() / 10 }
                                 if !workouts.isEmpty {
                                     workoutCount = workouts.count
                                     activeMinutes = workouts.reduce(0) { $0 + $1.minutes }
                                 }
-                                healthNote = (steps == nil && kg == nil && workouts.isEmpty)
+                                healthNote = (steps == nil && kg == nil && workouts.isEmpty && sleepAverage == nil)
                                     ? "Nothing found in Apple Health. Check Health > Data Access for Steady Strength."
                                     : "Filled in from Apple Health"
                                         + (workouts.isEmpty ? "" : " (\(workouts.count) workout\(workouts.count == 1 ? "" : "s"), \(workouts.reduce(0) { $0 + $1.minutes }) active minutes this week)")
@@ -264,6 +268,7 @@ struct HealthActivitySection: View {
     @Query private var appSettings: [AppSettings]
     @State private var days: [HealthService.DailySteps] = []
     @State private var workouts: [HealthService.Workout] = []
+    @State private var nights: [SleepNight] = []
     @State private var loaded = false
 
     private var enabled: Bool { appSettings.first?.consents[DataType.appleHealth.rawValue] != nil }
@@ -275,7 +280,7 @@ struct HealthActivitySection: View {
                     .font(.footnote).foregroundStyle(Color.inkMuted)
             } else if !loaded {
                 ProgressView()
-            } else if days.allSatisfy({ $0.steps == 0 }) && workouts.isEmpty {
+            } else if days.allSatisfy({ $0.steps == 0 }) && workouts.isEmpty && nights.isEmpty {
                 Text("Nothing found in Apple Health for the last 7 days. Check Health > Data Access for Steady Strength.")
                     .font(.footnote).foregroundStyle(Color.inkMuted)
             } else {
@@ -286,6 +291,7 @@ struct HealthActivitySection: View {
                     stat(average.formatted(), "avg steps a day")
                     stat("\(workouts.count)", "workouts")
                     stat("\(minutes)", "active min")
+                    stat(SleepMath.average(nights).map { String(format: "%.1f h", $0) } ?? "–", "avg sleep")
                 }
                 Chart(days) { d in
                     BarMark(x: .value("Day", d.date, unit: .day), y: .value("Steps", d.steps))
@@ -293,6 +299,15 @@ struct HealthActivitySection: View {
                 }
                 .frame(height: 120)
                 .accessibilityLabel("Steps each day for the last 7 days")
+                if !nights.isEmpty {
+                    Chart(nights) { n in
+                        BarMark(x: .value("Night", n.night, unit: .day), y: .value("Hours", n.hours))
+                            .foregroundStyle(Color.gold)
+                    }
+                    .frame(height: 100)
+                    .accessibilityLabel("Hours asleep each night for the last 7 nights")
+                    Text("Gold bars are hours asleep each night.").font(.caption2).foregroundStyle(Color.inkMuted)
+                }
                 ForEach(workouts) { w in
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
@@ -314,8 +329,10 @@ struct HealthActivitySection: View {
             _ = await HealthService.requestAccess()
             async let d = HealthService.dailySteps(days: 7)
             async let w = HealthService.recentWorkouts(days: 7)
+            async let sl = HealthService.nightlySleep(days: 7)
             days = await d
             workouts = await w
+            nights = await sl
             loaded = true
         }
     }

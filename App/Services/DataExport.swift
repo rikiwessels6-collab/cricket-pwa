@@ -39,6 +39,7 @@ enum DataExport {
             let notes: String, sets: [SetRecord]
         }
         struct NoteRecord: Encodable { let exerciseId: String, text: String }
+        struct PhotoRecord: Encodable { let date: Date, angle: String }   // the pictures stay in the app; only this list is exported
         let exportedAt: Date
         let app = "Steady Strength"
         let profile: Profile?
@@ -50,6 +51,7 @@ enum DataExport {
         let foodEntries: [FoodRecord]
         let workouts: [WorkoutRecord]
         let exerciseNotes: [NoteRecord]
+        let progressPhotos: [PhotoRecord]
     }
 
     @MainActor
@@ -63,6 +65,7 @@ enum DataExport {
         let food = try context.fetch(FetchDescriptor<FoodEntry>(sortBy: [SortDescriptor(\.eatenAt)]))
         let workouts = try context.fetch(FetchDescriptor<WorkoutLog>(sortBy: [SortDescriptor(\.startedAt)]))
         let notes = try context.fetch(FetchDescriptor<ExerciseNote>())
+        let photos = try context.fetch(FetchDescriptor<ProgressPhoto>(sortBy: [SortDescriptor(\.date)]))
         let snapshot = Snapshot(
             exportedAt: .now,
             profile: p.map { Snapshot.Profile(name: $0.name, birthYear: $0.birthYear, sex: $0.sexRaw, heightCm: $0.heightCm,
@@ -92,7 +95,8 @@ enum DataExport {
                                        sets: w.sets.sorted { ($0.slotOrder, $0.setIndex) < ($1.slotOrder, $1.setIndex) }
                                            .map { Snapshot.SetRecord(exerciseId: $0.exerciseId, setIndex: $0.setIndex, weight: $0.weight, reps: $0.reps, rpe: $0.rpe) })
             },
-            exerciseNotes: notes.map { Snapshot.NoteRecord(exerciseId: $0.exerciseId, text: $0.text) })
+            exerciseNotes: notes.map { Snapshot.NoteRecord(exerciseId: $0.exerciseId, text: $0.text) },
+            progressPhotos: photos.map { Snapshot.PhotoRecord(date: $0.date, angle: $0.angleRaw) })
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601

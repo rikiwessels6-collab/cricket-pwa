@@ -374,3 +374,28 @@ final class ExerciseNote {
         self.text = text
     }
 }
+
+
+// MARK: - Progress photos
+
+enum PhotoAngle: String, CaseIterable, Identifiable {
+    case front, side, rear
+    var id: String { rawValue }
+    var label: String { rawValue.capitalized }
+}
+
+/// Where a progress photo is and when it was taken. The picture itself is a file inside the app (see PhotoStore).
+@Model
+final class ProgressPhoto {
+    var date: Date
+    var angleRaw: String
+    var fileName: String
+
+    init(date: Date, angle: PhotoAngle, fileName: String) {
+        self.date = date
+        self.angleRaw = angle.rawValue
+        self.fileName = fileName
+    }
+
+    var angle: PhotoAngle { PhotoAngle(rawValue: angleRaw) ?? .front }
+}
