@@ -19,9 +19,7 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: steady-strength
+      - uses: actions/checkout@v4   # builds exactly the commit this run was started from
       - name: Check the secrets are set
         env:
           A: ${{ secrets.APPLE_TEAM_ID }}
