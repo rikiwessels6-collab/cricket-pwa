@@ -184,7 +184,7 @@ enum DataType: String, CaseIterable, Identifiable {
         case .checkIns: return "Weekly check-ins and optional daily notes. Private to this phone."
         case .photos: return "Front, side and rear photos, kept in the app, behind Face ID, never analysed."
         case .plateAnalysis: return "Off by default. When on, a plate photo you choose to analyse is sent once to estimate its food and macros, then discarded. Nothing is stored or linked to you."
-        case .appleHealth: return "Steps, workouts, weight and sleep. Asked separately when that feature arrives."
+        case .appleHealth: return "Reads your daily steps and body weight to fill in check-ins. Never writes to Health. Turn it on in Settings > Apple Health."
         }
     }
 

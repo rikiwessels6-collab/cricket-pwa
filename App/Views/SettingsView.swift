@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Query private var checkInSettings: [CheckInSettings]
     @State private var reminderMessage: String?
     @State private var changingProgram = false
+    @State private var healthMessage: String?
     @State private var exportURL: URL?
     @State private var exportError: String?
     @State private var confirmErase = false
@@ -75,6 +76,30 @@ struct SettingsView: View {
                     }
                 }
                 if let s = settings.first {
+                    Section {
+                        Toggle("Use Apple Health", isOn: Binding(
+                            get: { s.consents[DataType.appleHealth.rawValue] != nil },
+                            set: { on in
+                                if on {
+                                    Task {
+                                        if await HealthService.requestAccess() {
+                                            s.consents[DataType.appleHealth.rawValue] = .now; healthMessage = nil
+                                        } else {
+                                            s.consents[DataType.appleHealth.rawValue] = nil
+                                            healthMessage = HealthService.isAvailable
+                                                ? "Couldn't ask Apple Health. Try again."
+                                                : "Apple Health isn't available on this device."
+                                        }
+                                    }
+                                } else {
+                                    s.consents[DataType.appleHealth.rawValue] = nil
+                                }
+                            }))
+                            .accessibilityIdentifier("healthToggle")
+                        if let healthMessage { Text(healthMessage).font(.footnote).foregroundStyle(.secondary) }
+                    } header: { Text("Apple Health") } footer: {
+                        Text("Reads your daily steps and body weight so your check-in can fill itself in. Nothing is written to Health or shared. To change what the app can read, open the iPhone Settings app, then Health, then Data Access.")
+                    }
                     Section {
                         Toggle("Remind me", isOn: Binding(
                             get: { s.remindersEnabled },
@@ -200,7 +225,7 @@ struct PrivacyPolicyView: View {
                 }
                 Group {
                     heading("Apple Health")
-                    Text("If you allow it, the app reads and writes the Health data you approve. Health data is never used for advertising, sold, or shared with third parties.")
+                    Text("If you turn it on, the app reads only your daily steps and body weight, to fill in your check-in. It never writes to Health. Health data stays on your phone and is never used for advertising, sold, or shared with third parties.")
                     heading("Photos and Face ID")
                     Text("Progress photos stay inside the app behind the lock and are never analysed. Face ID is handled entirely by iOS; the app never receives face data.")
                     heading("Your choices")

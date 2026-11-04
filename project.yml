@@ -29,6 +29,11 @@ targets:
         excludes: ["*.md"]
     dependencies:
       - package: SteadyCore
+    entitlements:
+      path: Config/SteadyStrength.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
     info:
       path: Config/Info.plist
       properties:
@@ -42,6 +47,7 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UIApplicationSupportsIndirectInputEvents: true
         NSCameraUsageDescription: Steady Strength uses the camera to scan food barcodes and, if you choose, photograph your plate.
+        NSHealthShareUsageDescription: Steady Strength can read your daily steps and body weight from Apple Health to fill in your weekly check-in. Nothing is written to Health or shared.
         NSFaceIDUsageDescription: Steady Strength uses Face ID to keep your health and training data private on this iPhone.
         ITSAppUsesNonExemptEncryption: false
         HideUnreviewedContent: false

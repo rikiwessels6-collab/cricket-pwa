@@ -148,6 +148,8 @@ struct CheckInSheet: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     @Query private var profiles: [UserProfile]
+    @Query private var appSettings: [AppSettings]
+    @State private var healthNote: String?
     @State private var date = Date.now
     @State private var weight: Double?
     @State private var sleep: Double?
@@ -170,6 +172,23 @@ struct CheckInSheet: View {
                         Text("Steps (average a day)")
                         TextField("steps", value: $steps, format: .number).keyboardType(.numberPad).multilineTextAlignment(.trailing)
                             .focused($focused)
+                    }
+                }
+                if appSettings.first?.consents[DataType.appleHealth.rawValue] != nil {
+                    Section {
+                        Button {
+                            Task {
+                                let steps = await HealthService.averageDailySteps()
+                                let kg = await HealthService.latestWeightKg()
+                                if let steps { self.steps = steps }
+                                if let kg { weight = (kg * 10).rounded() / 10 }
+                                healthNote = (steps == nil && kg == nil)
+                                    ? "Nothing found in Apple Health. Check Health > Data Access for Steady Strength."
+                                    : "Filled in from Apple Health. Check the numbers and edit anything."
+                            }
+                        } label: { Label("Fill from Apple Health", systemImage: "heart.text.square") }
+                        .accessibilityIdentifier("fillFromHealth")
+                        if let healthNote { Text(healthNote).font(.footnote).foregroundStyle(Color.inkMuted) }
                     }
                 }
                 Section("How did the week feel? (1-10)") {
