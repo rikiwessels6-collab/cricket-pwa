@@ -9,6 +9,11 @@ on:
   push:
     branches: [testflight]
 
+# Only one TestFlight build at a time.
+concurrency:
+  group: testflight
+  cancel-in-progress: false
+
 jobs:
   testflight:
     runs-on: macos-15
