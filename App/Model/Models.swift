@@ -165,6 +165,8 @@ final class AppSettings {
     var barWeightKg: Double = 20
     var plateStock: [String: Int] = ["25": 4, "20": 2, "15": 2, "10": 4, "5": 4, "2.5": 4, "1.25": 2]
     var warmupStyleRaw: String = "percent"
+    /// Optional YouTube channel to prefer in technique searches (empty = any channel).
+    var videoChannel: String = ""
 
     init() {
         onboardingComplete = false

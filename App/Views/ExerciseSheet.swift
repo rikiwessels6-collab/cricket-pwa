@@ -16,7 +16,10 @@ struct ExerciseSheet: View {
     @Environment(ContentStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     @Query private var plans: [TrainingPlan]
+    @Query private var appSettings: [AppSettings]
     @State private var showSearch = false
+
+    private var channel: String { (appSettings.first?.videoChannel ?? "").trimmingCharacters(in: .whitespaces) }
 
     var body: some View {
         NavigationStack {
@@ -42,9 +45,9 @@ struct ExerciseSheet: View {
                         Button {
                             showSearch = true
                         } label: {
-                            Label("Watch technique (Jeff Nippard on YouTube)", systemImage: "play.rectangle")
+                            Label(channel.isEmpty ? "Watch technique videos (YouTube)" : "Watch technique (\(channel) on YouTube)", systemImage: "play.rectangle")
                         }
-                        .accessibilityHint("Opens a YouTube search for Jeff Nippard's technique video in Safari")
+                        .accessibilityHint("Opens a YouTube search for this exercise's technique in Safari")
                     }
                     MyClipSection(exerciseId: exerciseId)
                     MyNoteSection(exerciseId: exerciseId)
@@ -90,7 +93,7 @@ struct ExerciseSheet: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
                 .sheet(isPresented: $showSearch) {
-                    SafariView(url: Self.searchURL(ex.demoSearchQuery))
+                    SafariView(url: Self.searchURL(Self.query(ex, channel: channel)))
                         .ignoresSafeArea()
                 }
             } else {
@@ -102,6 +105,12 @@ struct ExerciseSheet: View {
     static func muscleName(_ id: String) -> String {
         id.replacingOccurrences(of: "_", with: " ").replacingOccurrences(of: "delts", with: "shoulders")
             .replacingOccurrences(of: "glute med", with: "side glutes")
+    }
+
+    /// A general technique search by exercise name, plus your preferred channel if you set one.
+    static func query(_ ex: Exercise, channel: String) -> String {
+        let base = ex.name.lowercased() + " exercise proper form"
+        return channel.isEmpty ? base : base + " " + channel
     }
 
     static func searchURL(_ query: String) -> URL {

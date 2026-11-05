@@ -76,12 +76,20 @@ struct SettingsView: View {
                         Stepper(value: Binding(get: { plan.lowerIncrement }, set: { plan.lowerIncrement = $0 }), in: 1...10, step: 0.5) {
                             LabeledContent("Squat and deadlift step", value: "\(NumberText.format(plan.lowerIncrement)) kg")
                         }
+                        HStack {
+                            Text("Video channel")
+                            TextField("Any channel", text: Binding(get: { settings.first?.videoChannel ?? "" },
+                                                                    set: { settings.first?.videoChannel = $0 }))
+                                .multilineTextAlignment(.trailing)
+                                .autocorrectionDisabled()
+                                .accessibilityIdentifier("videoChannel")
+                        }
                         NavigationLink("My exercises") { MyExercisesView() }
                             .accessibilityIdentifier("myExercises")
                         NavigationLink("Bar, plates and warm-ups") { PlateCalculatorView() }
                             .accessibilityIdentifier("platesLink")
                     } header: { Text("Training") } footer: {
-                        Text("Change equipment when you're somewhere different, such as a hotel; exercises are swapped automatically. Weight steps are how much the app suggests adding after a good session; you always confirm.")
+                        Text("Change equipment when you're somewhere different, such as a hotel; exercises are swapped automatically. Weight steps are how much the app suggests adding after a good session; you always confirm. Video channel is optional: leave it empty to search all of YouTube for technique, or type a channel you prefer.")
                     }
                 }
                 if let s = settings.first {
