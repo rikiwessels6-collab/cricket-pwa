@@ -49,8 +49,9 @@ enum DataImport {
         try context.delete(model: CheckInEntry.self)
         try context.delete(model: ExerciseNote.self)
         try context.delete(model: CustomExercise.self)
-        try context.delete(model: SetLog.self)
-        try context.delete(model: WorkoutLog.self)
+        // Deleted one by one: a batch delete is refused because every set must belong to a workout.
+        for log in try context.fetch(FetchDescriptor<WorkoutLog>()) { context.delete(log) }
+        for set in try context.fetch(FetchDescriptor<SetLog>()) { context.delete(set) }
 
         var summary = Summary()
         if let p = snap.profile {

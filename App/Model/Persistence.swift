@@ -47,8 +47,9 @@ enum Persistence {
         try context.delete(model: ProgressPhoto.self)
         try context.delete(model: CustomExercise.self)
         PhotoStore.deleteAll()
-        try context.delete(model: SetLog.self)
-        try context.delete(model: WorkoutLog.self)
+        // Deleted one by one: a batch delete is refused because every set must belong to a workout.
+        for log in try context.fetch(FetchDescriptor<WorkoutLog>()) { context.delete(log) }
+        for set in try context.fetch(FetchDescriptor<SetLog>()) { context.delete(set) }
         try context.delete(model: AppSettings.self)
         try context.save()
     }
