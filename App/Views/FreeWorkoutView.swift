@@ -71,7 +71,9 @@ struct FreeWorkoutView: View {
                                                                          history: WorkoutPlanner.history(item.exerciseId, logs: logs.filter { $0 !== log }),
                                                                          oneRepMaxes: plan?.oneRepMaxes ?? [:],
                                                                          increment: plan?.upperIncrement ?? 2.5),
-                                         isSwapped: false, canSwap: false, focused: $focused,
+                                         isSwapped: false, canSwap: false,
+                                         lastTime: WorkoutPlanner.lastTime(item.exerciseId, logs: logs.filter { $0 !== log }),
+                                         focused: $focused,
                                          onSetDone: { setDone(item) }, onSwap: {}, onInfo: { infoFor = item.exerciseId })
                             if !log.sets.contains(where: { $0.slotOrder == item.id }) {
                                 Button("Remove \(item.name)", role: .destructive) {

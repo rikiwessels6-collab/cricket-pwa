@@ -39,6 +39,8 @@ struct ProgressTabView: View {
                     .accessibilityIdentifier("startCheckIn")
                 }
                 Section("Strength and history") {
+                    NavigationLink { WeeklySummaryView() } label: { Label("Weekly summary", systemImage: "doc.text.magnifyingglass") }
+                        .accessibilityIdentifier("weeklySummary")
                     NavigationLink { StrengthListView() } label: { Label("Lifts and records", systemImage: "chart.line.uptrend.xyaxis") }
                         .accessibilityIdentifier("liftsAndRecords")
                     NavigationLink { WeeklyVolumeView() } label: { Label("Weekly volume", systemImage: "chart.bar.fill") }

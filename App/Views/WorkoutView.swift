@@ -55,6 +55,14 @@ enum WorkoutPlanner {
         return 10
     }
 
+    /// "Last time (12 Nov): 60 kg × 8, 8, 7", from the most recent finished session with this exercise.
+    static func lastTime(_ exerciseId: String, logs: [WorkoutLog]) -> String? {
+        guard let h = history(exerciseId, logs: logs).last else { return nil }
+        let text = LastTime.summary(h.sets)
+        guard !text.isEmpty else { return nil }
+        return "Last time (\(h.date.formatted(.dateTime.day().month(.abbreviated)))): \(text)"
+    }
+
     /// Past finished sessions of one exercise, oldest first, for progression.
     static func history(_ exerciseId: String, logs: [WorkoutLog]) -> [ExerciseHistory] {
         logs.filter { $0.finishedAt != nil }
@@ -231,6 +239,7 @@ struct ActiveWorkoutView: View {
                                                                      increment: (ex?.pattern.hasPrefix("squat") == true || ex?.pattern.hasPrefix("hinge") == true) && ex?.tier == "main"
                                                                          ? trainingPlan.lowerIncrement : trainingPlan.upperIncrement),
                                      isSwapped: item.exerciseId != item.originalExerciseId,
+                                     lastTime: WorkoutPlanner.lastTime(item.exerciseId, logs: logs.filter { $0 !== log }),
                                      focused: $focused,
                                      onSetDone: { setDone(item, index: index, plan: built.plan) },
                                      onSwap: { swapFor = item },
@@ -358,6 +367,8 @@ struct ExerciseCard: View {
     let suggestion: LoadSuggestion
     let isSwapped: Bool
     var canSwap = true
+    /// The previous session's sets for this exercise, if any.
+    var lastTime: String? = nil
     var focused: FocusState<Bool>.Binding
     let onSetDone: () -> Void
     let onSwap: () -> Void
@@ -417,6 +428,11 @@ struct ExerciseCard: View {
                     .buttonStyle(.plain)
                     .accessibilityHint("Form cues and demo video")
                     Text(prescription).font(.subheadline).foregroundStyle(.secondary)
+                    if let lastTime {
+                        Label(lastTime, systemImage: "clock.arrow.circlepath")
+                            .font(.footnote.monospacedDigit()).foregroundStyle(Color.inkMuted)
+                            .accessibilityIdentifier("lastTime")
+                    }
                     if let myNote {
                         Label(myNote, systemImage: "note.text").font(.footnote).foregroundStyle(Color.gold)
                             .accessibilityLabel("Your note: \(myNote)")

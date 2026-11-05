@@ -96,9 +96,42 @@ struct FoodView: View {
         .accessibilityLabel(step < 0 ? "Previous day" : "Next day")
     }
 
+    /// The most recent earlier day that has something logged for this meal.
+    private func previousMeal(_ meal: MealSlot) -> (date: Date, items: [FoodEntry])? {
+        let cal = Calendar.current
+        let startOfDay = cal.startOfDay(for: day)
+        let earlier = entries.filter { $0.meal == meal && $0.eatenAt < startOfDay }
+        guard let latest = earlier.map(\.eatenAt).max() else { return nil }
+        let (s, e) = cal.dayRange(latest)
+        return (s, earlier.filter { $0.eatenAt >= s && $0.eatenAt < e })
+    }
+
+    /// Copies a past meal onto the day being viewed, at the same times of day (never in the future).
+    private func repeatMeal(_ meal: MealSlot) {
+        guard let prev = previousMeal(meal) else { return }
+        let cal = Calendar.current
+        for e in prev.items {
+            let t = cal.dateComponents([.hour, .minute], from: e.eatenAt)
+            var when = cal.date(bySettingHour: t.hour ?? 12, minute: t.minute ?? 0, second: 0, of: day) ?? day
+            if when > .now { when = .now }
+            context.insert(FoodEntry(copying: e, eatenAt: when, meal: meal))
+        }
+        try? context.save()
+    }
+
+    private func repeatLabel(_ date: Date, _ items: [FoodEntry]) -> String {
+        let when = Calendar.current.isDateInYesterday(date)
+            ? "yesterday" : date.formatted(.dateTime.weekday(.abbreviated).day().month(.abbreviated))
+        let kcal = Int(items.reduce(0.0) { $0 + $1.kcal }.rounded())
+        let count = items.count == 1 ? "1 food" : "\(items.count) foods"
+        return "\(when) (\(count), \(kcal) kcal)"
+    }
+
     private func mealCard(_ meal: MealSlot) -> some View {
         let items = dayEntries.filter { $0.meal == meal }
         let kcal = items.reduce(0) { $0 + $1.kcal }
+        let prev = previousMeal(meal)
+        let prevLabel = prev.map { repeatLabel($0.date, $0.items) }
         return VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text(meal.label.uppercased()).font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
@@ -115,6 +148,14 @@ struct FoodView: View {
             }
             if items.isEmpty {
                 Text("Nothing logged").font(.subheadline).foregroundStyle(Color.inkMuted.opacity(0.7))
+                if let prevLabel {
+                    Button { repeatMeal(meal) } label: {
+                        Label("Repeat \(prevLabel)", systemImage: "arrow.counterclockwise")
+                            .font(.footnote.weight(.semibold)).multilineTextAlignment(.leading)
+                    }
+                    .buttonStyle(.bordered).tint(Color.gold)
+                    .accessibilityIdentifier("repeat-\(meal.rawValue)")
+                }
             }
             ForEach(items) { e in
                 Button { editing = e } label: {

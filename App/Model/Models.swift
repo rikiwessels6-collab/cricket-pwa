@@ -325,6 +325,25 @@ final class FoodEntry {
         self.fibre = m.fibre
     }
 
+    /// A copy of another entry, for repeating a meal on another day. Keeps the exact amounts.
+    init(copying e: FoodEntry, eatenAt: Date, meal: MealSlot) {
+        self.loggedAt = .now
+        self.eatenAt = eatenAt
+        self.mealRaw = meal.rawValue
+        self.sourceRaw = e.sourceRaw
+        self.name = e.name
+        self.brand = e.brand
+        self.barcode = e.barcode
+        self.foodId = e.foodId
+        self.grams = e.grams
+        self.kcal = e.kcal
+        self.protein = e.protein
+        self.carbs = e.carbs
+        self.fat = e.fat
+        self.fibre = e.fibre
+        self.confidence = e.confidence
+    }
+
     var meal: MealSlot { MealSlot(rawValue: mealRaw) ?? .snacks }
     var source: FoodSource { FoodSource(rawValue: sourceRaw) ?? .manual }
     var macros: Macros { Macros(kcal: kcal, protein: protein, carbs: carbs, fat: fat, fibre: fibre) }
