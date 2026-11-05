@@ -75,9 +75,11 @@ enum DataImport {
             context.insert(plan)
         }
         if let n = snap.nutritionPlan {
-            context.insert(NutritionPlan(calories: n.calories, protein: n.protein, carbs: n.carbs, fat: n.fat, fibre: n.fibre,
-                                         maintenance: n.maintenance, presetName: n.presetName, proteinPerKg: n.proteinPerKg,
-                                         startAtMaintenance: n.startAtMaintenance))
+            let plan = NutritionPlan(calories: n.calories, protein: n.protein, carbs: n.carbs, fat: n.fat, fibre: n.fibre,
+                                     maintenance: n.maintenance, presetName: n.presetName, proteinPerKg: n.proteinPerKg,
+                                     startAtMaintenance: n.startAtMaintenance)
+            plan.easeInUntil = n.easeInUntil
+            context.insert(plan)
         }
         if let c = snap.checkInSettings {
             context.insert(CheckInSettings(weekday: c.weekday, sleepGoalHours: c.sleepGoalHours, stepsGoal: c.stepsGoal,

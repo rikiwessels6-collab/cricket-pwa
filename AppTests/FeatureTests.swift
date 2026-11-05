@@ -33,6 +33,42 @@ final class FeatureTests: XCTestCase {
         XCTAssertEqual(n.protein, Int((1.8 * 70).rounded()))
     }
 
+    func testEaseInHoldsMaintenanceThenStepsUp() {
+        let p = profile()
+        let n = nutrition(for: p)
+        let maintenance = n.calories
+        let day0 = Date(timeIntervalSince1970: 1_700_000_000)
+        GoalSwitch.apply(.fatLoss, profile: p, nutrition: n, easeIn: true, today: day0)
+        XCTAssertEqual(n.calories, maintenance)
+        XCTAssertTrue(n.startAtMaintenance)
+        XCTAssertNotNil(n.easeInUntil)
+        XCTAssertFalse(GoalSwitch.finishEaseInIfDue(profile: p, nutrition: n, now: day0.addingTimeInterval(13 * 86_400)))
+        XCTAssertEqual(n.calories, maintenance)
+        XCTAssertTrue(GoalSwitch.finishEaseInIfDue(profile: p, nutrition: n, now: day0.addingTimeInterval(15 * 86_400)))
+        XCTAssertLessThan(n.calories, maintenance)
+        XCTAssertFalse(n.startAtMaintenance)
+        XCTAssertNil(n.easeInUntil)
+    }
+
+    func testOnboardingMaintenanceStartEndsAfterTwoWeeks() {
+        let p = profile(goal: .buildMuscle)
+        let n = nutrition(for: p)          // startAtMaintenance = true, no end date, created now
+        XCTAssertFalse(GoalSwitch.finishEaseInIfDue(profile: p, nutrition: n, now: .now))
+        XCTAssertTrue(GoalSwitch.finishEaseInIfDue(profile: p, nutrition: n, now: .now.addingTimeInterval(15 * 86_400)))
+        XCTAssertGreaterThan(n.calories, n.maintenance)
+    }
+
+    func testEaseInIgnoredForMaintainAndLatestWeightIsUsed() {
+        let p = profile()
+        let n = nutrition(for: p)
+        GoalSwitch.apply(.maintain, profile: p, nutrition: n, easeIn: true, weightKg: 80)
+        XCTAssertNil(n.easeInUntil)
+        XCTAssertFalse(n.startAtMaintenance)
+        XCTAssertEqual(p.weightKg, 80)
+        GoalSwitch.apply(.maintain, profile: p, nutrition: n, weightKg: 5)    // out of range, ignored
+        XCTAssertEqual(p.weightKg, 80)
+    }
+
     func testGoalChangeWithoutNutritionPlanStillSavesGoal() {
         let p = profile()
         GoalSwitch.apply(.maintain, profile: p, nutrition: nil)

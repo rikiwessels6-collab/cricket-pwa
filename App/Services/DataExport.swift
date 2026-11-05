@@ -20,6 +20,7 @@ enum DataExport {
         struct Food: Codable {
             let calories: Int, protein: Int, carbs: Int, fat: Int, fibre: Int, maintenance: Int
             let presetName: String, proteinPerKg: Double, startAtMaintenance: Bool
+            var easeInUntil: Date? = nil
         }
         struct CheckIn: Codable {
             let weekday: Int, sleepGoalHours: Double, stepsGoal: Int, metrics: [String], dailyCheckIns: Bool
@@ -106,7 +107,8 @@ enum DataExport {
                                         upperIncrement: $0.upperIncrement, lowerIncrement: $0.lowerIncrement) },
             nutritionPlan: n.map { Snapshot.Food(calories: $0.calories, protein: $0.protein, carbs: $0.carbs, fat: $0.fat,
                                          fibre: $0.fibre, maintenance: $0.maintenance, presetName: $0.presetName,
-                                         proteinPerKg: $0.proteinPerKg, startAtMaintenance: $0.startAtMaintenance) },
+                                         proteinPerKg: $0.proteinPerKg, startAtMaintenance: $0.startAtMaintenance,
+                                         easeInUntil: $0.easeInUntil) },
             checkInSettings: c.map { Snapshot.CheckIn(weekday: $0.weekday, sleepGoalHours: $0.sleepGoalHours, stepsGoal: $0.stepsGoal,
                                            metrics: $0.metrics, dailyCheckIns: $0.dailyCheckIns) },
             consents: s?.consents ?? [:],

@@ -73,6 +73,11 @@ struct TodayView: View {
             }
             .background(Color.night.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
+            .task {
+                if let p = profiles.first, let n = food.first, GoalSwitch.finishEaseInIfDue(profile: p, nutrition: n) {
+                    try? context.save()
+                }
+            }
             .sheet(isPresented: $startSheet) {
                 if let plan = plans.first, let program = store.content?.program(plan.programId),
                    let next = program.session(at: plan.nextSessionIndex, includeOptional: plan.daysPerWeek >= 3) {
@@ -235,7 +240,9 @@ struct FoodCard: View {
                 MacroBar(label: "Carbs", value: Int(totals.carbs.rounded()), target: plan.carbs)
                 MacroBar(label: "Fat", value: Int(totals.fat.rounded()), target: plan.fat)
                 if plan.startAtMaintenance {
-                    Text("Maintenance for your first two weeks").font(.caption2).foregroundStyle(Color.inkMuted)
+                    Text(plan.easeInUntil.map { "Maintenance until \($0.formatted(.dateTime.day().month(.abbreviated))), then your goal targets" }
+                         ?? "Maintenance for your first two weeks")
+                        .font(.caption2).foregroundStyle(Color.inkMuted)
                 }
             }
         }

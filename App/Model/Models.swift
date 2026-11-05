@@ -107,6 +107,8 @@ final class NutritionPlan {
     /// Follow the workbook advice: two weeks at maintenance before a deficit or surplus.
     var startAtMaintenance: Bool
     var createdAt: Date
+    /// While set, the targets are at maintenance and switch to the goal's targets on this date.
+    var easeInUntil: Date? = nil
 
     init(calories: Int, protein: Int, carbs: Int, fat: Int, fibre: Int, maintenance: Int,
          presetName: String, proteinPerKg: Double, startAtMaintenance: Bool) {
