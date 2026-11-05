@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import VisionKit
+import PhotosUI
 import SteadyCore
 
 // MARK: - Open Food Facts
@@ -140,6 +141,7 @@ struct AddFoodSheet: View {
     let meal: MealSlot
     let day: Date
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var context
     @Query(sort: \SavedFood.lastUsed, order: .reverse) private var saved: [SavedFood]
     @State private var query = ""
     @State private var results: [FoodItem] = []
@@ -148,6 +150,7 @@ struct AddFoodSheet: View {
     @State private var scanning = false
     @State private var picked: (item: FoodItem, source: FoodSource)?
     @State private var creating = false
+    @State private var newBarcode: String?
     @State private var plate = false
     @State private var tab = 0
 
@@ -160,7 +163,7 @@ struct AddFoodSheet: View {
                             .accessibilityIdentifier("scanBarcode")
                         actionButton("Plate photo", "camera.viewfinder") { plate = true }
                             .accessibilityIdentifier("platePhoto")
-                        actionButton("Create food", "square.and.pencil") { creating = true }
+                        actionButton("Create food", "square.and.pencil") { newBarcode = nil; creating = true }
                     }
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets())
@@ -208,7 +211,15 @@ struct AddFoodSheet: View {
             }
             .sheet(isPresented: $plate) { PlateFlow(meal: meal, day: day) { dismiss() } }
             .sheet(isPresented: $creating) {
-                CustomFoodForm { item in creating = false; picked = (item, .manual) }
+                CustomFoodForm(barcode: newBarcode) { item in
+                    creating = false
+                    if !saved.contains(where: { $0.foodId == item.id }) {
+                        context.insert(SavedFood(item: item, isCustom: true))
+                        try? context.save()
+                    }
+                    let source: FoodSource = item.barcode == nil ? .manual : .barcode
+                    picked = (item, source)
+                }
             }
         }
     }
@@ -270,7 +281,11 @@ struct AddFoodSheet: View {
         searching = true; defer { searching = false }
         do {
             if let item = try await FoodService.lookup(barcode: code) { picked = (item, .barcode) }
-            else { message = "Barcode \(code) isn't in Open Food Facts yet. Create it once and it's saved for next time." }
+            else {
+                message = "Barcode \(code) isn't in the food database. Add it from the pack once and it's saved on your phone for next time."
+                newBarcode = code
+                creating = true
+            }
         } catch {
             message = "Couldn't look up that barcode. Check your connection and try again."
         }
@@ -428,19 +443,50 @@ struct CustomFoodForm: View {
     @Environment(\.dismiss) private var dismiss
     @State private var name = ""
     @State private var brand = ""
+    @State private var barcode: String
     @State private var kcal: Double?
     @State private var protein: Double?
     @State private var carbs: Double?
     @State private var fat: Double?
+    @State private var fibre: Double?
     @State private var serving: Double?
+    @State private var scanningBarcode = false
+    @State private var reading = false
+    @State private var note: String?
+
+    init(barcode: String? = nil, onSave: @escaping (FoodItem) -> Void) {
+        self.onSave = onSave
+        _barcode = State(initialValue: barcode ?? "")
+    }
 
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    PackPhotoButton(title: "Photo of the barcode", systemImage: "barcode.viewfinder") { image in
+                        Task { await readBarcode(image) }
+                    }
+                    PackPhotoButton(title: "Photo of the nutrition panel", systemImage: "text.viewfinder") { image in
+                        Task { await readPanel(image) }
+                    }
+                    .accessibilityIdentifier("panelPhoto")
+                    if reading { HStack { ProgressView(); Text("Reading the photo").foregroundStyle(.secondary) } }
+                    if let note { Text(note).font(.footnote).foregroundStyle(Color.gold) }
+                } header: { Text("Fill it in from the pack") } footer: {
+                    Text("The photo is read on your phone and not kept. Always check the numbers against the label before saving.")
+                }
                 Section { TextField("Name", text: $name); TextField("Brand (optional)", text: $brand) }
+                Section {
+                    HStack {
+                        TextField("Barcode (optional)", text: $barcode).keyboardType(.numberPad)
+                        Button("Scan") { scanningBarcode = true }.buttonStyle(.bordered)
+                    }
+                } footer: {
+                    Text("With a barcode saved, scanning this product again finds it straight away.")
+                }
                 Section("Per 100 g, from the label") {
                     field("Energy (kcal)", $kcal); field("Protein (g)", $protein)
-                    field("Carbohydrate (g)", $carbs); field("Fat (g)", $fat)
+                    field("Carbohydrate (g)", $carbs); field("Fat (g)", $fat); field("Fibre (g, optional)", $fibre)
                 }
                 Section { field("Serving size (g, optional)", $serving) } footer: {
                     Text("Australian labels list kJ: divide by 4.184 for kcal.")
@@ -453,14 +499,50 @@ struct CustomFoodForm: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        onSave(FoodItem(id: "custom-" + UUID().uuidString, name: name, brand: brand.isEmpty ? nil : brand,
-                                        barcode: nil, per100: Per100(kcal: kcal ?? 0, protein: protein ?? 0, carbs: carbs ?? 0, fat: fat ?? 0),
+                        let code = barcode.trimmingCharacters(in: .whitespaces)
+                        onSave(FoodItem(id: code.isEmpty ? "custom-" + UUID().uuidString : code, name: name, brand: brand.isEmpty ? nil : brand,
+                                        barcode: code.isEmpty ? nil : code,
+                                        per100: Per100(kcal: kcal ?? 0, protein: protein ?? 0, carbs: carbs ?? 0, fat: fat ?? 0, fibre: fibre ?? 0),
                                         servingGrams: serving, servingLabel: serving.map { "\(NumberText.format($0)) g" }))
                     }
                     .disabled(name.isEmpty || kcal == nil)
+                    .accessibilityIdentifier("saveFood")
                 }
             }
+            .fullScreenCover(isPresented: $scanningBarcode) {
+                BarcodeScanner { code in barcode = code; scanningBarcode = false } onCancel: { scanningBarcode = false }
+            }
         }
+    }
+
+    private func readBarcode(_ image: UIImage) async {
+        reading = true; defer { reading = false }
+        if let code = await PanelScanner.barcodes(in: image).first {
+            barcode = code
+            note = "Barcode \(code) read."
+        } else {
+            note = "Couldn't find a barcode in that photo. Try again closer and in good light, or tap Scan."
+        }
+    }
+
+    private func readPanel(_ image: UIImage) async {
+        reading = true; defer { reading = false }
+        let r = NutritionPanel.parse(await PanelScanner.rows(in: image))
+        guard r.foundAnything else {
+            note = "Couldn't read the numbers. Lay the panel flat in good light and try again, or type them in."
+            return
+        }
+        if let v = r.kcal { kcal = v }
+        if let v = r.protein { protein = v }
+        if let v = r.carbs { carbs = v }
+        if let v = r.fat { fat = v }
+        if let v = r.fibre { fibre = v }
+        if let v = r.servingGrams { serving = v }
+        let missing = [("energy", r.kcal), ("protein", r.protein), ("carbs", r.carbs), ("fat", r.fat)].filter { $0.1 == nil }.map(\.0)
+        var text = "Filled in from the photo. Check each number against the label."
+        if !r.foundBothColumns { text += " Only one column was found, so make sure it is per 100 g." }
+        if !missing.isEmpty { text += " Couldn't read: \(missing.joined(separator: ", "))." }
+        note = text
     }
 
     private func field(_ label: String, _ v: Binding<Double?>) -> some View {
@@ -468,6 +550,36 @@ struct CustomFoodForm: View {
             Text(label)
             TextField("0", value: v, format: .number).keyboardType(.decimalPad).multilineTextAlignment(.trailing)
         }
+    }
+}
+
+/// A button that offers the camera or the photo library and hands back the picture.
+struct PackPhotoButton: View {
+    let title: String
+    let systemImage: String
+    let onImage: (UIImage) -> Void
+    @State private var asking = false
+    @State private var camera = false
+    @State private var library = false
+    @State private var item: PhotosPickerItem?
+    @State private var image: UIImage?
+
+    var body: some View {
+        Button { asking = true } label: { Label(title, systemImage: systemImage) }
+            .confirmationDialog(title, isPresented: $asking, titleVisibility: .visible) {
+                if UIImagePickerController.isSourceTypeAvailable(.camera) { Button("Take a photo") { camera = true } }
+                Button("Choose from photos") { library = true }
+            }
+            .fullScreenCover(isPresented: $camera) { CameraPicker(image: $image).ignoresSafeArea() }
+            .photosPicker(isPresented: $library, selection: $item, matching: .images)
+            .onChange(of: image) { _, new in if let new { onImage(new); image = nil } }
+            .onChange(of: item) { _, new in
+                guard let new else { return }
+                Task {
+                    if let data = try? await new.loadTransferable(type: Data.self), let img = UIImage(data: data) { onImage(img) }
+                    item = nil
+                }
+            }
     }
 }
 
