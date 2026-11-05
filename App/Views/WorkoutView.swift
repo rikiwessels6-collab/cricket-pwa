@@ -322,12 +322,14 @@ struct WorkoutHeader: View {
     let done: Int
     let total: Int
     let started: Date
+    /// Replaces the "WEEK n" line, for workouts that aren't part of a program.
+    var eyebrow: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("WEEK \(week)\(version == .standard ? "" : " · \(version.label.uppercased())")")
+                    Text(eyebrow ?? "WEEK \(week)\(version == .standard ? "" : " · \(version.label.uppercased())")")
                         .font(.caption.weight(.semibold)).tracking(1.6).foregroundStyle(Color.gold)
                     Text(name).font(.largeTitle.weight(.bold))
                 }
@@ -355,6 +357,7 @@ struct ExerciseCard: View {
     let exercise: Exercise?
     let suggestion: LoadSuggestion
     let isSwapped: Bool
+    var canSwap = true
     var focused: FocusState<Bool>.Binding
     let onSetDone: () -> Void
     let onSwap: () -> Void
@@ -420,14 +423,16 @@ struct ExerciseCard: View {
                     }
                 }
                 Spacer()
-                Button(action: onSwap) {
-                    Image(systemName: "arrow.triangle.swap")
-                        .font(.body.weight(.semibold))
-                        .frame(width: 40, height: 40)
-                        .background(Color.surfaceRaised, in: Circle())
+                if canSwap {
+                    Button(action: onSwap) {
+                        Image(systemName: "arrow.triangle.swap")
+                            .font(.body.weight(.semibold))
+                            .frame(width: 40, height: 40)
+                            .background(Color.surfaceRaised, in: Circle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Swap \(item.name)")
                 }
-                .buttonStyle(.plain)
-                .accessibilityLabel("Swap \(item.name)")
             }
             if let line = suggestionLine {
                 Label(line, systemImage: suggestionIcon)

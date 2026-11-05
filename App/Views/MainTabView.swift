@@ -83,7 +83,9 @@ struct TodayView: View {
                 }
             }
             .navigationDestination(item: $activeLog) { log in
-                if let program = store.content?.program(log.programId),
+                if log.isFreestyle {
+                    FreeWorkoutView(log: log)
+                } else if let program = store.content?.program(log.programId),
                    let week = program.weeks.first(where: { $0.number == log.weekNumber }),
                    let workout = week.workouts.first(where: { $0.position == log.workoutPosition }) {
                     ActiveWorkoutView(log: log, program: program, workout: workout)
@@ -290,12 +292,26 @@ struct CheckInCard: View {
 struct TrainView: View {
     @Environment(ContentStore.self) private var store
     @Query private var plans: [TrainingPlan]
+    @Environment(\.modelContext) private var context
+    @Query(filter: #Predicate<WorkoutLog> { $0.finishedAt == nil }) private var openLogs: [WorkoutLog]
     @State private var changingProgram = false
+    @State private var openLog: WorkoutLog?
 
     var body: some View {
         NavigationStack {
             if let plan = plans.first, let program = store.content?.program(plan.programId) {
                 List {
+                    Section {
+                        Button {
+                            if let existing = openLogs.first(where: { $0.isFreestyle }) { openLog = existing }
+                            else { openLog = FreeWorkout.start(in: context) }
+                        } label: {
+                            Label(openLogs.contains(where: { $0.isFreestyle }) ? "Resume open workout" : "Start an open workout", systemImage: "plus.circle")
+                        }
+                        .accessibilityIdentifier("openWorkout")
+                    } footer: {
+                        Text("Train off-plan: pick any exercises, including your own. It doesn't move your program on.")
+                    }
                     Section {
                         LabeledContent("Program", value: program.name)
                         LabeledContent("Sessions a week", value: program.sessionsPerWeekText)
@@ -325,6 +341,7 @@ struct TrainView: View {
                     }
                 }
                 .sheet(isPresented: $changingProgram) { ChangeProgramView() }
+                .navigationDestination(item: $openLog) { FreeWorkoutView(log: $0) }
             } else {
                 ContentUnavailableView("No program yet", systemImage: "dumbbell")
                     .navigationTitle("Train")

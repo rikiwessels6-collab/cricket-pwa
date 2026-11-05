@@ -3,7 +3,7 @@ import SwiftData
 
 enum Persistence {
     static let schema = Schema([UserProfile.self, TrainingPlan.self, NutritionPlan.self, CheckInSettings.self, AppSettings.self,
-                                 WorkoutLog.self, SetLog.self, FoodEntry.self, SavedFood.self, CheckInEntry.self, ExerciseNote.self, ProgressPhoto.self])
+                                 WorkoutLog.self, SetLog.self, FoodEntry.self, SavedFood.self, CheckInEntry.self, ExerciseNote.self, ProgressPhoto.self, CustomExercise.self])
 
     /// UI tests pass -UITestInMemory to start from a clean, throwaway store.
     static var isUITest: Bool { ProcessInfo.processInfo.arguments.contains("-UITestInMemory") }
@@ -45,6 +45,7 @@ enum Persistence {
         try context.delete(model: CheckInEntry.self)
         try context.delete(model: ExerciseNote.self)
         try context.delete(model: ProgressPhoto.self)
+        try context.delete(model: CustomExercise.self)
         PhotoStore.deleteAll()
         try context.delete(model: SetLog.self)
         try context.delete(model: WorkoutLog.self)

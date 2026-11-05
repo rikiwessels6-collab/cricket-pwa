@@ -41,6 +41,8 @@ struct ProgressTabView: View {
                 Section("Strength and history") {
                     NavigationLink { StrengthListView() } label: { Label("Lifts and records", systemImage: "chart.line.uptrend.xyaxis") }
                         .accessibilityIdentifier("liftsAndRecords")
+                    NavigationLink { WeeklyVolumeView() } label: { Label("Weekly volume", systemImage: "chart.bar.fill") }
+                        .accessibilityIdentifier("weeklyVolume")
                     NavigationLink { ProgressPhotosView() } label: { Label("Progress photos", systemImage: "person.crop.rectangle") }
                         .accessibilityIdentifier("progressPhotos")
                     NavigationLink { WorkoutHistoryView() } label: { Label("Workout history", systemImage: "calendar") }

@@ -20,6 +20,8 @@ final class UserProfile {
     /// Turns on the perimenopause-aware defaults (protein, optional daily check-ins).
     var perimenopause: Bool
     var createdAt: Date
+    /// When the goal was last changed in Settings. Nil if it never has been.
+    var goalChangedAt: Date? = nil
 
     init(name: String, birthYear: Int, sex: Sex, heightCm: Double, weightKg: Double, bodyFatRange: String?,
          goal: Goal, experience: Experience, activity: ActivityLevel, injuries: String, perimenopause: Bool) {
@@ -105,6 +107,15 @@ final class NutritionPlan {
     /// Follow the workbook advice: two weeks at maintenance before a deficit or surplus.
     var startAtMaintenance: Bool
     var createdAt: Date
+
+    init(calories: Int, protein: Int, carbs: Int, fat: Int, fibre: Int, maintenance: Int,
+         presetName: String, proteinPerKg: Double, startAtMaintenance: Bool) {
+        self.calories = calories; self.protein = protein; self.carbs = carbs; self.fat = fat
+        self.fibre = fibre; self.maintenance = maintenance
+        self.presetName = presetName; self.proteinPerKg = proteinPerKg
+        self.startAtMaintenance = startAtMaintenance
+        self.createdAt = .now
+    }
 
     init(targets: Nutrition.Targets, presetName: String, proteinPerKg: Double, startAtMaintenance: Bool) {
         self.calories = targets.calories
@@ -218,6 +229,9 @@ final class WorkoutLog {
     /// Exercise ids where the user accepted or declined a suggested increase or deload today.
     var acceptedSuggestions: [String] = []
     var declinedSuggestions: [String] = []
+    /// An open workout (no program): the exercises added so far, in order.
+    var isFreestyle: Bool = false
+    var freeExerciseIds: [String] = []
     @Relationship(deleteRule: .cascade, inverse: \SetLog.workout) var sets: [SetLog] = []
 
     init(programId: String, weekNumber: Int, workoutPosition: Int, workoutName: String, version: SessionVersion, swaps: [Int: String]) {
@@ -398,4 +412,50 @@ final class ProgressPhoto {
     }
 
     var angle: PhotoAngle { PhotoAngle(rawValue: angleRaw) ?? .front }
+}
+
+
+// MARK: - Your own exercises
+
+/// An exercise you added yourself. It is merged into the exercise list at launch (see ContentStore).
+@Model
+final class CustomExercise {
+    @Attribute(.unique) var exerciseId: String
+    var name: String
+    var primaryMuscle: String
+    var secondaryMuscle: String?
+    /// One of CustomExercise.kinds.
+    var kind: String
+    var loadable: Bool
+    var unilateral: Bool
+    var timed: Bool
+    var createdAt: Date
+
+    init(name: String, primaryMuscle: String, secondaryMuscle: String?, kind: String, loadable: Bool, unilateral: Bool, timed: Bool) {
+        self.exerciseId = "custom-" + UUID().uuidString.prefix(8).lowercased()
+        self.name = name
+        self.primaryMuscle = primaryMuscle
+        self.secondaryMuscle = secondaryMuscle
+        self.kind = kind
+        self.loadable = loadable
+        self.unilateral = unilateral
+        self.timed = timed
+        self.createdAt = .now
+    }
+
+    /// What it is done with: label and the equipment ids stored on the exercise.
+    static let kinds: [(id: String, label: String, equipment: [String])] = [
+        ("barbell", "Barbell", ["barbell"]),
+        ("dumbbells", "Dumbbells", ["dumbbells"]),
+        ("cable", "Cable", ["cable"]),
+        ("machine", "Machine", ["machine"]),
+        ("bodyweight", "Bodyweight", []),
+        ("other", "Something else", []),
+    ]
+
+    var asExercise: SteadyCore.Exercise {
+        SteadyCore.Exercise.custom(id: exerciseId, name: name, primaryMuscle: primaryMuscle, secondaryMuscle: secondaryMuscle,
+                                   equipment: Self.kinds.first { $0.id == kind }?.equipment ?? [],
+                                   loadable: loadable, unilateral: unilateral, timed: timed)
+    }
 }

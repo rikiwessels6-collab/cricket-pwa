@@ -5,6 +5,7 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.modelContext) private var context
     @Query private var settings: [AppSettings]
+    @Query private var customExercises: [CustomExercise]
     @State private var lock = AppLock()
     @State private var content = ContentStore()
 
@@ -49,6 +50,9 @@ struct RootView: View {
                 lock.configure(enabled: true, timeoutSeconds: 0)
                 lock.lockNow()
             }
+        }
+        .task(id: customExercises.map { "\($0.exerciseId)|\($0.name)|\($0.primaryMuscle)|\($0.secondaryMuscle ?? "")|\($0.kind)|\($0.loadable)|\($0.unilateral)|\($0.timed)" }) {
+            content.setCustom(customExercises.map(\.asExercise))
         }
         .onChange(of: current?.lockEnabled) { _, _ in syncLock() }
         .onChange(of: current?.lockTimeoutSeconds) { _, _ in syncLock() }

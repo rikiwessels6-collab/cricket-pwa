@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Query private var checkInSettings: [CheckInSettings]
     @State private var reminderMessage: String?
     @State private var changingProgram = false
+    @State private var changingGoal = false
     @State private var healthMessage: String?
     @State private var exportURL: URL?
     @State private var exportError: String?
@@ -39,7 +40,15 @@ struct SettingsView: View {
                             Stepper("Weight", value: Binding(get: { p.weightKg }, set: { p.weightKg = $0 }), in: 30...300, step: 0.5)
                                 .labelsHidden()
                         }
-                        LabeledContent("Goal", value: p.goal.label)
+                        Button { changingGoal = true } label: {
+                            HStack {
+                                Text("Goal").foregroundStyle(.primary)
+                                Spacer()
+                                Text(p.goal.label).foregroundStyle(.secondary)
+                                Image(systemName: "chevron.right").font(.footnote).foregroundStyle(.tertiary)
+                            }
+                        }
+                        .accessibilityIdentifier("changeGoal")
                     }
                 }
                 if let plan = plans.first, let content = store.content {
@@ -67,6 +76,8 @@ struct SettingsView: View {
                         Stepper(value: Binding(get: { plan.lowerIncrement }, set: { plan.lowerIncrement = $0 }), in: 1...10, step: 0.5) {
                             LabeledContent("Squat and deadlift step", value: "\(NumberText.format(plan.lowerIncrement)) kg")
                         }
+                        NavigationLink("My exercises") { MyExercisesView() }
+                            .accessibilityIdentifier("myExercises")
                         NavigationLink("Bar, plates and warm-ups") { PlateCalculatorView() }
                             .accessibilityIdentifier("platesLink")
                     } header: { Text("Training") } footer: {
@@ -157,6 +168,7 @@ struct SettingsView: View {
                     if let url = exportURL {
                         ShareLink(item: url) { Label("Share export file", systemImage: "square.and.arrow.up") }
                     }
+                    RestoreBackupButton()
                     Button("Erase all my data", role: .destructive) { confirmErase = true }
                 }
                 Section("About") {
@@ -168,6 +180,7 @@ struct SettingsView: View {
             .themedList()
             .navigationTitle("Settings")
             .sheet(isPresented: $changingProgram) { ChangeProgramView() }
+            .sheet(isPresented: $changingGoal) { GoalChangeView() }
             .confirmationDialog("Erase everything?", isPresented: $confirmErase, titleVisibility: .visible) {
                 Button("Erase all my data", role: .destructive) {
                     try? Persistence.eraseAll(context)

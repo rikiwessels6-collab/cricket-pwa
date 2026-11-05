@@ -47,6 +47,26 @@ public enum Goal: String, Codable, CaseIterable, Sendable {
         case .generalHealth: return "General health"
         }
     }
+
+    /// One plain sentence for the goal picker.
+    public var summary: String {
+        switch self {
+        case .fatLoss: return "A modest daily deficit, with protein kept high to hold on to muscle."
+        case .maintain: return "Eat at your maintenance level and keep training steady."
+        case .buildMuscle: return "A small daily surplus to support adding muscle."
+        case .generalHealth: return "Eat at your maintenance level and train for strength, energy and long-term health."
+        }
+    }
+
+    /// The tag used on programs that suit this goal (see Program.goalTags).
+    public var programTag: String {
+        switch self {
+        case .fatLoss: return "strength"
+        case .maintain: return "strength"
+        case .buildMuscle: return "muscle"
+        case .generalHealth: return "general health"
+        }
+    }
 }
 
 public struct MacroPreset: Equatable, Hashable, Sendable, Identifiable {

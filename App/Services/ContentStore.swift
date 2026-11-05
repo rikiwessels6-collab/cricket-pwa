@@ -10,10 +10,19 @@ import SteadyCore
 final class ContentStore {
     enum State { case loading, ready(BundledContent), failed(String) }
     private(set) var state: State = .loading
+    /// The user's own exercises, merged into `content.library`.
+    private var custom: [Exercise] = []
+    private(set) var content: BundledContent?
+    private var base: BundledContent?
 
-    var content: BundledContent? {
-        if case .ready(let c) = state { return c }
-        return nil
+    /// Replaces the user's own exercises (called at launch and after one is added or edited).
+    func setCustom(_ exercises: [Exercise]) {
+        custom = exercises
+        rebuild()
+    }
+
+    private func rebuild() {
+        content = base?.adding(custom)
     }
 
     func load() async {
@@ -29,6 +38,8 @@ final class ContentStore {
                 return try BundledContent(programs: data("programs"), library: data("exercise_library"),
                                           equipment: data("equipment"), checkIn: data("checkin_defaults"))
             }.value
+            base = loaded
+            rebuild()
             state = .ready(loaded)
         } catch {
             state = .failed(error.localizedDescription)

@@ -105,6 +105,8 @@ struct WelcomeStep: View {
                     Label("Your data stays on this phone", systemImage: "lock.shield")
                 }
                 .font(.body)
+                RestoreBackupButton(title: "I already have a backup", confirm: false)
+                    .font(.subheadline)
             }
             .padding()
         }

@@ -145,15 +145,21 @@ public enum WeeklyVolume {
     /// Timed holds and carries are shown elsewhere but don't count towards hypertrophy volume.
     public static func compute(_ sessions: [[PlannedExercise]], library: [String: Exercise],
                                rules: RuleSet = RuleSet()) -> [String: MuscleVolume] {
+        var counts: [String: Int] = [:]
+        for session in sessions { for e in session { counts[e.exerciseId, default: 0] += e.sets } }
+        return compute(setCounts: counts, library: library, rules: rules)
+    }
+
+    /// The same maths from sets actually done: exercise id to number of working sets.
+    public static func compute(setCounts: [String: Int], library: [String: Exercise],
+                               rules: RuleSet = RuleSet()) -> [String: MuscleVolume] {
         var out: [String: MuscleVolume] = [:]
-        for session in sessions {
-            for e in session {
-                guard let ex = library[e.exerciseId], !ex.timed, ex.pattern != "carry", e.sets > 0 else { continue }
-                let sets = Double(e.sets)
-                if let mover = ex.primaryMuscles.first { out[mover, default: MuscleVolume()].direct += sets * rules.primaryCredit }
-                for m in ex.primaryMuscles.dropFirst() + ex.secondaryMuscles {
-                    out[m, default: MuscleVolume()].indirect += sets * rules.secondaryCredit
-                }
+        for (id, count) in setCounts {
+            guard let ex = library[id], !ex.timed, ex.pattern != "carry", count > 0 else { continue }
+            let sets = Double(count)
+            if let mover = ex.primaryMuscles.first { out[mover, default: MuscleVolume()].direct += sets * rules.primaryCredit }
+            for m in ex.primaryMuscles.dropFirst() + ex.secondaryMuscles {
+                out[m, default: MuscleVolume()].indirect += sets * rules.secondaryCredit
             }
         }
         return out
